@@ -8,7 +8,7 @@ export default (app: Router) => {
   route.get(
     "/world",
     async (req: Request, res: Response, next: NextFunction) => {
-      return res.json({ hello: "world" }).status(200);
+      return res.json({ message: "Hello world!" }).status(200);
     }
   );
 };
