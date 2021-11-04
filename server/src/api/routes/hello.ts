@@ -6,6 +6,6 @@ export default (app: Router) => {
   app.use("/hello_world", route);
 
   route.get("/", async (req: Request, res: Response, next: NextFunction) => {
-    return res.json({ message: "Hello world!" }).status(200);
+    return res.json({ message: "Hello world!", code: 1 }).status(200);
   });
 };
