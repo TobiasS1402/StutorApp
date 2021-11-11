@@ -33,7 +33,6 @@ export default (app: Router) => {
           Authorization: request["headers"]["Authorization"],
         },
       });
-      console.log(data);
 
       return res.send(JSON.parse(data.body));
     }
