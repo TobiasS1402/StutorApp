@@ -1,38 +1,41 @@
 import { NextFunction, Request, Response, Router } from "express";
-import { auth, requiresAuth } from "express-openid-connect";
 import Container from "typedi";
+import SurfOAuth2 from "../../config/OAuth2/SurfOAuth2";
 import AuthService from "../../service/auth";
 import util from "../../util";
+import got from "got";
 
 const route = Router();
+const oauth = SurfOAuth2;
 
 export default (app: Router) => {
-  app.use(
-    auth({
-      authRequired: false,
-    })
-  );
   app.use("/auth", route);
 
   route.get(
     "/signup",
-    requiresAuth(),
     async (req: Request, res: Response, next: NextFunction) => {
-      try {
-        const authServiceInstance = Container.get(AuthService);
-        return await authServiceInstance.SignUp();
-      } catch (e) {
-        console.log(e);
-
-        return util.handleCustomError(e, res, next);
-      }
+      var uri = oauth.code.getUri();
+      res.redirect(uri);
     }
   );
 
-  route.post(
+  route.get(
     "/callback",
     async (req: Request, res: Response, next: NextFunction) => {
-      res.send(`hello!\n\n${req.oidc.user}`);
+      const user = await oauth.code.getToken(req.originalUrl);
+
+      var request = user.sign({
+        url: "https://connect.test.surfconext.nl/oidc/userinfo",
+      });
+
+      const data = await got(request.url, {
+        headers: {
+          Authorization: request["headers"]["Authorization"],
+        },
+      });
+      console.log(data);
+
+      return res.send(JSON.parse(data.body));
     }
   );
 };
