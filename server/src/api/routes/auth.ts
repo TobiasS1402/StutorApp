@@ -29,10 +29,10 @@ export default (app: Router) => {
     }
   );
 
-  route.get(
+  route.post(
     "callback",
     async (req: Request, res: Response, next: NextFunction) => {
-      return "hello";
+      res.send(`hello!\n\n${req.oidc.user}`);
     }
   );
 };
