@@ -30,7 +30,7 @@ export default (app: Router) => {
   );
 
   route.post(
-    "callback",
+    "/callback",
     async (req: Request, res: Response, next: NextFunction) => {
       res.send(`hello!\n\n${req.oidc.user}`);
     }
