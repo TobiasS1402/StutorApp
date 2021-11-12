@@ -235,7 +235,5 @@ export default async (): Promise<boolean> => {
     ],
   });
 
-  LoggerInstance.debug(JSON.stringify(data.toJSON()));
-
   return true;
 };

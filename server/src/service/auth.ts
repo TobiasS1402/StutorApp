@@ -11,8 +11,7 @@ import {
 import { sign } from "jsonwebtoken";
 import config from "../config";
 import messages from "../messages";
-import { randomBytes } from "crypto";
-import { hash, verify } from "argon2";
+import { verify } from "argon2";
 
 @Service()
 export default class AuthService {
@@ -95,31 +94,6 @@ export default class AuthService {
     } else {
       throw new InvalidInputError(
         messages(userRecord.language).PIN_INCORRECT_ERROR
-      );
-    }
-  }
-
-  public async ChangePin(
-    userInputDTO: IUserInputDTO,
-    newpin: string
-  ): Promise<void> {
-    // Fetch the user from the database
-    const userRecord = await this.userModel.findOne({
-      where: { email: userInputDTO.email },
-    });
-    if (!userRecord) throw new NotFoundError(messages().USER_NOT_FOUND);
-
-    // Generate hash and salt
-    const salt = randomBytes(32);
-    const hashedPin = await hash(newpin, { salt });
-    const result = await this.userModel.update(
-      { pin: hashedPin, salt: salt.toString("hex") },
-      { where: { email: userInputDTO.email } }
-    );
-
-    if (result[0] <= 0) {
-      throw new InternalServerError(
-        messages(userRecord.language).PIN_INTERNAL_SERVER_ERROR
       );
     }
   }

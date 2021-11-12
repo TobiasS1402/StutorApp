@@ -44,31 +44,6 @@ export default (app: Router) => {
     }
   );
 
-  route.put(
-    "/pin",
-    celebrate({
-      body: Joi.object().keys({
-        pin: Joi.string().required(),
-      }),
-    }),
-    middlewares.isAuth,
-    middlewares.attachCurrentUser,
-    async (req: Request, res: Response, next: NextFunction) => {
-      try {
-        const authServiceInstance = Container.get(AuthService);
-        await authServiceInstance.ChangePin(
-          req.currentUser as IUserInputDTO,
-          req.body.pin
-        );
-        return res
-          .status(200)
-          .json({ message: messages().PIN_CHANGED_SUCCESS });
-      } catch (e) {
-        return util.handleCustomError(e, res, next);
-      }
-    }
-  );
-
   route.get(
     "/callback",
     async (req: Request, res: Response, next: NextFunction) => {
