@@ -4,6 +4,7 @@ import SurfOAuth2 from "../../config/OAuth2/SurfOAuth2";
 import AuthService from "../../service/auth";
 import util from "../../util";
 import got from "got";
+import { IUserInputDTO } from "../../interfaces/IUser";
 
 const route = Router();
 const oauth = SurfOAuth2;
@@ -12,7 +13,7 @@ export default (app: Router) => {
   app.use("/auth", route);
 
   route.get(
-    "/signup",
+    "/login",
     async (req: Request, res: Response, next: NextFunction) => {
       var uri = oauth.code.getUri();
       res.redirect(uri);
@@ -22,19 +23,40 @@ export default (app: Router) => {
   route.get(
     "/callback",
     async (req: Request, res: Response, next: NextFunction) => {
-      const user = await oauth.code.getToken(req.originalUrl);
+      try {
+        const user = await oauth.code.getToken(req.originalUrl);
 
-      var request = user.sign({
-        url: "https://connect.test.surfconext.nl/oidc/userinfo",
-      });
+        var request = user.sign({
+          url: "https://connect.test.surfconext.nl/oidc/userinfo",
+        });
 
-      const data = await got(request.url, {
-        headers: {
-          Authorization: request["headers"]["Authorization"],
-        },
-      });
+        const data = await got(request.url, {
+          headers: {
+            Authorization: request["headers"]["Authorization"],
+          },
+        });
 
-      return res.send(JSON.parse(data.body));
+        const authServiceInstance = Container.get(AuthService);
+        const userObj = JSON.parse(data.body);
+        console.log(userObj);
+
+        try {
+          const { user, token } = await authServiceInstance.SignIn({
+            email: userObj.email,
+            language: userObj.schac_personal_unique_code[0].split(":")[3],
+          } as IUserInputDTO);
+          return res.status(200).json({ user, token });
+        } catch (e) {
+          const { user, token } = await authServiceInstance.SignUp({
+            email: userObj.email,
+            username: userObj.name,
+            language: userObj.schac_personal_unique_code[0].split(":")[3],
+          } as IUserInputDTO);
+          return res.status(200).json({ user, token });
+        }
+      } catch (e) {
+        return util.handleCustomError(e, res, next);
+      }
     }
   );
 };

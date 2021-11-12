@@ -41,6 +41,9 @@ class User extends Model<UserModel, IUser> {
   description: string;
 
   @Column
+  language: string;
+
+  @Column
   pin: string;
 
   @Column

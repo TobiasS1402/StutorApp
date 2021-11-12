@@ -4,6 +4,7 @@ import methodOverride from "method-override";
 import bodyParser from "body-parser";
 import config from "../config";
 import routes from "../api";
+import path from "path";
 
 export default ({ app }: { app: Application }) => {
   app.get("/status", (_req, res) => {
