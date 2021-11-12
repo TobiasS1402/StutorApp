@@ -5,6 +5,9 @@ import AuthService from "../../service/auth";
 import util from "../../util";
 import got from "got";
 import { IUserInputDTO } from "../../interfaces/IUser";
+import { celebrate, Joi } from "celebrate";
+import middlewares from "../middlewares";
+import messages from "../../messages";
 
 const route = Router();
 const oauth = SurfOAuth2;
@@ -14,9 +17,55 @@ export default (app: Router) => {
 
   route.get(
     "/login",
-    async (req: Request, res: Response, next: NextFunction) => {
+    async (_req: Request, res: Response, _next: NextFunction) => {
       var uri = oauth.code.getUri();
       res.redirect(uri);
+    }
+  );
+
+  route.post(
+    "/login",
+    celebrate({
+      body: Joi.object().keys({
+        email: Joi.string().required(),
+        pin: Joi.string().required(),
+      }),
+    }),
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const authServiceInstance = Container.get(AuthService);
+        const { user, token } = await authServiceInstance.SignInPin(
+          req.body as IUserInputDTO
+        );
+        return res.status(200).json({ user, token });
+      } catch (e) {
+        return util.handleCustomError(e, res, next);
+      }
+    }
+  );
+
+  route.put(
+    "/pin",
+    celebrate({
+      body: Joi.object().keys({
+        pin: Joi.string().required(),
+      }),
+    }),
+    middlewares.isAuth,
+    middlewares.attachCurrentUser,
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const authServiceInstance = Container.get(AuthService);
+        await authServiceInstance.ChangePin(
+          req.currentUser as IUserInputDTO,
+          req.body.pin
+        );
+        return res
+          .status(200)
+          .json({ message: messages().PIN_CHANGED_SUCCESS });
+      } catch (e) {
+        return util.handleCustomError(e, res, next);
+      }
     }
   );
 

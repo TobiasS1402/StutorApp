@@ -24,5 +24,5 @@ export interface IUserInputDTO {
   year: number;
   description: string;
   language: string;
-  pin: number;
+  pin: string;
 }

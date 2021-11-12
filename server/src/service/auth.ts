@@ -1,20 +1,24 @@
 import { Inject, Service } from "typedi";
-import { Logger } from "winston";
+import { Logger as _Logger } from "winston";
 import { IUser, IUserInputDTO } from "../interfaces/IUser";
 import {
+  BadRequestError,
   DuplicateError,
   InternalServerError,
+  InvalidInputError,
   NotFoundError,
 } from "../util/errors";
 import { sign } from "jsonwebtoken";
 import config from "../config";
 import messages from "../messages";
+import { randomBytes } from "crypto";
+import { hash, verify } from "argon2";
 
 @Service()
 export default class AuthService {
   constructor(
     @Inject("userModel") private userModel: Models.User,
-    @Inject("logger") private logger: Logger
+    @Inject("logger") private logger: _Logger
   ) {}
 
   public async SignUp(
@@ -41,13 +45,11 @@ export default class AuthService {
       } as IUser);
       if (!userRecord)
         throw new InternalServerError(
-          messages(userInputDTO.language).USER_CREATE_INTERNAL_SERVER_ERROR
+          messages(userInputDTO.language).USER_CREATE_SERVER_ERROR
         );
 
       const token = this.generateToken(userRecord);
-      const user = userRecord.toJSON() as IUser;
-      Reflect.deleteProperty(user, "pin");
-      Reflect.deleteProperty(user, "salt");
+      const user = this.RemoveCredentialsFromUser(userRecord.toJSON() as IUser);
       return { user, token };
     } catch (e) {
       this.logger.error(e);
@@ -65,11 +67,67 @@ export default class AuthService {
     if (!userRecord)
       throw new NotFoundError(messages(userInputDTO.language).USER_NOT_FOUND);
 
+    // Return the user info
     const token = this.generateToken(userRecord);
-    const user = userRecord.toJSON() as IUser;
+    const user = this.RemoveCredentialsFromUser(userRecord.toJSON() as IUser);
+    return { user, token };
+  }
+
+  public async SignInPin(
+    userInputDTO: IUserInputDTO
+  ): Promise<{ user: IUser; token: string }> {
+    // Fetch the user from the database
+    const userRecord = await this.userModel.findOne({
+      where: { email: userInputDTO.email },
+    });
+    if (!userRecord) throw new NotFoundError(messages().USER_NOT_FOUND);
+
+    // Check if user has set a pin
+    if (!userRecord.pin)
+      throw new BadRequestError(messages(userRecord.language).NO_PIN_ERROR);
+
+    // Check if pin is equal to the database one
+    const validPin = await verify(userRecord.pin, userInputDTO.pin.toString());
+    if (validPin) {
+      const token = this.generateToken(userRecord);
+      const user = this.RemoveCredentialsFromUser(userRecord.toJSON() as IUser);
+      return { user, token };
+    } else {
+      throw new InvalidInputError(
+        messages(userRecord.language).PIN_INCORRECT_ERROR
+      );
+    }
+  }
+
+  public async ChangePin(
+    userInputDTO: IUserInputDTO,
+    newpin: string
+  ): Promise<void> {
+    // Fetch the user from the database
+    const userRecord = await this.userModel.findOne({
+      where: { email: userInputDTO.email },
+    });
+    if (!userRecord) throw new NotFoundError(messages().USER_NOT_FOUND);
+
+    // Generate hash and salt
+    const salt = randomBytes(32);
+    const hashedPin = await hash(newpin, { salt });
+    const result = await this.userModel.update(
+      { pin: hashedPin, salt: salt.toString("hex") },
+      { where: { email: userInputDTO.email } }
+    );
+
+    if (result[0] <= 0) {
+      throw new InternalServerError(
+        messages(userRecord.language).PIN_INTERNAL_SERVER_ERROR
+      );
+    }
+  }
+
+  private RemoveCredentialsFromUser(user: IUser): IUser {
     Reflect.deleteProperty(user, "pin");
     Reflect.deleteProperty(user, "salt");
-    return { user, token };
+    return user;
   }
 
   private generateToken(user: IUser) {

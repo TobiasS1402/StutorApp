@@ -43,10 +43,20 @@ class ForbiddenError extends Error {
   }
 }
 
+class BadRequestError extends Error {
+  statusCode: number;
+  constructor(message) {
+    super(message);
+    this.name = "BadRequest";
+    this.statusCode = 400;
+  }
+}
+
 export {
   DuplicateError,
   ForbiddenError,
   InternalServerError,
   InvalidInputError,
   NotFoundError,
+  BadRequestError,
 };
