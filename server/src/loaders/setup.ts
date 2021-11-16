@@ -66,42 +66,36 @@ export default async (): Promise<boolean> => {
       username: "Maurits",
       studyId: 1,
       year: 4,
-      language: "nl",
     },
     {
       email: "bart.vantongeren@student.hu.nl",
       username: "Bart",
       studyId: 1,
       year: 4,
-      language: "nl",
     },
     {
       email: "lucas.goncalvesfelicio@student.hu.nl",
       username: "Lucas",
       studyId: 2,
       year: 4,
-      language: "en",
     },
     {
       email: "daan.franssen@student.hu.nl",
       username: "Daan",
       studyId: 3,
       year: 3,
-      language: "nl",
     },
     {
       email: "erlend.vanderburg@student.hu.nl",
       username: "Erlend",
       studyId: 3,
       year: 3,
-      language: "nl",
     },
     {
       email: "martijn.vandekraats@student.hu.nl",
       username: "Martijn",
       studyId: 4,
       year: 3,
-      language: "nl",
     },
   ];
 

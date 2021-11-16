@@ -32,7 +32,6 @@ export default class AuthService {
       const userRecord = await this.userModel.create({
         email: userInputDTO.email,
         username: userInputDTO.username,
-        language: userInputDTO.language,
       } as IUser);
       if (!userRecord)
         throw new CustomError(responses.USER_CREATE_INTERNAL_SERVER);

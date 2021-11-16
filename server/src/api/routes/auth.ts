@@ -65,14 +65,12 @@ export default (app: Router) => {
         try {
           const { user, token } = await authServiceInstance.SignIn({
             email: userObj.email,
-            language: userObj.schac_personal_unique_code[0].split(":")[3],
           } as IUserInputDTO);
           return res.status(200).json({ user, token });
         } catch (e) {
           const { user, token } = await authServiceInstance.SignUp({
             email: userObj.email,
             username: userObj.name,
-            language: userObj.schac_personal_unique_code[0].split(":")[3],
           } as IUserInputDTO);
           return res.status(200).json({ user, token });
         }
