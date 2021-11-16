@@ -3,8 +3,8 @@ import { randomBytes } from "crypto";
 import { Inject, Service } from "typedi";
 import { Logger as _Logger } from "winston";
 import { IUser, IUserInputDTO } from "../interfaces/IUser";
-import messages from "../messages";
-import { InternalServerError, NotFoundError } from "../util/errors";
+import { CustomError } from "../errors";
+import responses from "../errors/responses.json";
 
 @Service()
 export default class UserService {
@@ -21,8 +21,8 @@ export default class UserService {
       const userRecord = await this.userModel.findOne({
         where: { _id: userInputDTO._id },
       });
+      if (!userRecord) throw new CustomError(responses.USER_NOT_FOUND);
 
-      if (!userRecord) throw new NotFoundError(messages().USER_NOT_FOUND);
       const user = this.RemoveCredentialsFromUser(userRecord.toJSON() as IUser);
       return { user };
     } catch (e) {
@@ -39,7 +39,7 @@ export default class UserService {
     const userRecord = await this.userModel.findOne({
       where: { email: userInputDTO.email },
     });
-    if (!userRecord) throw new NotFoundError(messages().USER_NOT_FOUND);
+    if (!userRecord) throw new CustomError(responses.USER_NOT_FOUND);
 
     // Generate hash and salt
     const salt = randomBytes(32);
@@ -50,9 +50,7 @@ export default class UserService {
     );
 
     if (result[0] <= 0) {
-      throw new InternalServerError(
-        messages(userRecord.language).PIN_INTERNAL_SERVER_ERROR
-      );
+      throw new CustomError(responses.PIN_CHANGE_INTERNAL_SERVER);
     }
   }
 

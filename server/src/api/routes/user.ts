@@ -2,7 +2,6 @@ import { celebrate, Joi } from "celebrate";
 import { NextFunction, Response, Router, Request } from "express";
 import Container from "typedi";
 import { IUser } from "../../interfaces/IUser";
-import messages from "../../messages";
 import UserService from "../../service/user";
 import util from "../../util";
 import middlewares from "../middlewares";
@@ -10,7 +9,7 @@ import middlewares from "../middlewares";
 const route = Router();
 
 export default (app: Router) => {
-  app.use("/user", route);
+  app.use("/users", route);
 
   route.put(
     "/pin",
@@ -28,9 +27,7 @@ export default (app: Router) => {
           req.currentUser as IUser,
           req.body.pin
         );
-        return res
-          .status(200)
-          .json({ message: messages().PIN_CHANGED_SUCCESS });
+        return res.status(200).json();
       } catch (e) {
         return util.handleCustomError(e, res, next);
       }

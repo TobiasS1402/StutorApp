@@ -1,16 +1,10 @@
 import { Inject, Service } from "typedi";
 import { Logger as _Logger } from "winston";
 import { IUser, IUserInputDTO } from "../interfaces/IUser";
-import {
-  BadRequestError,
-  DuplicateError,
-  InternalServerError,
-  InvalidInputError,
-  NotFoundError,
-} from "../util/errors";
+import { CustomError } from "../errors";
+import responses from "../errors/responses.json";
 import { sign } from "jsonwebtoken";
 import config from "../config";
-import messages from "../messages";
 import { verify } from "argon2";
 
 @Service()
@@ -31,9 +25,7 @@ export default class AuthService {
         },
       });
       if (existingRecord) {
-        throw new DuplicateError(
-          messages(userInputDTO.language).DUPLICATE_EMAIL_ERROR
-        );
+        throw new CustomError(responses.DUPLICATE_USER);
       }
 
       // Create User in database
@@ -43,9 +35,7 @@ export default class AuthService {
         language: userInputDTO.language,
       } as IUser);
       if (!userRecord)
-        throw new InternalServerError(
-          messages(userInputDTO.language).USER_CREATE_SERVER_ERROR
-        );
+        throw new CustomError(responses.USER_CREATE_INTERNAL_SERVER);
 
       const token = this.generateToken(userRecord);
       const user = this.RemoveCredentialsFromUser(userRecord.toJSON() as IUser);
@@ -63,8 +53,7 @@ export default class AuthService {
     const userRecord = await this.userModel.findOne({
       where: { email: userInputDTO.email },
     });
-    if (!userRecord)
-      throw new NotFoundError(messages(userInputDTO.language).USER_NOT_FOUND);
+    if (!userRecord) throw new CustomError(responses.USER_NOT_FOUND);
 
     // Return the user info
     const token = this.generateToken(userRecord);
@@ -79,11 +68,10 @@ export default class AuthService {
     const userRecord = await this.userModel.findOne({
       where: { email: userInputDTO.email },
     });
-    if (!userRecord) throw new NotFoundError(messages().USER_NOT_FOUND);
+    if (!userRecord) throw new CustomError(responses.USER_NOT_FOUND);
 
     // Check if user has set a pin
-    if (!userRecord.pin)
-      throw new BadRequestError(messages(userRecord.language).NO_PIN_ERROR);
+    if (!userRecord.pin) throw new CustomError(responses.PIN_NOT_FOUND);
 
     // Check if pin is equal to the database one
     const validPin = await verify(userRecord.pin, userInputDTO.pin.toString());
@@ -92,9 +80,7 @@ export default class AuthService {
       const user = this.RemoveCredentialsFromUser(userRecord.toJSON() as IUser);
       return { user, token };
     } else {
-      throw new InvalidInputError(
-        messages(userRecord.language).PIN_INCORRECT_ERROR
-      );
+      throw new CustomError(responses.INCORRECT_PIN);
     }
   }
 

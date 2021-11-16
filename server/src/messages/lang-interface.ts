@@ -1,9 +1,0 @@
-export interface Language {
-  USER_NOT_FOUND: String;
-  DUPLICATE_EMAIL_ERROR: String;
-  USER_CREATE_SERVER_ERROR: String;
-  PIN_INCORRECT_ERROR: String;
-  NO_PIN_ERROR: String;
-  PIN_INTERNAL_SERVER_ERROR: String;
-  PIN_CHANGED_SUCCESS: String;
-}

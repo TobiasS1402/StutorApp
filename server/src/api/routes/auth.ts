@@ -6,8 +6,6 @@ import util from "../../util";
 import got from "got";
 import { IUserInputDTO } from "../../interfaces/IUser";
 import { celebrate, Joi } from "celebrate";
-import middlewares from "../middlewares";
-import messages from "../../messages";
 
 const route = Router();
 const oauth = SurfOAuth2;

@@ -1,0 +1,66 @@
+{
+  "STUDY_NOT_FOUND": {
+    "name": "NotFoundError",
+    "statusCode": 404,
+    "messages": {
+      "en": "Study not found",
+      "nl": "Studie niet gevonden"
+    }
+  },
+  "USER_NOT_FOUND": {
+    "name": "NotFoundError",
+    "statusCode": 404,
+    "messages": {
+      "en": "User not found",
+      "nl": "Gebruiker niet gevonden"
+    }
+  },
+  "PIN_NOT_FOUND": {
+    "name": "NotFoundError",
+    "statusCode": 404,
+    "messages": {
+      "en": "No pin was set",
+      "nl": "Geen pin staat geregistreerd"
+    }
+  },
+  "DUPLICATE_USER": {
+    "name": "DuplicateError",
+    "statusCode": 409,
+    "messages": {
+      "en": "Email is already registered",
+      "nl": "Email staat al geregistreerd"
+    }
+  },
+  "USER_CREATE_INTERNAL_SERVER": {
+    "name": "InternalServerError",
+    "statusCode": 500,
+    "messages": {
+      "en": "Unexpected error while creating an account",
+      "nl": "Onverwachte error bij het aanmaken van een account"
+    }
+  },
+  "PIN_CHANGE_INTERNAL_SERVER": {
+    "name": "InternalServerError",
+    "statusCode": 500,
+    "messages": {
+      "en": "Unexpected error while changing the pin",
+      "nl": "Onverwacht error bij het veranderen van een pin"
+    }
+  },
+  "INCORRECT_PIN": {
+    "name": "UnauthorizedError",
+    "statusCode": 401,
+    "messages": {
+      "en": "Incorrect combination of email and pin",
+      "nl": "Ongeldigde combinatie van email en pin"
+    }
+  },
+  "STUDY_ID_INVALID": {
+    "name": "BadRequestError",
+    "statusCode": 400,
+    "messages": {
+      "en": "Study ID input is invalid",
+      "nl": "Studie ID invoerwaarde is ongeldig"
+    }
+  }
+}
