@@ -23,6 +23,14 @@
       "nl": "Geen pin staat geregistreerd"
     }
   },
+  "COURSE_NOT_FOUND": {
+    "name": "NotFoundError",
+    "statusCode": 404,
+    "messages": {
+      "en": "Course not found",
+      "nl": "Cursus niet gevonden"
+    }
+  },
   "DUPLICATE_USER": {
     "name": "DuplicateError",
     "statusCode": 409,
@@ -53,6 +61,14 @@
     "messages": {
       "en": "Incorrect combination of email and pin",
       "nl": "Ongeldigde combinatie van email en pin"
+    }
+  },
+  "USER_PIN_INVALID": {
+    "name": "BadRequestError",
+    "statusCode": 400,
+    "messages": {
+      "en": "Pin input is invalid",
+      "nl": "Pin invoerwaarde is ongeldig"
     }
   },
   "STUDY_ID_INVALID": {

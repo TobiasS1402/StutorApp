@@ -5,6 +5,7 @@ import { Logger as _Logger } from "winston";
 import { IUser, IUserInputDTO } from "../interfaces/IUser";
 import { CustomError } from "../errors";
 import responses from "../errors/responses.json";
+import util from "../util";
 
 @Service()
 export default class UserService {
@@ -35,6 +36,10 @@ export default class UserService {
     userInputDTO: IUserInputDTO,
     newpin: string
   ): Promise<void> {
+    // If pin input invalid return
+    if (util.isPinInvalid(newpin))
+      throw new CustomError(responses.USER_PIN_INVALID);
+
     // Fetch the user from the database
     const userRecord = await this.userModel.findOne({
       where: { email: userInputDTO.email },

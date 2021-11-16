@@ -6,6 +6,7 @@ import responses from "../errors/responses.json";
 import { sign } from "jsonwebtoken";
 import config from "../config";
 import { verify } from "argon2";
+import util from "../util";
 
 @Service()
 export default class AuthService {
@@ -71,6 +72,10 @@ export default class AuthService {
 
     // Check if user has set a pin
     if (!userRecord.pin) throw new CustomError(responses.PIN_NOT_FOUND);
+
+    // If pin input invalid return
+    if (util.isPinInvalid(userInputDTO.pin))
+      throw new CustomError(responses.USER_PIN_INVALID);
 
     // Check if pin is equal to the database one
     const validPin = await verify(userRecord.pin, userInputDTO.pin.toString());
