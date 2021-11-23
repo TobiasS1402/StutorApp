@@ -1,5 +1,5 @@
 {
-  "main": "./src/App.tsx",
+  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -15,7 +15,14 @@
     "prettier": "^2.4.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-native": "0.66.3",
+    "react-native": "0.64.3",
+    "react-native-extended-stylesheet": "^0.12.0",
+    "@react-navigation/bottom-tabs": "^6.0.9",
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/native-stack": "^6.2.5",
+    "react-native-safe-area-context": "3.3.2",
+    "react-native-screens": "~3.8.0",
+    "react-native-vector-icons": "^9.0.0",
     "react-native-web": "0.17.5",
     "styled-components": "^5.3.3"
   },
@@ -33,6 +40,7 @@
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-react-native": "^3.11.0",
+    "expo-font": "^10.0.3",
     "husky": ">=7",
     "lint-staged": ">=12",
     "prettier": "^2.4.1",
