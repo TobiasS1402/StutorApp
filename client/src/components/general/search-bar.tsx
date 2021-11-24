@@ -41,7 +41,7 @@ const Filter = styled.Pressable`
 
 export const SearchBar = (props: SearchBarProps) => {
   return (
-    <Container style={{ marginVertical: spaces.xl5 }}>
+    <Container marginVertical={spaces.xl5}>
       <SearchContainer>
         <FontAwesome name={'search'} size={18} color={color.gray} solid />
         <SearchInput autoCorrect={false} placeholder="Zoek een bijles" />

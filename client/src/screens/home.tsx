@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { SafeAreaView, ScrollView } from 'react-native'
-import { AppointmentCard } from '~/components/cards'
+import { AppointmentCard, StutorCard } from '~/components/cards'
 import { HorizontalCourseScroll } from '~/components/courses'
 import { Divider, Title } from '~/components/general'
 import { AppHeader } from '~/components/home'
@@ -8,7 +8,7 @@ import { ScreenContainer, ScreenWrapper, Section } from '~/components/layout'
 
 export default function HomeScreen() {
   // dummy data
-  const appointments = [
+  const Appointments = [
     {
       id: 0,
       timeStamp: {
@@ -30,36 +30,40 @@ export default function HomeScreen() {
   ]
 
   // dummy data
-  // const topStutors = [
-  //   {
-  //     id: 0,
-  //     user: {
-  //       name: 'Maurits Arissen',
-  //     },
-  //     description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-  //   },
-  //   {
-  //     id: 1,
-  //     user: {
-  //       name: 'Daan Franssen',
-  //     },
-  //     description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-  //   },
-  //   {
-  //     id: 2,
-  //     user: {
-  //       name: 'Bart van Tongeren',
-  //     },
-  //     description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-  //   },
-  //   {
-  //     id: 3,
-  //     user: {
-  //       name: 'John Doe',
-  //     },
-  //     description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-  //   },
-  // ]
+  const TopStutors = [
+    {
+      id: 0,
+      user: {
+        name: 'Maurits Arissen',
+      },
+      description:
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    },
+    {
+      id: 1,
+      user: {
+        name: 'Daan Franssen',
+      },
+      description:
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    },
+    {
+      id: 2,
+      user: {
+        name: 'Bart van Tongeren',
+      },
+      description:
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    },
+    {
+      id: 3,
+      user: {
+        name: 'John Doe',
+      },
+      description:
+        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    },
+  ]
 
   return (
     <ScreenContainer>
@@ -70,7 +74,7 @@ export default function HomeScreen() {
           <Section>
             <Title value="Mijn afspraken" hasOptions />
             <Divider />
-            {appointments.map((item) => (
+            {Appointments.map((item) => (
               <AppointmentCard
                 key={item.id}
                 day={item.timeStamp.day}
@@ -88,6 +92,13 @@ export default function HomeScreen() {
           <Section>
             <Title value="Top Stutors" />
             <Divider />
+            {TopStutors.map((item) => (
+              <StutorCard
+                key={item.id}
+                name={item.user.name}
+                description={item.description}
+              />
+            ))}
           </Section>
         </ScreenWrapper>
       </ScrollView>

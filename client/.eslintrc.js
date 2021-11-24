@@ -23,6 +23,12 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'prettier', 'react-hooks'],
   rules: {
+    'max-len': [
+      'error',
+      {
+        code: 80,
+      },
+    ],
     'no-console': 'error',
     'no-multiple-empty-lines': 'error',
     'sort-imports': [

@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { Pressable } from 'react-native'
 import styled from 'styled-components/native'
-import { Card } from '~/components/cards'
+import { Card } from '~/components/cards/card'
 import { Divider, RoundedImage, Title } from '~/components/general'
 import { spaces } from '~/theme'
 
