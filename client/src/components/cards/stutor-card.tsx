@@ -25,7 +25,7 @@ const defaultProps: StutorCardProps = {
 }
 
 const Description = styled.Text`
-  margin: ${spaces.xl}px 0;
+  margin-top: ${spaces.xl}px;
   color: ${color.gray};
   font-size: 12px;
   font-family: 'Lato-Regular';
@@ -45,7 +45,7 @@ export const StutorCard = (props: StutorCardProps) => {
           <Title value={props.name} fontFamily="Lato-Bold" fontSize={18} />
           <Description>{props.description}</Description>
           {props.hasDetails && (
-            <View style={{ flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'row', marginTop: spaces.xl }}>
               <IconDetail
                 iconName="bitcoin"
                 iconSize={18}

@@ -1,3 +1,4 @@
-import Home from '@screens/home'
+import CoursesScreen from '@screens/courses-screen'
+import HomeScreen from '@screens/home-screen'
 
-export { Home }
+export { HomeScreen, CoursesScreen }

@@ -1,4 +1,4 @@
-import { HomeStackScreen } from '@navigation/home-stack-screen'
+import { CourseStackScreen, HomeStackScreen } from '@navigation/stack-screens'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import color from '@theme/color'
@@ -32,6 +32,20 @@ const BottomTabNavigator = () => {
             tabBarIcon: ({ color }) => (
               <FontAwesome
                 name={'th-large'}
+                size={IconSize}
+                color={color}
+                solid
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="CoursesScreen"
+          component={CourseStackScreen}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <FontAwesome
+                name={'compass'}
                 size={IconSize}
                 color={color}
                 solid
