@@ -1,6 +1,6 @@
+import { CourseCard } from '@components/cards'
 import * as React from 'react'
 import { ScrollView } from 'react-native'
-import { CourseCard } from '~/components/cards'
 
 // dummy data
 const courses = [

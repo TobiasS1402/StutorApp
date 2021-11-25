@@ -1,10 +1,10 @@
+import { Card } from '@components/cards/card'
+import { IconDetail, RoundedImage, Title } from '@components/general'
+import { Container } from '@components/layout/container'
 import React from 'react'
 import { View } from 'react-native'
 import styled from 'styled-components/native'
-import { Card } from '~/components/cards/card'
-import { IconDetail, RoundedImage, Title } from '~/components/general'
-import { Container } from '~/components/layout/container'
-import { color, spaces } from '~/theme'
+import { color, spaces } from '@/theme'
 
 interface StutorCardProps {
   name: string
@@ -34,9 +34,9 @@ const Description = styled.Text`
 export const StutorCard = (props: StutorCardProps) => {
   return (
     <Card>
-      <Container padding={spaces.xl3}>
+      <Container padding={spaces.xl}>
         <RoundedImage
-          source={require('../../../assets/images/profile.jpeg')}
+          source={require('@assets/images/profile.jpeg')}
           width="55px"
           height="55px"
           right={spaces.xl3}

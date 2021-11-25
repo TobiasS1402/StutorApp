@@ -1,4 +1,4 @@
-import color from '~/theme/color'
+import color from '@theme/color'
 
 const typography = {
   primary: {

@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native'
 import * as React from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome5'
-import { color, spaces } from '~/theme'
+import { color, spaces } from '@/theme'
 
 interface TitleProps {
   value?: string
@@ -63,10 +63,17 @@ export const Title = (props: TitleProps) => {
       {props.hasOptions && (
         <Pressable
           style={styles.optionContainer}
-          onPress={() => navigation.navigate(props.routeName as never, {} as never)}
+          onPress={() =>
+            navigation.navigate(props.routeName as never, {} as never)
+          }
         >
           <Text style={styles.option}>Bekijk alle</Text>
-          <FontAwesome name={'chevron-right'} size={16} color={color.primary} solid />
+          <FontAwesome
+            name={'chevron-right'}
+            size={16}
+            color={color.primary}
+            solid
+          />
         </Pressable>
       )}
     </View>

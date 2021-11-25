@@ -1,5 +1,5 @@
+import spaces from '@theme/spaces'
 import styled from 'styled-components/native'
-import { spaces } from '~/theme'
 
 export const ScreenWrapper = styled.View`
   padding-horizontal: ${spaces.xl5}px;

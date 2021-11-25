@@ -1,10 +1,10 @@
+import { AppointmentCard, StutorCard } from '@components/cards'
+import { HorizontalCourseScroll } from '@components/courses'
+import { Divider, Title } from '@components/general'
+import { AppHeader } from '@components/home'
+import { ScreenContainer, ScreenWrapper, Section } from '@components/layout'
 import * as React from 'react'
 import { SafeAreaView, ScrollView } from 'react-native'
-import { AppointmentCard, StutorCard } from '~/components/cards'
-import { HorizontalCourseScroll } from '~/components/courses'
-import { Divider, Title } from '~/components/general'
-import { AppHeader } from '~/components/home'
-import { ScreenContainer, ScreenWrapper, Section } from '~/components/layout'
 
 export default function HomeScreen() {
   // dummy data

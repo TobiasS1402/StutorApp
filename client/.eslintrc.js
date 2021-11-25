@@ -23,12 +23,7 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'prettier', 'react-hooks'],
   rules: {
-    'max-len': [
-      'error',
-      {
-        code: 80,
-      },
-    ],
+    'max-len': [2, { code: 80, ignorePattern: '^import .*' }],
     'no-console': 'error',
     'no-multiple-empty-lines': 'error',
     'sort-imports': [
@@ -47,7 +42,11 @@ module.exports = {
           order: 'asc',
           caseInsensitive: false,
         },
-        groups: [['builtin', 'external', 'object'], 'internal', ['index', 'parent', 'sibling']],
+        groups: [
+          ['builtin', 'external', 'object'],
+          'internal',
+          ['index', 'parent', 'sibling'],
+        ],
         pathGroups: [
           {
             pattern: '~/**',
@@ -57,7 +56,10 @@ module.exports = {
       },
     ],
     'import/first': 'error',
-    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+    ],
     'import/no-named-as-default': 'error',
     'import/no-unused-modules': 'warn',
     '@typescript-eslint/explicit-function-return-type': 'off',

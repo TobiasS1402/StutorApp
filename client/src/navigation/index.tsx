@@ -1,9 +1,9 @@
+import { HomeStackScreen } from '@navigation/home-stack-screen'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
+import color from '@theme/color'
 import React from 'react'
 import FontAwesome from 'react-native-vector-icons/FontAwesome5'
-import { color } from '~/theme'
-import { HomeStackScreen } from './home-stack-screen'
 
 const Tab = createBottomTabNavigator()
 const IconSize = 25
@@ -29,7 +29,14 @@ const BottomTabNavigator = () => {
           name="HomeScreen"
           component={HomeStackScreen}
           options={{
-            tabBarIcon: ({ color }) => <FontAwesome name={'th-large'} size={IconSize} color={color} solid />,
+            tabBarIcon: ({ color }) => (
+              <FontAwesome
+                name={'th-large'}
+                size={IconSize}
+                color={color}
+                solid
+              />
+            ),
           }}
         />
       </Tab.Navigator>

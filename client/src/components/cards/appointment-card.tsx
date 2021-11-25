@@ -1,10 +1,10 @@
+import { Card } from '@components/cards/card'
+import { RoundedImage } from '@components/general'
+import { Container } from '@components/layout/container'
 import * as React from 'react'
 import { Text, View } from 'react-native'
 import styled from 'styled-components/native'
-import { Card } from '~/components/cards/card'
-import { RoundedImage } from '~/components/general'
-import { Container } from '~/components/layout/container'
-import { color, spaces } from '~/theme'
+import { color, spaces } from '@/theme'
 
 interface AppointmentCardProps {
   day: string
@@ -30,7 +30,11 @@ export const AppointmentCard = (props: AppointmentCardProps) => {
             <AppointmentSubText>{props.location}</AppointmentSubText>
           </View>
         </View>
-        <RoundedImage source={require('../../../assets/images/profile.jpeg')} width="40px" height="40px" />
+        <RoundedImage
+          source={require('@assets/images/profile.jpeg')}
+          width="40px"
+          height="40px"
+        />
       </Container>
     </Card>
   )

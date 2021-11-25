@@ -1,8 +1,8 @@
+import { RoundedImage, SearchBar, Title } from '@components/general'
 import React from 'react'
 import { View } from 'react-native'
 import styled from 'styled-components/native'
-import { RoundedImage, SearchBar, Title } from '~/components/general'
-import { color, spaces } from '~/theme'
+import { color, spaces } from '@/theme'
 
 const HeaderContainer = styled.View`
   flex-direction: row;
@@ -21,7 +21,12 @@ export const AppHeader = () => {
         />
         <View>
           <Title value="Hallo Bart" fontSize={26} />
-          <Title value="Welkom terug" color={color.gray} fontSize={16} fontFamily="Lato-Regular" />
+          <Title
+            value="Welkom terug"
+            color={color.gray}
+            fontSize={16}
+            fontFamily="Lato-Regular"
+          />
         </View>
       </HeaderContainer>
       <SearchBar />

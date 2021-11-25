@@ -1,3 +1,3 @@
-import { HorizontalCourseScroll } from './HorizontalCourseScroll'
+import { HorizontalCourseScroll } from '@components/courses/HorizontalCourseScroll'
 
 export { HorizontalCourseScroll }

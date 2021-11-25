@@ -1,9 +1,9 @@
+import initFonts from '@theme/fonts'
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
 import EStyleSheet from 'react-native-extended-stylesheet'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import Navigation from '~/navigation'
-import initFonts from '~/theme/fonts'
+import Navigation from '@/navigation'
 
 export default class App extends React.Component {
   state = {
