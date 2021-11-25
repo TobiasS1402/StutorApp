@@ -1,9 +1,8 @@
 import { Card } from '@components/cards/card'
-import { RoundedImage } from '@components/general'
+import { Divider, RoundedImage, Title } from '@components/general'
 import { Container } from '@components/layout/container'
 import * as React from 'react'
-import { Text, View } from 'react-native'
-import styled from 'styled-components/native'
+import { View } from 'react-native'
 import { color, spaces } from '@/theme'
 
 interface AppointmentCardProps {
@@ -12,9 +11,6 @@ interface AppointmentCardProps {
   course: string
   location: string
 }
-const AppointmentSubText = styled.Text`
-  color: ${color.gray};
-`
 
 export const AppointmentCard = (props: AppointmentCardProps) => {
   return (
@@ -22,12 +18,28 @@ export const AppointmentCard = (props: AppointmentCardProps) => {
       <Container>
         <View style={{ flexDirection: 'row' }}>
           <View>
-            <Text>{props.day}</Text>
-            <AppointmentSubText>{props.time}</AppointmentSubText>
+            <Title value={props.day} fontSize={14} fontFamily="Lato-Regular" />
+            <Divider small />
+            <Title
+              value={props.time}
+              fontSize={14}
+              fontFamily="Lato-Regular"
+              color={color.gray}
+            />
           </View>
           <View style={{ marginLeft: spaces.xl4 }}>
-            <Text>{props.course}</Text>
-            <AppointmentSubText>{props.location}</AppointmentSubText>
+            <Title
+              value={props.course}
+              fontSize={14}
+              fontFamily="Lato-Regular"
+            />
+            <Divider small />
+            <Title
+              value={props.location}
+              fontSize={14}
+              fontFamily="Lato-Regular"
+              color={color.gray}
+            />
           </View>
         </View>
         <RoundedImage

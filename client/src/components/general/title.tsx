@@ -1,6 +1,7 @@
+import { Container } from '@components/layout/container'
 import { useNavigation } from '@react-navigation/native'
 import * as React from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text } from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome5'
 import { color, spaces } from '@/theme'
 
@@ -27,11 +28,6 @@ const defaultProps: TitleProps = {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
   optionContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -49,7 +45,7 @@ export const Title = (props: TitleProps) => {
   if (props.hide) return null
 
   return (
-    <View style={styles.container}>
+    <Container>
       <Text
         style={{
           fontSize: props.fontSize,
@@ -76,7 +72,7 @@ export const Title = (props: TitleProps) => {
           />
         </Pressable>
       )}
-    </View>
+    </Container>
   )
 }
 

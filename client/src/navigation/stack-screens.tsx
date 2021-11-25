@@ -1,6 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
-import { CoursesScreen, HomeScreen } from '@/screens'
+import {
+  CourseDetailScreen,
+  CoursesScreen,
+  HomeScreen,
+  MyLessonsScreen,
+  ProfileScreen,
+} from '@/screens'
 
 const StackNavigator = createNativeStackNavigator()
 
@@ -16,8 +22,33 @@ const CourseStackScreen = () => {
   return (
     <StackNavigator.Navigator screenOptions={{ headerShown: false }}>
       <StackNavigator.Screen name="Courses" component={CoursesScreen} />
+      <StackNavigator.Screen
+        name="CourseDetail"
+        component={CourseDetailScreen}
+      />
     </StackNavigator.Navigator>
   )
 }
 
-export { HomeStackScreen, CourseStackScreen }
+const MyLessonsStackScreen = () => {
+  return (
+    <StackNavigator.Navigator screenOptions={{ headerShown: false }}>
+      <StackNavigator.Screen name="MyLessons" component={MyLessonsScreen} />
+    </StackNavigator.Navigator>
+  )
+}
+
+const ProfileStackScreen = () => {
+  return (
+    <StackNavigator.Navigator screenOptions={{ headerShown: false }}>
+      <StackNavigator.Screen name="Profile" component={ProfileScreen} />
+    </StackNavigator.Navigator>
+  )
+}
+
+export {
+  HomeStackScreen,
+  CourseStackScreen,
+  MyLessonsStackScreen,
+  ProfileStackScreen,
+}

@@ -72,7 +72,11 @@ export default function HomeScreen() {
         <ScreenWrapper>
           <AppHeader />
           <Section>
-            <Title value="Mijn afspraken" hasOptions />
+            <Title
+              value="Mijn afspraken"
+              hasOptions
+              routeName="CoursesScreen"
+            />
             <Divider />
             {Appointments.map((item) => (
               <AppointmentCard
@@ -85,7 +89,7 @@ export default function HomeScreen() {
             ))}
           </Section>
           <Section>
-            <Title value="Cursussen" hasOptions />
+            <Title value="Cursussen" routeName="CoursesScreen" hasOptions />
             <Divider />
             <HorizontalCourseScroll />
           </Section>

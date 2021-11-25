@@ -33,8 +33,8 @@ const Filter = styled.Pressable`
   justify-content: center;
   align-items: center;
   margin-left: ${spaces.xl}px;
-  width: 50;
-  height: 50;
+  width: 50px;
+  height: 50px;
   background-color: ${color.primary};
   border-radius: 5px;
 `

@@ -45,7 +45,7 @@ export const StutorCard = (props: StutorCardProps) => {
           <Title value={props.name} fontFamily="Lato-Bold" fontSize={18} />
           <Description>{props.description}</Description>
           {props.hasDetails && (
-            <View style={{ flexDirection: 'row', marginTop: spaces.xl }}>
+            <View style={{ flexDirection: 'row', marginTop: spaces.xl2 }}>
               <IconDetail
                 iconName="bitcoin"
                 iconSize={18}
