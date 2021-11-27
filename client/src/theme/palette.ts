@@ -10,6 +10,7 @@ const palette = {
   orange: '#EFAB7A',
   orangeLight: '#FBEEE5',
   gray: '#9D9D9D',
+  grayDark: '#6C6C6C',
   grayLight: '#D8D8D8',
   grayLightest: '#F5F5F5',
 }

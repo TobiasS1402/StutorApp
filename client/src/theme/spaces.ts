@@ -11,6 +11,7 @@ const spaces = {
   xl4: 25,
   xl5: 30,
   xl6: 60,
+  xl7: 120,
 }
 
 export default spaces

@@ -1,14 +1,14 @@
 import { StutorCard } from '@components/cards'
-import { SearchBar } from '@components/general'
+import { AppointmentModal, SearchBar } from '@components/general'
 import { ScreenContainer, ScreenWrapper } from '@components/layout'
-import * as React from 'react'
+import React from 'react'
 import { SafeAreaView, ScrollView } from 'react-native'
 import { DetailHeader } from '@/components/general/detail-header'
 
 // dummy data
 const lessons = [
   {
-    id: 0,
+    id: 1221,
     user: {
       name: 'Maurits Arissen',
     },
@@ -19,7 +19,7 @@ const lessons = [
     duration: '30 min',
   },
   {
-    id: 1,
+    id: 1222,
     user: {
       name: 'Daan Franssen',
     },
@@ -30,7 +30,7 @@ const lessons = [
     duration: '30 min',
   },
   {
-    id: 2,
+    id: 1223,
     user: {
       name: 'Bart van Tongeren',
     },
@@ -41,7 +41,7 @@ const lessons = [
     duration: '30 min',
   },
   {
-    id: 3,
+    id: 1224,
     user: {
       name: 'John Doe',
     },
@@ -52,7 +52,7 @@ const lessons = [
     duration: '30 min',
   },
   {
-    id: 4,
+    id: 1225,
     user: {
       name: 'Bart van Tongeren',
     },
@@ -63,7 +63,7 @@ const lessons = [
     duration: '30 min',
   },
   {
-    id: 5,
+    id: 1226,
     user: {
       name: 'John Doe',
     },
@@ -75,28 +75,44 @@ const lessons = [
   },
 ]
 
-export default function CourseDetailScreen() {
-  return (
-    <ScreenContainer>
-      <ScreenWrapper>
-        <SafeAreaView>
-          <DetailHeader />
-          <SearchBar showFilter />
-        </SafeAreaView>
-        <ScrollView showsHorizontalScrollIndicator={false}>
-          {lessons.map((item) => (
-            <StutorCard
-              key={item.id}
-              name={item.user.name}
-              description={item.description}
-              costs={item.costs}
-              rating={item.rating}
-              duration={item.duration}
-              hasDetails
-            />
-          ))}
-        </ScrollView>
-      </ScreenWrapper>
-    </ScreenContainer>
-  )
+interface MyState {
+  currentStutor: number
+}
+
+export default class CourseDetailScreen extends React.Component<
+  { any },
+  MyState
+> {
+  constructor(props) {
+    super(props)
+    this.state = { currentStutor: 0 }
+  }
+
+  render() {
+    return (
+      <ScreenContainer>
+        <ScreenWrapper>
+          <SafeAreaView>
+            <DetailHeader />
+            <SearchBar showFilter />
+          </SafeAreaView>
+          <ScrollView showsHorizontalScrollIndicator={false}>
+            {lessons.map((item) => (
+              <StutorCard
+                key={item.id}
+                name={item.user.name}
+                description={item.description}
+                costs={item.costs}
+                rating={item.rating}
+                duration={item.duration}
+                onPress={() => this.setState({ currentStutor: item.id })}
+                hasDetails
+              />
+            ))}
+          </ScrollView>
+        </ScreenWrapper>
+        <AppointmentModal currentStutor={this.state.currentStutor} />
+      </ScreenContainer>
+    )
+  }
 }

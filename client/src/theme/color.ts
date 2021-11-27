@@ -20,6 +20,7 @@ const color = {
 
   // Grays
   gray: palette.gray,
+  grayDark: palette.grayDark,
   grayLight: palette.grayLight,
   grayLightest: palette.grayLightest,
 
