@@ -1,9 +1,9 @@
 const palette = {
   black: '#1d1d1d',
   white: '#ffffff',
-  primary: '#487A71',
+  primary: '#307B71',
   primaryLight: '#6B948E',
-  primaryLighter: '#90AFAA',
+  primaryLighter: '#E6F1F1',
   primaryLightest: '#F7FAFB',
   yellow: '#F5B934',
   yellowLight: '#FCF0D6',

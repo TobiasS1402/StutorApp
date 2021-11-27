@@ -6,7 +6,7 @@ import { SafeAreaView, ScrollView } from 'react-native'
 import { DetailHeader } from '@/components/general/detail-header'
 
 // dummy data
-const lessons = [
+const Lessons = [
   {
     id: 1221,
     user: {
@@ -97,7 +97,7 @@ export default class CourseDetailScreen extends React.Component<
             <SearchBar showFilter />
           </SafeAreaView>
           <ScrollView showsHorizontalScrollIndicator={false}>
-            {lessons.map((item) => (
+            {Lessons.map((item) => (
               <StutorCard
                 key={item.id}
                 name={item.user.name}
