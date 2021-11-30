@@ -1,17 +1,17 @@
 import { InfoCard } from '@components/cards'
 import { Button, Divider, Title } from '@components/general'
-import { Container, ScreenWrapper, Section } from '@components/layout'
-import { useNavigation } from '@react-navigation/native'
-import React, { useEffect, useRef } from 'react'
-import { ScrollView, View } from 'react-native'
-import BottomSheet from 'react-native-gesture-bottom-sheet'
+import {
+  Container,
+  ScreenContainer,
+  ScreenWrapper,
+  Section,
+} from '@components/layout'
+import React from 'react'
+import { SafeAreaView, ScrollView, Text, View } from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome5'
 import styled from 'styled-components/native'
+import { DetailHeader, TimeSlotModal } from '@/components/general'
 import { color, spaces } from '@/theme'
-
-interface AppointmentModalProps {
-  currentStutor: number
-}
 
 const RatingBadge = styled(Container)`
   background-color: ${color.white};
@@ -41,28 +41,15 @@ const LessonsData = {
   },
 }
 
-export const AppointmentModal = (props: AppointmentModalProps) => {
-  const bottomSheet = useRef<BottomSheet>()
-  const navigation = useNavigation()
-
-  useEffect(() => {
-    if (props.currentStutor !== 0) {
-      bottomSheet?.current.show()
-    }
-  }, [props.currentStutor])
-
+export const AppointmentScreen = ({ navigation }) => {
   return (
-    <BottomSheet
-      hasDraggableIcon
-      draggable={false}
-      ref={bottomSheet}
-      height={550}
-      radius={40}
-      sheetBackgroundColor={color.primaryLightest}
-    >
-      <ScrollView>
-        <ScreenWrapper>
-          <Container marginVertical={spaces.xl}>
+    <ScreenContainer>
+      <ScreenWrapper>
+        <SafeAreaView>
+          <DetailHeader />
+        </SafeAreaView>
+        <ScrollView>
+          <Container marginVertical={spaces.xl4}>
             <View>
               <Title
                 value={LessonsData?.user?.name}
@@ -152,19 +139,17 @@ export const AppointmentModal = (props: AppointmentModalProps) => {
               />
             </StutorInfo>
           </Section>
-        </ScreenWrapper>
-      </ScrollView>
-      <Button
-        floatable
-        onPress={() => navigation.navigate('Appointment' as never, {} as never)}
-      >
-        <Title
-          value="Maak afspraak"
-          fontFamily="Lato-Bold"
-          color={color.white}
-          fontSize={17}
-        />
-      </Button>
-    </BottomSheet>
+        </ScrollView>
+        <Button floatable onPress={() => navigation.navigate('Appointment')}>
+          <Title
+            value="Maak afspraak"
+            fontFamily="Lato-Bold"
+            color={color.white}
+            fontSize={17}
+          />
+        </Button>
+      </ScreenWrapper>
+      <TimeSlotModal />
+    </ScreenContainer>
   )
 }

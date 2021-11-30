@@ -25,6 +25,7 @@ module.exports = {
   rules: {
     'max-len': [2, { code: 80, ignorePattern: '^import .*' }],
     'no-console': 'error',
+    'react/prop-types': ['error', { ignore: ['navigation'] }],
     'no-multiple-empty-lines': 'error',
     'sort-imports': [
       'error',

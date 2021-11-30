@@ -4,7 +4,7 @@ import { ScreenContainer, ScreenWrapper } from '@components/layout'
 import * as React from 'react'
 import { SafeAreaView, ScrollView } from 'react-native'
 
-export default function CoursesScreen() {
+export const CoursesScreen = () => {
   // dummy data
   const courses = [
     {

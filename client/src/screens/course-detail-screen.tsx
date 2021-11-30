@@ -1,9 +1,9 @@
 import { StutorCard } from '@components/cards'
-import { AppointmentModal, SearchBar } from '@components/general'
+import { SearchBar } from '@components/general'
 import { ScreenContainer, ScreenWrapper } from '@components/layout'
 import React from 'react'
 import { SafeAreaView, ScrollView } from 'react-native'
-import { DetailHeader } from '@/components/general/detail-header'
+import { DetailHeader } from '@/components/general'
 
 // dummy data
 const Lessons = [
@@ -75,44 +75,29 @@ const Lessons = [
   },
 ]
 
-interface MyState {
-  currentStutor: number
-}
-
-export default class CourseDetailScreen extends React.Component<
-  { any },
-  MyState
-> {
-  constructor(props) {
-    super(props)
-    this.state = { currentStutor: 0 }
-  }
-
-  render() {
-    return (
-      <ScreenContainer>
-        <ScreenWrapper>
-          <SafeAreaView>
-            <DetailHeader />
-            <SearchBar showFilter />
-          </SafeAreaView>
-          <ScrollView showsHorizontalScrollIndicator={false}>
-            {Lessons.map((item) => (
-              <StutorCard
-                key={item.id}
-                name={item.user.name}
-                description={item.description}
-                costs={item.costs}
-                rating={item.rating}
-                duration={item.duration}
-                onPress={() => this.setState({ currentStutor: item.id })}
-                hasDetails
-              />
-            ))}
-          </ScrollView>
-        </ScreenWrapper>
-        <AppointmentModal currentStutor={this.state.currentStutor} />
-      </ScreenContainer>
-    )
-  }
+export const CourseDetailScreen = ({ navigation }) => {
+  return (
+    <ScreenContainer>
+      <ScreenWrapper>
+        <SafeAreaView>
+          <DetailHeader />
+          <SearchBar showFilter />
+        </SafeAreaView>
+        <ScrollView showsHorizontalScrollIndicator={false}>
+          {Lessons.map((item) => (
+            <StutorCard
+              key={item.id}
+              name={item.user.name}
+              description={item.description}
+              costs={item.costs}
+              rating={item.rating}
+              duration={item.duration}
+              onPress={() => navigation.navigate('Appointment')}
+              hasDetails
+            />
+          ))}
+        </ScrollView>
+      </ScreenWrapper>
+    </ScreenContainer>
+  )
 }

@@ -21,7 +21,7 @@ const CoinBalance = styled(Card)`
   margin-top: ${spaces.xl6}px;
 `
 
-export default function ProfileScreen() {
+export const ProfileScreen = () => {
   return (
     <ScreenContainer>
       <SafeAreaView />

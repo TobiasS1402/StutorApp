@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 import {
+  AppointmentScreen,
   CourseDetailScreen,
   CoursesScreen,
   HomeScreen,
@@ -26,6 +27,7 @@ const CourseStackScreen = () => {
         name="CourseDetail"
         component={CourseDetailScreen}
       />
+      <StackNavigator.Screen name="Appointment" component={AppointmentScreen} />
     </StackNavigator.Navigator>
   )
 }

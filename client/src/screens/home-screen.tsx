@@ -6,7 +6,7 @@ import { ScreenContainer, ScreenWrapper, Section } from '@components/layout'
 import * as React from 'react'
 import { SafeAreaView, ScrollView } from 'react-native'
 
-export default function HomeScreen() {
+export const HomeScreen = () => {
   // dummy data
   const Appointments = [
     {

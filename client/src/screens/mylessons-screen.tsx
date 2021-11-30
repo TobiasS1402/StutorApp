@@ -53,7 +53,7 @@ const MyLessons = [
   },
 ]
 
-export default function MyLessonsScreen() {
+export const MyLessonsScreen = () => {
   return (
     <ScreenContainer>
       <ScreenWrapper>

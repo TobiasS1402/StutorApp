@@ -20,7 +20,7 @@ const defaultProps: InfoCardProps = {
 
 const CardContainer = styled(Card)`
   flex-direction: row;
-  width: 180px;
+  width: 160px;
   align-items: center;
 `
 
