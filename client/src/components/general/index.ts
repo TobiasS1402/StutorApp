@@ -1,4 +1,3 @@
-import { AppointmentModal } from '@components/general/appointment-modal'
 import { Button } from '@components/general/button'
 import { DetailHeader } from '@components/general/detail-header'
 import { Divider } from '@components/general/divider'
@@ -14,7 +13,6 @@ export {
   SearchBar,
   Divider,
   IconDetail,
-  AppointmentModal,
   Button,
   TimeSlotModal,
   DetailHeader,

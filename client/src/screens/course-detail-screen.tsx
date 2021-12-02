@@ -80,10 +80,10 @@ export const CourseDetailScreen = ({ navigation }) => {
     <ScreenContainer>
       <ScreenWrapper>
         <SafeAreaView>
-          <DetailHeader />
+          <DetailHeader title="Software Architecture" />
           <SearchBar showFilter />
         </SafeAreaView>
-        <ScrollView showsHorizontalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false}>
           {Lessons.map((item) => (
             <StutorCard
               key={item.id}

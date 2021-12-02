@@ -1,5 +1,7 @@
 import { Divider, Title } from '@components/general'
+import { useToggle } from '@utils/useToggle'
 import React from 'react'
+import { Pressable } from 'react-native'
 import styled from 'styled-components/native'
 import { color } from '@/theme'
 
@@ -26,22 +28,26 @@ const defaultProps: DayCardProps = {
 }
 
 export const DayCard = (props: DayCardProps) => {
+  const [selected, setSelected] = useToggle()
+
   return (
-    <CardContainer selected={props.selected}>
-      <Title
-        value={props.dayNumber}
-        fontSize={14}
-        fontFamily="Lato-Bold"
-        color={props.selected ? color.primary : color.grayDark}
-      />
-      <Divider small />
-      <Title
-        value={props.dayName}
-        fontSize={16}
-        fontFamily="Lato-Bold"
-        color={props.selected ? color.primary : color.grayDark}
-      />
-    </CardContainer>
+    <Pressable onPress={setSelected}>
+      <CardContainer selected={selected}>
+        <Title
+          value={props.dayNumber}
+          fontSize={14}
+          fontFamily="Lato-Bold"
+          color={selected ? color.primary : color.black}
+        />
+        <Divider small />
+        <Title
+          value={props.dayName}
+          fontSize={16}
+          fontFamily="Lato-Bold"
+          color={selected ? color.primary : color.black}
+        />
+      </CardContainer>
+    </Pressable>
   )
 }
 

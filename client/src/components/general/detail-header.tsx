@@ -4,12 +4,20 @@ import { Container } from '@components/layout/container'
 import * as React from 'react'
 import { View } from 'react-native'
 
-export const DetailHeader = () => {
+interface DetailHeaderProps {
+  title: string
+}
+
+const defaultProps: DetailHeaderProps = {
+  title: '',
+}
+
+export const DetailHeader = (props: DetailHeaderProps) => {
   return (
     <Container>
       <BackBtn />
       <Title
-        value="Software Architecture"
+        value={props.title}
         fontFamily="Lato-Regular"
         fontSize={20}
         aligned="right"
@@ -18,3 +26,5 @@ export const DetailHeader = () => {
     </Container>
   )
 }
+
+DetailHeader.defaultProps = defaultProps

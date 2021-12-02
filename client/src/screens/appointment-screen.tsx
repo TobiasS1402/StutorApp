@@ -6,8 +6,8 @@ import {
   ScreenWrapper,
   Section,
 } from '@components/layout'
-import React from 'react'
-import { SafeAreaView, ScrollView, Text, View } from 'react-native'
+import React, { useState } from 'react'
+import { SafeAreaView, ScrollView, View } from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome5'
 import styled from 'styled-components/native'
 import { DetailHeader, TimeSlotModal } from '@/components/general'
@@ -41,14 +41,16 @@ const LessonsData = {
   },
 }
 
-export const AppointmentScreen = ({ navigation }) => {
+export const AppointmentScreen = () => {
+  const [showModal, setShowModal] = useState(false)
+
   return (
     <ScreenContainer>
       <ScreenWrapper>
         <SafeAreaView>
-          <DetailHeader />
+          <DetailHeader title="Bijles Maurits Arissen" />
         </SafeAreaView>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <Container marginVertical={spaces.xl4}>
             <View>
               <Title
@@ -76,13 +78,11 @@ export const AppointmentScreen = ({ navigation }) => {
             </RatingBadge>
           </Container>
           <Section>
-            <Container>
-              <InfoCard
-                icon="bitcoin"
-                value={LessonsData?.lesson?.price.toString()}
-                infoName="Stutor Coins"
-              />
-            </Container>
+            <InfoCard
+              icon="bitcoin"
+              value={LessonsData?.lesson?.price.toString()}
+              infoName="Stutor Coins"
+            />
           </Section>
           <Section>
             <Title
@@ -140,7 +140,7 @@ export const AppointmentScreen = ({ navigation }) => {
             </StutorInfo>
           </Section>
         </ScrollView>
-        <Button floatable onPress={() => navigation.navigate('Appointment')}>
+        <Button floatable onPress={() => setShowModal(true)}>
           <Title
             value="Maak afspraak"
             fontFamily="Lato-Bold"
@@ -149,7 +149,7 @@ export const AppointmentScreen = ({ navigation }) => {
           />
         </Button>
       </ScreenWrapper>
-      <TimeSlotModal />
+      <TimeSlotModal show={showModal} />
     </ScreenContainer>
   )
 }

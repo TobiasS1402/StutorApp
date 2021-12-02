@@ -62,7 +62,7 @@ export const CoursesScreen = () => {
           />
           <SearchBar />
         </SafeAreaView>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           {courses.map((item) => (
             <CourseDetailedCard
               key={item.id}

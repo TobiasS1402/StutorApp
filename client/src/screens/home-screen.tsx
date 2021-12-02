@@ -68,7 +68,7 @@ export const HomeScreen = () => {
   return (
     <ScreenContainer>
       <SafeAreaView />
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <ScreenWrapper>
           <AppHeader />
           <Section>

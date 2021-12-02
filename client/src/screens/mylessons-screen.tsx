@@ -61,7 +61,7 @@ export const MyLessonsScreen = () => {
           <Title value="Mijn bijlessen" fontFamily="Lato-Black" fontSize={26} />
           <SearchBar />
         </SafeAreaView>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           {MyLessons.map((item) => (
             <StutorCard
               key={item.id}

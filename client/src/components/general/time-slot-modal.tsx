@@ -6,112 +6,78 @@ import {
   ScreenWrapper,
   Section,
 } from '@components/layout'
-import React from 'react'
+import React, { useState } from 'react'
 import { Modal } from 'react-native'
-import { spaces } from '@/theme'
+import styled from 'styled-components'
+import { color, spaces } from '@/theme'
 
-const TimeSlots = [
+interface TimeSlotModalProps {
+  show: boolean
+}
+
+const defaultProps: TimeSlotModalProps = {
+  show: false,
+}
+
+const Days = [
   {
     id: 1,
     dd: 15,
     day: 'Ma',
-    availableTimeSlots: [
-      {
-        time: '11:00',
-        selected: true,
-      },
-      {
-        time: '12:00',
-      },
-      {
-        time: '14:00',
-      },
-      {
-        time: '15:00',
-      },
-    ],
   },
   {
     id: 2,
     dd: 16,
     day: 'Di',
-    availableTimeSlots: [
-      {
-        time: '11:00',
-      },
-      {
-        time: '12:00',
-      },
-      {
-        time: '14:00',
-      },
-      {
-        time: '15:00',
-      },
-    ],
   },
   {
     id: 3,
     dd: 17,
     day: 'Wo',
-    availableTimeSlots: [
-      {
-        time: '11:00',
-      },
-      {
-        time: '12:00',
-      },
-      {
-        time: '14:00',
-      },
-      {
-        time: '15:00',
-      },
-    ],
   },
   {
     id: 4,
     dd: 18,
     day: 'Do',
-    availableTimeSlots: [
-      {
-        time: '11:00',
-      },
-      {
-        time: '12:00',
-      },
-      {
-        time: '14:00',
-      },
-      {
-        time: '15:00',
-      },
-    ],
   },
   {
     id: 5,
     dd: 19,
     day: 'Vr',
-    availableTimeSlots: [
-      {
-        time: '11:00',
-      },
-      {
-        time: '12:00',
-      },
-      {
-        time: '14:00',
-      },
-      {
-        time: '15:00',
-      },
-    ],
   },
 ]
 
-export const TimeSlotModal = () => {
+const TimeSlots = [
+  {
+    id: 1,
+    time: '13:00',
+  },
+  {
+    id: 2,
+    time: '14:00',
+  },
+  {
+    id: 3,
+    time: '15:00',
+  },
+  {
+    id: 4,
+    time: '16:00',
+  },
+  {
+    id: 5,
+    time: '17:00',
+  },
+]
+
+const TimeSlotContainer = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+`
+
+export const TimeSlotModal = (props: TimeSlotModalProps) => {
   return (
-    <Modal animationType="slide" transparent={true} visible={true}>
+    <Modal animationType="slide" transparent={true} visible={props.show}>
       <ScreenContainer>
         <ScreenWrapper>
           <Section>
@@ -121,7 +87,7 @@ export const TimeSlotModal = () => {
               fontFamily="Lato-Bold"
             />
             <Container marginVertical={spaces.xl5}>
-              {TimeSlots.map((item) => (
+              {Days.map((item) => (
                 <DayCard
                   key={item.id}
                   dayName={item.day}
@@ -129,13 +95,11 @@ export const TimeSlotModal = () => {
                 />
               ))}
             </Container>
-            <Container style={{ flexWrap: 'wrap' }}>
-              <TimeSlotCard time="13:00" />
-              <TimeSlotCard time="14:00" />
-              <TimeSlotCard time="15:00" />
-              <TimeSlotCard time="15:00" />
-              <TimeSlotCard time="16:00" selected />
-            </Container>
+            <TimeSlotContainer>
+              {TimeSlots.map((item) => (
+                <TimeSlotCard key={item.id} time={item.time} />
+              ))}
+            </TimeSlotContainer>
           </Section>
           <Section>
             <Title value="Locatie" fontSize={22} fontFamily="Lato-Bold" />
@@ -145,3 +109,5 @@ export const TimeSlotModal = () => {
     </Modal>
   )
 }
+
+TimeSlotModal.defaultProps = defaultProps
