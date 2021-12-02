@@ -16,12 +16,7 @@ export const DetailHeader = (props: DetailHeaderProps) => {
   return (
     <Container>
       <BackBtn />
-      <Title
-        value={props.title}
-        fontFamily="Lato-Regular"
-        fontSize={20}
-        aligned="right"
-      />
+      <Title value={props.title} fontFamily="Lato-Regular" fontSize={20} />
       <View style={{ width: 50 }} />
     </Container>
   )

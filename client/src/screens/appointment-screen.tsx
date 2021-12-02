@@ -6,12 +6,13 @@ import {
   ScreenWrapper,
   Section,
 } from '@components/layout'
-import React, { useState } from 'react'
+import React from 'react'
 import { SafeAreaView, ScrollView, View } from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome5'
 import styled from 'styled-components/native'
 import { DetailHeader, TimeSlotModal } from '@/components/general'
 import { color, spaces } from '@/theme'
+import { useToggle } from '@/utils'
 
 const RatingBadge = styled(Container)`
   background-color: ${color.white};
@@ -42,7 +43,7 @@ const LessonsData = {
 }
 
 export const AppointmentScreen = () => {
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useToggle()
 
   return (
     <ScreenContainer>
@@ -140,7 +141,7 @@ export const AppointmentScreen = () => {
             </StutorInfo>
           </Section>
         </ScrollView>
-        <Button floatable onPress={() => setShowModal(true)}>
+        <Button floatable onPress={setShowModal}>
           <Title
             value="Maak afspraak"
             fontFamily="Lato-Bold"
@@ -149,7 +150,7 @@ export const AppointmentScreen = () => {
           />
         </Button>
       </ScreenWrapper>
-      <TimeSlotModal show={showModal} />
+      <TimeSlotModal show={showModal} toggle={setShowModal} />
     </ScreenContainer>
   )
 }

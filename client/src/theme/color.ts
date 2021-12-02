@@ -29,6 +29,7 @@ const color = {
 
   // Black
   black: palette.black,
+  blackOpacity50: palette.blackOpacity50,
 }
 
 export default color

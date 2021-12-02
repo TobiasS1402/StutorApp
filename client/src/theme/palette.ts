@@ -1,5 +1,6 @@
 const palette = {
   black: '#1d1d1d',
+  blackOpacity50: 'rgba(52, 52, 52, 0.5)',
   white: '#ffffff',
   primary: '#307B71',
   primaryLight: '#6B948E',
