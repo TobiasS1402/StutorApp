@@ -3,7 +3,7 @@ import { useToggle } from '@utils/useToggle'
 import React from 'react'
 import { Pressable } from 'react-native'
 import styled from 'styled-components/native'
-import { color } from '@/theme'
+import { color, typography } from '@/theme'
 
 const CardContainer = styled.View`
   flex-direction: column;
@@ -35,14 +35,14 @@ export const DayCard = (props: DayCardProps) => {
       <CardContainer selected={selected}>
         <Title
           value={props.dayNumber}
-          fontSize={14}
+          fontSize={typography.sm.fontSize}
           fontFamily="Lato-Bold"
           color={selected ? color.primary : color.black}
         />
         <Divider small />
         <Title
           value={props.dayName}
-          fontSize={16}
+          fontSize={typography.md.fontSize}
           fontFamily="Lato-Bold"
           color={selected ? color.primary : color.black}
         />

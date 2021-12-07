@@ -10,7 +10,7 @@ import {
 import React, { useState } from 'react'
 import { Modal, ScrollView } from 'react-native'
 import styled from 'styled-components/native'
-import { color, spaces } from '@/theme'
+import { color, spaces, typography } from '@/theme'
 
 interface TimeSlotModalProps {
   show: boolean
@@ -118,7 +118,7 @@ export const TimeSlotModal = (props: TimeSlotModalProps) => {
             <Section>
               <Title
                 value="Kies een tijdslot"
-                fontSize={22}
+                fontSize={typography.xl2.fontSize}
                 fontFamily="Lato-Bold"
               />
               <Container marginVertical={spaces.xl5}>
@@ -137,7 +137,11 @@ export const TimeSlotModal = (props: TimeSlotModalProps) => {
               </TimeSlotContainer>
             </Section>
             <Section>
-              <Title value="Locatie" fontSize={22} fontFamily="Lato-Bold" />
+              <Title
+                value="Locatie"
+                fontSize={typography.xl2.fontSize}
+                fontFamily="Lato-Bold"
+              />
               <Divider />
               <Selector
                 selectedValue={locatie}
@@ -146,7 +150,11 @@ export const TimeSlotModal = (props: TimeSlotModalProps) => {
               />
             </Section>
             <Section>
-              <Title value="Opmerkingen" fontSize={22} fontFamily="Lato-Bold" />
+              <Title
+                value="Opmerkingen"
+                fontSize={typography.xl2.fontSize}
+                fontFamily="Lato-Bold"
+              />
               <Divider />
               <TextInput
                 multiline
@@ -162,7 +170,7 @@ export const TimeSlotModal = (props: TimeSlotModalProps) => {
             <Title
               value="Maak afspraak"
               fontFamily="Lato-Bold"
-              fontSize={16}
+              fontSize={typography.md.fontSize}
               color={color.white}
             />
           </Btn>
@@ -171,7 +179,7 @@ export const TimeSlotModal = (props: TimeSlotModalProps) => {
             <Title
               value="Cancel"
               fontFamily="Lato-Bold"
-              fontSize={16}
+              fontSize={typography.md.fontSize}
               color={color.gray}
             />
           </Btn>

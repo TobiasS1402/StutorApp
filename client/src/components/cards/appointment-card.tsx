@@ -1,9 +1,9 @@
 import { Card } from '@components/cards/card'
-import { Divider, RoundedImage, Title } from '@components/general'
+import { Divider, PlainText, RoundedImage } from '@components/general'
 import { Container } from '@components/layout/container'
 import * as React from 'react'
 import { View } from 'react-native'
-import { color, spaces } from '@/theme'
+import { spaces } from '@/theme'
 
 interface AppointmentCardProps {
   day: string
@@ -16,32 +16,18 @@ export const AppointmentCard = (props: AppointmentCardProps) => {
   return (
     <Card>
       <Container>
-        <View style={{ flexDirection: 'row' }}>
+        <Container>
           <View>
-            <Title value={props.day} fontSize={14} fontFamily="Lato-Regular" />
+            <PlainText black>{props.day}</PlainText>
             <Divider small />
-            <Title
-              value={props.time}
-              fontSize={14}
-              fontFamily="Lato-Regular"
-              color={color.gray}
-            />
+            <PlainText>{props.time}</PlainText>
           </View>
           <View style={{ marginLeft: spaces.xl4 }}>
-            <Title
-              value={props.course}
-              fontSize={14}
-              fontFamily="Lato-Regular"
-            />
+            <PlainText black>{props.course}</PlainText>
             <Divider small />
-            <Title
-              value={props.location}
-              fontSize={14}
-              fontFamily="Lato-Regular"
-              color={color.gray}
-            />
+            <PlainText>{props.location}</PlainText>
           </View>
-        </View>
+        </Container>
         <RoundedImage
           source={require('@assets/images/profile.jpeg')}
           width="40px"

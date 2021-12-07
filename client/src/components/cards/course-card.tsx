@@ -5,6 +5,7 @@ import spaces from '@theme/spaces'
 import React from 'react'
 import { Pressable } from 'react-native'
 import styled from 'styled-components/native'
+import { typography } from '@/theme'
 
 interface CourseCardProps {
   name?: string
@@ -20,7 +21,7 @@ const CourseColumnContainer = styled(Card)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 130px;
+  width: 150px;
   height: 200px;
   margin-right: ${spaces.xl}px;
 `
@@ -41,7 +42,7 @@ export const CourseCard = (props: CourseCardProps) => {
         <Title
           value={props.name}
           aligned="center"
-          fontSize={15}
+          fontSize={typography.md.fontSize}
           fontFamily="Lato-Bold"
         />
       </CourseColumnContainer>

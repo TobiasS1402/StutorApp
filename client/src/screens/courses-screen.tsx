@@ -3,6 +3,7 @@ import { SearchBar, Title } from '@components/general'
 import { ScreenContainer, ScreenWrapper } from '@components/layout'
 import * as React from 'react'
 import { SafeAreaView, ScrollView } from 'react-native'
+import { typography } from '@/theme'
 
 export const CoursesScreen = () => {
   // dummy data
@@ -55,7 +56,7 @@ export const CoursesScreen = () => {
     <ScreenContainer>
       <ScreenWrapper>
         <SafeAreaView>
-          <Title value="Cursus overzicht" fontSize={26} />
+          <Title value="Cursus overzicht" fontSize={typography.xl5.fontSize} />
           <SearchBar />
         </SafeAreaView>
         <ScrollView showsVerticalScrollIndicator={false}>

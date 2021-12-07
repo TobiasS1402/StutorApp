@@ -74,8 +74,8 @@ export const HomeScreen = () => {
           <Section>
             <Title
               value="Mijn afspraken"
-              hasOptions
               routeName="CoursesScreen"
+              hasOptions
             />
             <Divider />
             {Appointments.map((item) => (

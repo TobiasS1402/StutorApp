@@ -1,10 +1,10 @@
 import { Card } from '@components/cards/'
-import { Divider, RoundedImage, Title } from '@components/general'
+import { Divider, PlainText, RoundedImage, Title } from '@components/general'
 import { Container, ScreenContainer, ScreenWrapper } from '@components/layout'
 import * as React from 'react'
 import { SafeAreaView, ScrollView, View } from 'react-native'
 import styled from 'styled-components/native'
-import { color, spaces } from '@/theme'
+import { color, spaces, typography } from '@/theme'
 
 const Btn = styled.Pressable`
   background: ${color.primaryLighter};
@@ -28,7 +28,7 @@ export const ProfileScreen = () => {
       <ScrollView>
         <ScreenWrapper>
           <SafeAreaView>
-            <Title value="Mijn profiel" fontSize={26} />
+            <Title value="Mijn profiel" fontSize={typography.xl5.fontSize} />
             <Divider />
             <Container style={{ justifyContent: 'flex-start' }}>
               <RoundedImage
@@ -39,34 +39,19 @@ export const ProfileScreen = () => {
               <View style={{ marginLeft: spaces.xl4 }}>
                 <Title value="John Doe" fontFamily="Lato-Regular" />
                 <Divider small />
-                <Title
-                  value="HBO-ICT"
-                  fontFamily="Lato-Regular"
-                  fontSize={15}
-                  color={color.gray}
-                />
+                <PlainText primary>HBO-ICT</PlainText>
               </View>
             </Container>
           </SafeAreaView>
           <CoinBalance>
-            <Title
-              value="Stutor Coin Balance"
-              fontSize={16}
-              fontFamily="Lato-Regular"
-              color={color.gray}
-            />
+            <PlainText primary>Stutor Coin Balance</PlainText>
             <Divider />
-            <Title
-              value="145"
-              fontSize={40}
-              fontFamily="Lato-Black"
-              color={color.black}
-            />
+            <Title value="145" fontSize={40} color={color.black} />
             <Divider />
             <Btn>
               <Title
                 value="Stutor Coins toevoegen"
-                fontSize={16}
+                fontSize={typography.md.fontSize}
                 fontFamily="Lato-Bold"
                 color={color.primary}
               />

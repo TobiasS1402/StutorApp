@@ -1,10 +1,10 @@
-import { RoundedImage, SearchBar, Title } from '@components/general'
+import { PlainText, RoundedImage, SearchBar, Title } from '@components/general'
 import { Divider } from '@components/general/divider'
 import { Container } from '@components/layout/container'
 import React from 'react'
 import { Pressable, View } from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome5'
-import { color, spaces } from '@/theme'
+import { color, spaces, typography } from '@/theme'
 
 export const AppHeader = () => {
   return (
@@ -18,14 +18,9 @@ export const AppHeader = () => {
             right={spaces.xl2}
           />
           <View>
-            <Title value="Hallo Bart" fontSize={26} />
+            <Title value="Hallo Bart" fontSize={typography.xl5.fontSize} />
             <Divider small />
-            <Title
-              value="Welkom terug"
-              color={color.gray}
-              fontSize={16}
-              fontFamily="Lato-Regular"
-            />
+            <PlainText>Welkom terug</PlainText>
           </View>
         </Container>
         <Pressable>

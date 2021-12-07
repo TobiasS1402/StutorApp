@@ -1,6 +1,12 @@
 import { DayCard, TimeSlotCard } from '@components/cards'
 import { Selector, TextInput } from '@components/forms'
-import { Button, DetailHeader, Divider, Title } from '@components/general'
+import {
+  Button,
+  DetailHeader,
+  Divider,
+  PlainText,
+  Title,
+} from '@components/general'
 import {
   Container,
   ScreenContainer,
@@ -10,7 +16,7 @@ import {
 import React, { useState } from 'react'
 import { SafeAreaView, ScrollView } from 'react-native'
 import styled from 'styled-components/native'
-import { color, spaces } from '@/theme'
+import { color, spaces, typography } from '@/theme'
 
 const Days = [
   {
@@ -90,8 +96,8 @@ const TimeSlotContainer = styled.View`
 
 export const MyLessonsDetailScreen = () => {
   const [duration, setDuration] = useState('Bijles duur')
-  const [price, setPrice] = useState()
-  const [description, setDescription] = useState()
+  const [price, setPrice] = useState('')
+  const [description, setDescription] = useState('')
 
   return (
     <ScreenContainer>
@@ -103,14 +109,14 @@ export const MyLessonsDetailScreen = () => {
           <Section>
             <Selector
               selectedValue={duration}
-              onValueChange={(value) => setDuration(value)}
+              onValueChange={(value: string) => setDuration(value)}
               data={Duration}
             />
             <Divider small />
             <TextInput
               value={price}
               placeholder="Bijles prijs"
-              onChangeText={(value) => setPrice(value)}
+              onChangeText={(value: string) => setPrice(value)}
               keyboardType="numeric"
             />
             <Divider />
@@ -118,16 +124,11 @@ export const MyLessonsDetailScreen = () => {
               multiline
               value={description}
               placeholder="Geef een omschrijving van de bijles..."
-              onChangeText={(text) => setDescription(text)}
+              onChangeText={(text: string) => setDescription(text)}
             />
           </Section>
           <Section>
-            <Title
-              value="Beschikbare dag(en)"
-              fontFamily="Lato-Regular"
-              fontSize={16}
-              color={color.gray}
-            />
+            <PlainText primary>Beschikbare dag(en)</PlainText>
             <Container marginVertical={spaces.xl}>
               {Days.map((item) => (
                 <DayCard
@@ -139,12 +140,7 @@ export const MyLessonsDetailScreen = () => {
             </Container>
           </Section>
           <Section>
-            <Title
-              value="Beschikbare tijden"
-              fontFamily="Lato-Regular"
-              fontSize={16}
-              color={color.gray}
-            />
+            <PlainText primary>Beschikbare tijden(en)</PlainText>
             <TimeSlotContainer>
               {TimeSlots.map((item) => (
                 <TimeSlotCard key={item.id} time={item.time} />
@@ -155,7 +151,7 @@ export const MyLessonsDetailScreen = () => {
             <Button>
               <Title
                 value="Aanmaken"
-                fontSize={17}
+                fontSize={typography.md.fontSize}
                 fontFamily="Lato-Bold"
                 color={color.white}
               />

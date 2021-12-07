@@ -3,7 +3,7 @@ import { Button, SearchBar, Title } from '@components/general'
 import { ScreenContainer, ScreenWrapper } from '@components/layout'
 import * as React from 'react'
 import { SafeAreaView, ScrollView } from 'react-native'
-import { color } from '@/theme'
+import { color, typography } from '@/theme'
 
 // dummy data
 const MyLessons = [
@@ -58,7 +58,7 @@ export const MyLessonsScreen = ({ navigation }) => {
     <ScreenContainer>
       <ScreenWrapper>
         <SafeAreaView>
-          <Title value="Mijn bijlessen" fontSize={26} />
+          <Title value="Mijn bijlessen" fontSize={typography.xl5.fontSize} />
           <SearchBar />
         </SafeAreaView>
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -80,7 +80,7 @@ export const MyLessonsScreen = ({ navigation }) => {
           value="Maak nieuwe bijles"
           fontFamily="Lato-Bold"
           color={color.white}
-          fontSize={17}
+          fontSize={typography.md.fontSize}
         />
       </Button>
     </ScreenContainer>

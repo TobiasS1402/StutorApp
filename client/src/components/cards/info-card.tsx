@@ -1,10 +1,10 @@
 import { Card } from '@components/cards/card'
-import { Divider, Title } from '@components/general'
+import { Divider, PlainText, Title } from '@components/general'
 import React from 'react'
 import { View } from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome5'
 import styled from 'styled-components/native'
-import { color } from '@/theme'
+import { color, typography } from '@/theme'
 
 interface InfoCardProps {
   value?: string
@@ -30,13 +30,12 @@ export const InfoCard = (props: InfoCardProps) => {
       <FontAwesome name={props.icon} size={30} color={color.yellow} solid />
       <Divider small />
       <View>
-        <Title value={props.value} fontSize={18} fontFamily="Lato-Bold" />
         <Title
-          value={props.infoName}
-          fontSize={16}
-          fontFamily="Lato-Regular"
-          color={color.gray}
+          value={props.value}
+          fontSize={typography.lg.fontSize}
+          fontFamily="Lato-Bold"
         />
+        <PlainText primary>{props.infoName}</PlainText>
       </View>
     </CardContainer>
   )

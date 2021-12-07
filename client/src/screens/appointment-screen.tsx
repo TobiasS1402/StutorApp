@@ -1,5 +1,5 @@
 import { InfoCard } from '@components/cards'
-import { Button, Divider, Title } from '@components/general'
+import { Button, Divider, PlainText, Title } from '@components/general'
 import {
   Container,
   ScreenContainer,
@@ -10,8 +10,9 @@ import React from 'react'
 import { SafeAreaView, ScrollView, View } from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome5'
 import styled from 'styled-components/native'
-import { DetailHeader, TimeSlotModal } from '@/components/general'
-import { color, spaces } from '@/theme'
+import { DetailHeader } from '@/components/general'
+import { TimeSlotModal } from '@/components/modals/time-slot-modal'
+import { color, spaces, typography } from '@/theme'
 import { useToggle } from '@/utils'
 
 const RatingBadge = styled(Container)`
@@ -56,22 +57,17 @@ export const AppointmentScreen = () => {
             <View>
               <Title
                 value={LessonsData?.user?.name}
-                fontSize={22}
+                fontSize={typography.xl2.fontSize}
                 fontFamily="Lato-Bold"
               />
               <Divider small />
-              <Title
-                value={LessonsData?.lesson?.course}
-                fontSize={16}
-                fontFamily="Lato-Regular"
-                color={color.gray}
-              />
+              <PlainText primary>{LessonsData?.lesson?.course}</PlainText>
             </View>
             <RatingBadge>
               <Title
                 value={LessonsData?.lesson?.rating}
                 fontFamily="Lato-Bold"
-                fontSize={16}
+                fontSize={typography.md.fontSize}
                 color={color.grayDark}
               />
               <Divider small />
@@ -86,26 +82,20 @@ export const AppointmentScreen = () => {
             />
           </Section>
           <Section>
-            <Title
-              value={LessonsData?.lesson?.description}
-              fontSize={15}
-              fontFamily="Lato-Regular"
-              color={color.gray}
-            />
+            <PlainText multi primary>
+              {LessonsData?.lesson?.description}
+            </PlainText>
           </Section>
           <Section>
             <Title
               value="Over de Stutor"
               fontFamily="Lato-Bold"
-              fontSize={18}
+              fontSize={typography.lg.fontSize}
             />
             <Divider />
-            <Title
-              value={LessonsData?.user?.about}
-              fontSize={15}
-              fontFamily="Lato-Regular"
-              color={color.gray}
-            />
+            <PlainText multi primary>
+              {LessonsData?.user?.about}
+            </PlainText>
           </Section>
           <Section style={{ marginBottom: spaces.xl7 }}>
             <StutorInfo>
@@ -116,12 +106,9 @@ export const AppointmentScreen = () => {
                 solid
               />
               <Divider small />
-              <Title
-                value={`${LessonsData?.user?.jaar}e jaars student`}
-                fontSize={16}
-                fontFamily="Lato-Regular"
-                color={color.gray}
-              />
+              <PlainText primary>
+                {`${LessonsData?.user?.jaar}e jaars student`}
+              </PlainText>
             </StutorInfo>
             <Divider small />
             <StutorInfo>
@@ -132,12 +119,7 @@ export const AppointmentScreen = () => {
                 solid
               />
               <Divider small />
-              <Title
-                value={LessonsData?.user?.school}
-                fontSize={16}
-                fontFamily="Lato-Regular"
-                color={color.gray}
-              />
+              <PlainText primary>{LessonsData?.user?.school}</PlainText>
             </StutorInfo>
           </Section>
         </ScrollView>
@@ -146,7 +128,7 @@ export const AppointmentScreen = () => {
             value="Maak afspraak"
             fontFamily="Lato-Bold"
             color={color.white}
-            fontSize={17}
+            fontSize={typography.md.fontSize}
           />
         </Button>
       </ScreenWrapper>

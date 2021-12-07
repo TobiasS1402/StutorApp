@@ -1,10 +1,10 @@
 import { Card } from '@components/cards/card'
-import { Button, Divider, Title } from '@components/general'
+import { Button, Divider, PlainText, Title } from '@components/general'
 import React from 'react'
 import { Modal, Pressable, ScrollView, View } from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome5'
 import styled from 'styled-components/native'
-import { color, spaces } from '@/theme'
+import { color, spaces, typography } from '@/theme'
 import { useToggle } from '@/utils'
 
 interface Data {
@@ -64,15 +64,12 @@ export const Selector = (props: SelectorProps) => {
     <View>
       <Pressable onPress={setShow}>
         <CardContainer>
-          <View style={{ flexDirection: 'row' }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <FontAwesome name="compass" size={30} color={color.orange} solid />
             <Divider small />
-            <Title
-              value={props.selectedValue}
-              fontFamily="Lato-Regular"
-              fontSize={16}
-              color={color.black}
-            />
+            <PlainText primary black>
+              {props.selectedValue}
+            </PlainText>
           </View>
           <FontAwesome
             name="chevron-down"
@@ -95,7 +92,7 @@ export const Selector = (props: SelectorProps) => {
                     >
                       <Title
                         value={item.value}
-                        fontSize={18}
+                        fontSize={typography.lg.fontSize}
                         fontFamily="Lato-Regular"
                       />
                       <Divider />
@@ -107,7 +104,11 @@ export const Selector = (props: SelectorProps) => {
               </ScrollView>
             </SelectorCard>
             <CancelBtn onPress={setShow}>
-              <Title value="Cancel" fontSize={16} fontFamily="Lato-Bold" />
+              <Title
+                value="Cancel"
+                fontSize={typography.md.fontSize}
+                fontFamily="Lato-Bold"
+              />
             </CancelBtn>
           </SelectorContainer>
         </Dialog>

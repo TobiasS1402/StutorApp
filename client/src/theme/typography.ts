@@ -1,25 +1,35 @@
-import color from '@theme/color'
-
 const typography = {
-  primary: {
+  xl5: {
     fontFamily: 'Lato-Black',
     fontSize: 26,
-    color: color.black,
   },
-  secondary: {
+  xl4: {
+    fontFamily: 'Lato-Black',
+    fontSize: 24,
+  },
+  xl2: {
+    fontFamily: 'Lato-Black',
+    fontSize: 22,
+  },
+  xl: {
     fontFamily: 'Lato-Black',
     fontSize: 20,
-    color: color.black,
   },
-  cardTitle: {
+  lg: {
     fontFamily: 'Lato-Black',
     fontSize: 18,
-    color: color.black,
   },
-  paragraph: {
+  md: {
     fontFamily: 'Lato-Regular',
-    fontSize: 13,
-    color: color.gray,
+    fontSize: 16,
+  },
+  sm: {
+    fontFamily: 'Lato-Regular',
+    fontSize: 14,
+  },
+  xs: {
+    fontFamily: 'Lato-Regular',
+    fontSize: 12,
   },
 }
 

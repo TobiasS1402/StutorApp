@@ -1,10 +1,15 @@
 import { Card } from '@components/cards/card'
-import { IconDetail, RoundedImage, Title } from '@components/general'
+import {
+  Divider,
+  IconDetail,
+  PlainText,
+  RoundedImage,
+  Title,
+} from '@components/general'
 import { Container } from '@components/layout/container'
 import React from 'react'
 import { Pressable, View } from 'react-native'
-import styled from 'styled-components/native'
-import { color, spaces } from '@/theme'
+import { color, spaces, typography } from '@/theme'
 
 interface StutorCardProps {
   name: string
@@ -26,13 +31,6 @@ const defaultProps: StutorCardProps = {
   onPress: () => null,
 }
 
-const Description = styled.Text`
-  margin-top: ${spaces.xl}px;
-  color: ${color.gray};
-  font-size: 12px;
-  font-family: 'Lato-Regular';
-`
-
 export const StutorCard = (props: StutorCardProps) => {
   return (
     <Pressable onPress={props.onPress}>
@@ -45,10 +43,15 @@ export const StutorCard = (props: StutorCardProps) => {
             right={spaces.xl3}
           />
           <View style={{ flex: 1 }}>
-            <Title value={props.name} fontFamily="Lato-Bold" fontSize={18} />
-            <Description>{props.description}</Description>
+            <Title
+              value={props.name}
+              fontFamily="Lato-Bold"
+              fontSize={typography.lg.fontSize}
+            />
+            <Divider small />
+            <PlainText>{props.description}</PlainText>
             {props.hasDetails && (
-              <View style={{ flexDirection: 'row', marginTop: spaces.xl2 }}>
+              <Container style={{ marginTop: spaces.xl2 }}>
                 <IconDetail
                   iconName="bitcoin"
                   iconSize={18}
@@ -67,7 +70,7 @@ export const StutorCard = (props: StutorCardProps) => {
                   iconColor={color.grayLight}
                   detailValue={props.duration}
                 />
-              </View>
+              </Container>
             )}
           </View>
         </Container>

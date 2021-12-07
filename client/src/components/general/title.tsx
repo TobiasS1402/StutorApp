@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native'
 import * as React from 'react'
 import { Pressable, StyleSheet, Text } from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome5'
-import { color, spaces } from '@/theme'
+import { color, spaces, typography } from '@/theme'
 
 interface TitleProps {
   value?: string
@@ -18,13 +18,11 @@ interface TitleProps {
 
 const defaultProps: TitleProps = {
   value: '',
-  fontSize: 20,
-  color: color.black,
-  fontFamily: 'Lato-Black',
   aligned: 'left',
   hide: false,
   hasOptions: false,
   routeName: 'Home',
+  ...typography.xl,
 }
 
 const styles = StyleSheet.create({

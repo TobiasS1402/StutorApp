@@ -2,7 +2,7 @@ import { Container } from '@components/layout/container'
 import * as React from 'react'
 import FontAwesome from 'react-native-vector-icons/FontAwesome5'
 import styled from 'styled-components/native'
-import { color, spaces } from '@/theme'
+import { color, spaces, typography } from '@/theme'
 
 interface SearchBarProps {
   showFilter?: boolean
@@ -24,7 +24,7 @@ const SearchContainer = styled.View`
 const SearchInput = styled.TextInput`
   margin-left: ${spaces.xl}px;
   font-family: 'Lato-Regular';
-  font-size: 17px;
+  font-size: ${typography.md.fontSize}px;
   color: ${color.gray};
 `
 

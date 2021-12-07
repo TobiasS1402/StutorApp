@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { Pressable, View } from 'react-native'
 import styled from 'styled-components/native'
-import { color, spaces } from '@/theme'
+import { color, spaces, typography } from '@/theme'
 
 interface CourseDetailedCardProps {
   icon?: string
@@ -40,11 +40,15 @@ export const CourseDetailedCard = (props: CourseDetailedCardProps) => {
           height="45px"
         />
         <View style={{ marginLeft: spaces.xl4 }}>
-          <Title value={props.name} fontSize={17} fontFamily="Lato-Bold" />
+          <Title
+            value={props.name}
+            fontSize={typography.lg.fontSize}
+            fontFamily="Lato-Bold"
+          />
           <Divider small />
           <Title
             value={`${props.amountOfLessons} bijlessen`}
-            fontSize={15}
+            fontSize={typography.md.fontSize}
             fontFamily="Lato-Regular"
             color={color.gray}
           />
