@@ -1,10 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
-import { Op } from "sequelize";
 import Container from "typedi";
-import Appointment from "../models/Appointment.model";
-import Review from "../models/Review.model";
-import Timeslot from "../models/Timeslot.model";
-import LoggerInstance from "./logger";
 
 export default async (): Promise<boolean> => {
   if (process.env.NODE_ENV !== "development") return false; // Only for development

@@ -10,6 +10,8 @@ export interface IUser {
   description: string;
   pin: string;
   salt: string;
+  publicKey: string;
+  privateKey: string;
   lessons?: Interfaces.Lesson[];
 }
 
@@ -23,4 +25,5 @@ export interface IUserInputDTO {
   year: number;
   description: string;
   pin: string;
+  publicKey: string;
 }

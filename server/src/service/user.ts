@@ -77,6 +77,7 @@ export default class UserService {
   private RemoveCredentialsFromUser(user: IUser): IUser {
     Reflect.deleteProperty(user, "pin");
     Reflect.deleteProperty(user, "salt");
+    Reflect.deleteProperty(user, "privateKey");
     return user;
   }
 
