@@ -7,7 +7,7 @@ import Timeslot from "../models/Timeslot.model";
 import LoggerInstance from "./logger";
 
 export default async (): Promise<boolean> => {
-  // if (process.env.NODE_ENV !== "development") return false; // Only for development
+  if (process.env.NODE_ENV !== "development") return false; // Only for development
 
   /**
    * Load in all models
