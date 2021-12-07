@@ -29,6 +29,9 @@ class Lesson extends Model<LessonModel, Interfaces.Lesson> {
   @Column
   timeframe: number;
 
+  @Column
+  price: number;
+
   @ForeignKey(() => Course)
   @Column
   courseId: number;
