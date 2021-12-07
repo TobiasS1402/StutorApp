@@ -3,7 +3,6 @@ export interface IUser {
   email: string;
   username: string;
   avatar: string;
-  wallet: string;
   studyId: number;
   study?: Interfaces.Study;
   year: number;
@@ -20,7 +19,6 @@ export interface IUserInputDTO {
   email: string;
   username: string;
   avatar: string;
-  wallet: string;
   studyId: number;
   year: number;
   description: string;

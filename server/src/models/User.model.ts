@@ -47,9 +47,6 @@ class User extends Model<UserModel, IUser> {
   salt: string;
 
   @Column
-  wallet: string;
-
-  @Column
   avatar: string;
 
   @Column
