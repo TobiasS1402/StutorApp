@@ -28,7 +28,7 @@ export const ProfileScreen = () => {
       <ScrollView>
         <ScreenWrapper>
           <SafeAreaView>
-            <Title value="Mijn profiel" fontFamily="Lato-Black" fontSize={26} />
+            <Title value="Mijn profiel" fontSize={26} />
             <Divider />
             <Container style={{ justifyContent: 'flex-start' }}>
               <RoundedImage

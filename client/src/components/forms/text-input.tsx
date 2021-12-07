@@ -7,5 +7,6 @@ export const TextInput = styled.TextInput`
   font-size: 15px;
   color: ${color.gray};
   background-color: ${color.white};
-  border-radius: 10px;
+  border-radius: 5px;
+  flex: 1;
 `

@@ -53,12 +53,12 @@ const MyLessons = [
   },
 ]
 
-export const MyLessonsScreen = () => {
+export const MyLessonsScreen = ({ navigation }) => {
   return (
     <ScreenContainer>
       <ScreenWrapper>
         <SafeAreaView>
-          <Title value="Mijn bijlessen" fontFamily="Lato-Black" fontSize={26} />
+          <Title value="Mijn bijlessen" fontSize={26} />
           <SearchBar />
         </SafeAreaView>
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -75,7 +75,7 @@ export const MyLessonsScreen = () => {
           ))}
         </ScrollView>
       </ScreenWrapper>
-      <Button floatable>
+      <Button floatable onPress={() => navigation.navigate('MyLessonsDetail')}>
         <Title
           value="Maak nieuwe bijles"
           fontFamily="Lato-Bold"

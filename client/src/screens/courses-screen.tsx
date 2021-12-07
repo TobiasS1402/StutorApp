@@ -55,11 +55,7 @@ export const CoursesScreen = () => {
     <ScreenContainer>
       <ScreenWrapper>
         <SafeAreaView>
-          <Title
-            value="Cursus overzicht"
-            fontFamily="Lato-Black"
-            fontSize={26}
-          />
+          <Title value="Cursus overzicht" fontSize={26} />
           <SearchBar />
         </SafeAreaView>
         <ScrollView showsVerticalScrollIndicator={false}>

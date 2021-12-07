@@ -5,6 +5,7 @@ import {
   CourseDetailScreen,
   CoursesScreen,
   HomeScreen,
+  MyLessonsDetailScreen,
   MyLessonsScreen,
   ProfileScreen,
 } from '@/screens'
@@ -36,6 +37,10 @@ const MyLessonsStackScreen = () => {
   return (
     <StackNavigator.Navigator screenOptions={{ headerShown: false }}>
       <StackNavigator.Screen name="MyLessons" component={MyLessonsScreen} />
+      <StackNavigator.Screen
+        name="MyLessonsDetail"
+        component={MyLessonsDetailScreen}
+      />
     </StackNavigator.Navigator>
   )
 }
