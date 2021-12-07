@@ -32,12 +32,8 @@ export default class AuthService {
 
       // Generate public & private key
       const keypair = StellarSDK.Keypair.random();
-      const pubKey = StellarSDK.StrKey.encodeEd25519PublicKey(
-        keypair._publicKey
-      );
-      const privKey = StellarSDK.StrKey.encodeEd25519SecretSeed(
-        keypair._secretKey
-      );
+      const pubKey = keypair.publicKey();
+      const privKey = keypair.secret();
 
       // Create User in database
       const userRecord = await this.userModel.create({
