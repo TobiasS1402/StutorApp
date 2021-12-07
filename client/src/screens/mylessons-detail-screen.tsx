@@ -106,6 +106,7 @@ export const MyLessonsDetailScreen = () => {
           <SafeAreaView>
             <DetailHeader title="Bijles aanmaken" />
           </SafeAreaView>
+          <Divider />
           <Section>
             <Selector
               selectedValue={duration}

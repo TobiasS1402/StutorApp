@@ -52,8 +52,9 @@ export const AppointmentScreen = () => {
         <SafeAreaView>
           <DetailHeader title="Bijles Maurits Arissen" />
         </SafeAreaView>
+        <Divider />
         <ScrollView showsVerticalScrollIndicator={false}>
-          <Container marginVertical={spaces.xl4}>
+          <Container marginVertical={spaces.xl2}>
             <View>
               <Title
                 value={LessonsData?.user?.name}
