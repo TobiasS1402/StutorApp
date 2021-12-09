@@ -81,7 +81,7 @@ export default class LessonService {
             "avgRating",
           ],
         ],
-        group: ["Lesson._id", "user._id"],
+        group: ["Lesson._id", "user._id", "user->study._id"],
         include: this.smallLessonIncludes(),
       });
 
@@ -157,7 +157,6 @@ export default class LessonService {
         model: User,
         attributes: ["username", "avatar", "year", "description"],
         as: "user",
-        group: ["study._id"],
         include: [
           {
             model: Study,
