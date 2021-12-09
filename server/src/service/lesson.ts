@@ -157,6 +157,7 @@ export default class LessonService {
         model: User,
         attributes: ["username", "avatar", "year", "description"],
         as: "user",
+        group: ["study._id"],
         include: [
           {
             model: Study,
