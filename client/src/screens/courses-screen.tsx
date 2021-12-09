@@ -3,6 +3,7 @@ import { SearchBar, Title } from '@components/general'
 import { ScreenContainer, ScreenWrapper } from '@components/layout'
 import * as React from 'react'
 import { SafeAreaView, ScrollView } from 'react-native'
+import { useCoursesService } from '@/service'
 import { typography } from '@/theme'
 
 export const CoursesScreen = () => {
@@ -51,6 +52,7 @@ export const CoursesScreen = () => {
       lessons: 0,
     },
   ]
+  const service = useCoursesService()
 
   return (
     <ScreenContainer>
@@ -60,15 +62,15 @@ export const CoursesScreen = () => {
           <SearchBar />
         </SafeAreaView>
         <ScrollView showsVerticalScrollIndicator={false}>
-          {courses.map((item) => (
-            <CourseDetailedCard
-              key={item.id}
-              icon={item.icon}
-              name={item.name}
-              amountOfLessons={item.lessons}
-              routeName="CourseDetail"
-            />
-          ))}
+          {service.status === 'loaded' &&
+            service.payload.courses.map((item) => (
+              <CourseDetailedCard
+                key={item._id}
+                name={item.name}
+                amountOfLessons={0}
+                routeName="CourseDetail"
+              />
+            ))}
         </ScrollView>
       </ScreenWrapper>
     </ScreenContainer>

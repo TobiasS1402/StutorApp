@@ -10,6 +10,8 @@
       "@navigation/*": ["./src/navigation/*"],
       "@theme/*": ["./src/theme/*"],
       "@utils/*": ["./src/utils/*"],
+      "@service/*": ["./src/service/*"],
+      "@types/*": ["./src/types/*"],
       "@assets/*": ["./assets/*"],
     },
     "noImplicitAny": false,

@@ -4,6 +4,7 @@ module.exports = function (api) {
   return {
     presets: ['babel-preset-expo', '@babel/preset-typescript'],
     plugins: [
+      ['module:react-native-dotenv'],
       [
         require.resolve('babel-plugin-module-resolver'),
         {
@@ -14,6 +15,8 @@ module.exports = function (api) {
             '@navigation': './src/navigation',
             '@theme': './src/theme',
             '@utils': './src/utils',
+            '@service': './src/service',
+            '@types': './src/types',
             '@assets': './assets',
           },
           extensions: ['.ts', '.tsx'],
