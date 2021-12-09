@@ -41,7 +41,7 @@ export default class LessonService {
             "avgRating",
           ],
         ],
-        group: ["Lesson._id"],
+        group: ["Lesson._id", "user._id"],
         include: this.fullLessonIncludes(),
       });
       if (!lessonRecord) throw new CustomError(responses.LESSON_NOT_FOUND);
