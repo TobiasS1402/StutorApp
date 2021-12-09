@@ -41,6 +41,7 @@ export default class LessonService {
             "avgRating",
           ],
         ],
+        group: ["Lesson._id"],
         include: this.fullLessonIncludes(),
       });
       if (!lessonRecord) throw new CustomError(responses.LESSON_NOT_FOUND);
@@ -80,6 +81,7 @@ export default class LessonService {
             "avgRating",
           ],
         ],
+        group: ["Lesson._id"],
         include: this.smallLessonIncludes(),
       });
 
