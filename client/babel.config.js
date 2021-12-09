@@ -10,13 +10,14 @@ module.exports = function (api) {
         {
           alias: {
             '@': './src',
+            '@api/*': ['./src/api/*'],
+            '@types': './src/types',
+            '@hooks': './src/hooks',
             '@components': './src/components',
             '@screens': './src/screens',
             '@navigation': './src/navigation',
             '@theme': './src/theme',
             '@utils': './src/utils',
-            '@service': './src/service',
-            '@types': './src/types',
             '@assets': './assets',
           },
           extensions: ['.ts', '.tsx'],
