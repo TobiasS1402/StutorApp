@@ -81,7 +81,7 @@ export default class LessonService {
             "avgRating",
           ],
         ],
-        group: ["Lesson._id"],
+        group: ["Lesson._id", "user._id"],
         include: this.smallLessonIncludes(),
       });
 
