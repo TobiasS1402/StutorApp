@@ -17,5 +17,6 @@ export default {
   openapi: {
     scheme: process.env.OPENAPI_SCHEME,
     host: process.env.OPENAPI_HOST,
+    port: process.env.OPENAPI_PORT || "",
   },
 };

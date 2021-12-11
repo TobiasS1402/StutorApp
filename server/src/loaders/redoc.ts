@@ -7,6 +7,6 @@ export default ({ app }: { app: Application }): boolean => {
     res.send(options);
   });
 
-  app.get("/docs", redoc({ title: "API Docs", specUrl: "/docs/openapi/json" }));
+  app.get("/docs", redoc({ title: "API Docs", specUrl: "/docs/openapi.json" }));
   return true;
 };

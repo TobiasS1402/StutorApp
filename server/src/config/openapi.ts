@@ -19,7 +19,9 @@ export default {
   },
   servers: [
     {
-      url: `${config.openapi.scheme}://${config.openapi.host}${config.port}/v1`,
+      url: `${config.openapi.scheme}://${config.openapi.host}${
+        config.openapi.port ? ":" + config.openapi.port : ""
+      }/v1`,
     },
   ],
   tags: [
@@ -48,6 +50,93 @@ export default {
       description: "Handle appointment operations",
     },
   ],
+  paths: {
+    /**
+     * Users path descriptions
+     */
+    "/users/me": {
+      get: {
+        tags: ["User"],
+        summary: "Get user info for current user",
+        operationId: "getCurrentUser",
+        responses: {
+          "404": {
+            description: "User not found",
+          },
+        },
+      },
+    },
+    "/users": {
+      put: {
+        tags: ["User"],
+        summary: "Change user info for current user",
+        operationId: "changeCurrentUser",
+        requestBody: {
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  studyId: {
+                    type: "number",
+                  },
+                  year: {
+                    type: "number",
+                  },
+                  avatar: {
+                    type: "string",
+                  },
+                  description: {
+                    type: "string",
+                  },
+                },
+              },
+            },
+          },
+        },
+        responses: {
+          "404": {
+            description: "User not found",
+          },
+        },
+      },
+    },
+    /**
+     * Studies path descriptions
+     */
+    "/studies": {
+      get: {
+        tags: ["Study"],
+        summary: "Get all studies",
+        operationId: "getStudies",
+        responses: {
+          "404": {
+            description: "No studies found",
+          },
+        },
+      },
+    },
+    "/studies/{studyId}": {
+      get: {
+        tags: ["Study"],
+        summary: "Get a specific study by id",
+        operationId: "getStudy",
+        parameters: [
+          {
+            name: "studyId",
+            in: "path",
+            required: true,
+            type: "number",
+          },
+        ],
+        responses: {
+          "404": {
+            description: "No study found",
+          },
+        },
+      },
+    },
+  },
   components: {
     securitySchemes: {
       bearerAuth: {
