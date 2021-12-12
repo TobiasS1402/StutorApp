@@ -1,22 +1,25 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Service } from '@/types'
 
-export default <Type>(apiFunc: Function) => {
+export const useApi = <Type>(apiFunc: Function) => {
   // TODO: convert json main key to results
-  // interface Entity {
-  //   results: Type
-  // }
+  //   // interface Entity {
+  //   //   results: Type
+  //   // }
 
   const [result, setResult] = useState<Service<Type>>({
     status: 'loading',
   })
 
-  const requestApi = async (...args) => {
-    await apiFunc(...args)
-      .then((response) => response.data)
-      .then((response) => setResult({ status: 'loaded', payload: response }))
-      .catch((error) => setResult({ status: 'error', error }))
-  }
+  useEffect(
+    (...args) => {
+      apiFunc(...args)
+        .then((response) => response.data)
+        .then((response) => setResult({ status: 'loaded', payload: response }))
+        .catch((error) => setResult({ status: 'error', error }))
+    },
+    [apiFunc],
+  )
 
-  return { result, requestApi }
+  return result
 }
