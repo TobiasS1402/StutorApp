@@ -1,7 +1,6 @@
 import { apiClient } from '@utils/apiClient'
-import { ICourse } from '@/types'
 
-const getCourses = () => apiClient.get<ICourse[]>('/courses')
+const getCourses = () => apiClient.get('/courses')
 
 export default {
   getCourses,
