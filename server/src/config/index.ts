@@ -14,4 +14,9 @@ export default {
   jwtSecret: process.env.JWT_SECRET,
   jwtAlgorithm: process.env.JWT_ALGO,
   databaseUrl: process.env.DATABASE_URL,
+  openapi: {
+    scheme: process.env.OPENAPI_SCHEME,
+    host: process.env.OPENAPI_HOST,
+    port: process.env.OPENAPI_PORT || "",
+  },
 };

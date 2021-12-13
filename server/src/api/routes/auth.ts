@@ -60,7 +60,6 @@ export default (app: Router) => {
 
         const authServiceInstance = Container.get(AuthService);
         const userObj = JSON.parse(data.body);
-        console.log(userObj);
 
         try {
           const { user, token } = await authServiceInstance.SignIn({

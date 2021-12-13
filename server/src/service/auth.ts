@@ -2,6 +2,7 @@ import { Inject, Service } from "typedi";
 import { Logger as _Logger } from "winston";
 import { IUser, IUserInputDTO } from "../interfaces/IUser";
 import { CustomError } from "../errors";
+import StellarSDK from "stellar-sdk";
 import responses from "../errors/responses.json";
 import { sign } from "jsonwebtoken";
 import config from "../config";
@@ -29,10 +30,17 @@ export default class AuthService {
         throw new CustomError(responses.DUPLICATE_USER);
       }
 
+      // Generate public & private key
+      const keypair = StellarSDK.Keypair.random();
+      const pubKey = keypair.publicKey();
+      const privKey = keypair.secret();
+
       // Create User in database
       const userRecord = await this.userModel.create({
         email: userInputDTO.email,
         username: userInputDTO.username,
+        publicKey: pubKey,
+        privateKey: privKey,
       } as IUser);
       if (!userRecord)
         throw new CustomError(responses.USER_CREATE_INTERNAL_SERVER);
@@ -91,6 +99,7 @@ export default class AuthService {
   private RemoveCredentialsFromUser(user: IUser): IUser {
     Reflect.deleteProperty(user, "pin");
     Reflect.deleteProperty(user, "salt");
+    Reflect.deleteProperty(user, "privateKey");
     return user;
   }
 
