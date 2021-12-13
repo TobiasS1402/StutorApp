@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-cycle
-import { ICourse } from './ICourse'
+import type { ICourse } from './ICourse'
 
 export interface IStudy {
   _id?: number

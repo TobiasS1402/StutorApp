@@ -69,12 +69,7 @@ module.exports = {
     'import/newline-after-import': 'error',
     'no-duplicate-imports': 'error',
     'import/no-duplicates': 'error',
-    'import/no-cycle': [
-      'error',
-      {
-        ignoreExternal: true,
-      },
-    ],
+    'import/no-cycle': ['error'],
   },
   settings: {
     react: {

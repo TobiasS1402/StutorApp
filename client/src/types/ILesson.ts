@@ -1,7 +1,5 @@
-// eslint-disable-next-line import/no-cycle
-import { ICourse } from './ICourse'
-// eslint-disable-next-line import/no-cycle
-import { IUser } from './IUser'
+import type { ICourse } from './ICourse'
+import type { IUser } from './IUser'
 
 export interface ILesson {
   _id?: number
