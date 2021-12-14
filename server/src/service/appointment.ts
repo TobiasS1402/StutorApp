@@ -2,13 +2,14 @@ import { Op } from "sequelize";
 import { Inject, Service } from "typedi";
 import { Logger as _Logger } from "winston";
 import { CustomError } from "../errors";
-import { IAppointment } from "../interfaces/IAppointment";
+import { IAppointment, IAppointmentInputDTO } from "../interfaces/IAppointment";
 import { IUserInputDTO } from "../interfaces/IUser";
 import Lesson from "../models/Lesson.model";
 import Timeslot from "../models/Timeslot.model";
 import responses from "../errors/responses.json";
 import getFriday from "../util/getFriday";
 import getMonday from "../util/getMonday";
+import e from "express";
 
 @Service()
 export default class AppointmentService {
@@ -45,6 +46,32 @@ export default class AppointmentService {
       );
 
       return { appointments };
+    } catch (e) {
+      this.logger.error(e);
+      throw e;
+    }
+  }
+
+  public async CreateAppointment(
+    inputAppointmentDTO: IAppointmentInputDTO
+  ): Promise<{ appointment: IAppointment }> {
+    try {
+      // Check if there isn't already a reservation
+      const reservationRecord = await this.appointmentModel.findOne({
+        where: {
+          timeslotId: inputAppointmentDTO.timeslotId,
+        },
+      });
+      if (reservationRecord)
+        throw new CustomError(responses.DUPLICATE_APPOINTMENT);
+
+      // Create appointment
+      const appointmentRecord = await this.appointmentModel.create({
+        ...inputAppointmentDTO,
+      });
+
+      const appointment = appointmentRecord.toJSON() as IAppointment;
+      return { appointment };
     } catch (e) {
       this.logger.error(e);
       throw e;

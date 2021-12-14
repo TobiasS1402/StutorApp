@@ -46,6 +46,10 @@ export default {
       description: "Handle lesson operations",
     },
     {
+      name: "Timeslot",
+      description: "Handle timeslot operations",
+    },
+    {
       name: "Appointment",
       description: "Handle appointment operations",
     },
@@ -257,6 +261,55 @@ export default {
       },
     },
     /**
+     * Timeslots path descriptions
+     */
+    "/timeslots/{timeslotId}": {
+      get: {
+        tags: ["Timeslot"],
+        summary: "Get timeslot by id",
+        operationId: "getTimeslot",
+        parameters: [
+          {
+            name: "timeslotId",
+            in: "path",
+            required: true,
+            type: "number",
+          },
+        ],
+        responses: {
+          "400": {
+            description: "timeslotId is not a number",
+          },
+          "404": {
+            description: "No timeslot found",
+          },
+        },
+      },
+    },
+    "/timeslots/lesson/{lessonId}": {
+      get: {
+        tags: ["Timeslot"],
+        summary: "Get timeslots by lesson",
+        operationId: "getTimeslotsByLesson",
+        parameters: [
+          {
+            name: "lessonId",
+            in: "path",
+            required: true,
+            type: "number",
+          },
+        ],
+        responses: {
+          "400": {
+            description: "lessonId is not a number",
+          },
+          "404": {
+            description: "No timeslots or lesson found",
+          },
+        },
+      },
+    },
+    /**
      * Appointments path descriptions
      */
     "/appointments/me": {
@@ -267,6 +320,42 @@ export default {
         responses: {
           "404": {
             description: "No appointments found",
+          },
+        },
+      },
+    },
+    "/appointments": {
+      post: {
+        tags: ["Appointment"],
+        summary: "Create appointment",
+        operationId: "createAppointment",
+        requestBody: {
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                required: ["location", "description", "timeslotId"],
+                properties: {
+                  location: {
+                    type: "string",
+                  },
+                  description: {
+                    type: "string",
+                  },
+                  timeslotId: {
+                    type: "number",
+                  },
+                },
+              },
+            },
+          },
+        },
+        responses: {
+          "404": {
+            description: "No timeslot found",
+          },
+          "409": {
+            description: "Timeslot already has a reservation",
           },
         },
       },

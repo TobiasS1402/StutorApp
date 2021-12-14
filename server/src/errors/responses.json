@@ -47,12 +47,28 @@
       "nl": "Afspraak niet gevonden"
     }
   },
+  "TIMESLOT_NOT_FOUND": {
+    "name": "NotFoundError",
+    "statusCode": 404,
+    "messages": {
+      "en": "Timeslot not found",
+      "nl": "Tijdslot niet gevonden"
+    }
+  },
   "DUPLICATE_USER": {
     "name": "DuplicateError",
     "statusCode": 409,
     "messages": {
       "en": "Email is already registered",
       "nl": "Email staat al geregistreerd"
+    }
+  },
+  "DUPLICATE_APPOINTMENT": {
+    "name": "DuplicateError",
+    "statusCode": 409,
+    "messages": {
+      "en": "Appointment is already registered",
+      "nl": "Afspraak staat al geregistreerd"
     }
   },
   "USER_CREATE_INTERNAL_SERVER": {
@@ -117,6 +133,14 @@
     "messages": {
       "en": "Lesson ID input is invalid",
       "nl": "Les ID invoerwaarde is ongeldig"
+    }
+  },
+  "TIMESLOT_ID_INVALID": {
+    "name": "BadRequestError",
+    "statusCode": 400,
+    "messages": {
+      "en": "Timeslot ID input is invalid",
+      "nl": "Tijdsslot ID invoerwaarde is ongeldig"
     }
   },
   "YEAR_INVALID": {

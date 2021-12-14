@@ -1,13 +1,12 @@
 import { celebrate, Joi } from "celebrate";
 import { NextFunction, Response, Router, Request, response } from "express";
 import Container from "typedi";
-import { CustomError } from "../../errors";
 import { IUser, IUserInputDTO } from "../../interfaces/IUser";
 import StudyService from "../../service/study";
 import UserService from "../../service/user";
 import util from "../../util";
-import responses from "../../errors/responses.json";
 import middlewares from "../middlewares";
+import { ITimeslotInputDTO } from "../../interfaces/ITimeslot";
 
 const route = Router();
 
@@ -40,10 +39,9 @@ export default (app: Router) => {
         // Validate if study is existing
         if (req.body.studyId) {
           const studyServiceInstance = Container.get(StudyService);
-          const record = await studyServiceInstance.GetStudyById(
-            req.body.studyId
-          );
-          if (!record) throw new CustomError(responses.STUDY_NOT_FOUND);
+          await studyServiceInstance.GetStudyById({
+            _id: req.body.studyId,
+          } as ITimeslotInputDTO);
         }
 
         let input: IUserInputDTO = {
