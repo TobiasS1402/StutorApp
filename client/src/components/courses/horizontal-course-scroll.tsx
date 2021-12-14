@@ -1,18 +1,18 @@
 import { CourseCard } from '@components/cards'
 import * as React from 'react'
 import { ScrollView } from 'react-native'
-import { GetCourses } from '@/api/coursesApi'
-// import { ICourse } from '@/types'
+import { GetCoursesForStudy } from '@/api/coursesApi'
+import { Course } from '@/types'
 
 export const HorizontalCourseScroll = () => {
-  // const courses = GetCourses()
+  const api = GetCoursesForStudy(1)
 
   return (
     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-      {/* {courses.status === 'loaded' &&
-        courses.payload['courses'].map((item: ICourse) => (
+      {api.status === 'loaded' &&
+        api.payload['courses'].map((item: Course) => (
           <CourseCard key={item._id} name={item.name} />
-        ))} */}
+        ))}
     </ScrollView>
   )
 }

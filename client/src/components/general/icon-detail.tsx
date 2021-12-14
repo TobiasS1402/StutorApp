@@ -20,8 +20,8 @@ const defaultProps: IconDetailProps = {
 
 const Detail = styled.Text`
   margin-left: ${spaces.default}px;
-  color: ${color.gray};
   margin-right: ${spaces.xl3}px;
+  color: ${color.gray};
 `
 
 export const IconDetail = (props: IconDetailProps) => {

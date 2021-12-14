@@ -4,19 +4,19 @@ import { ScreenContainer, ScreenWrapper } from '@components/layout'
 import React from 'react'
 import { SafeAreaView, ScrollView } from 'react-native'
 import SkeletonContent from 'react-native-skeleton-content'
-import { GetCourses } from '../services/coursesService'
+import { GetCoursesForStudy } from '@/api'
 import { skeleton, typography } from '@/theme'
 import { Course } from '@/types'
 
 export const CoursesScreen = () => {
-  const service = GetCourses()
+  const api = GetCoursesForStudy(1)
 
   return (
     <ScreenContainer>
       <ScreenWrapper>
         <SkeletonContent
           containerStyle={{ flex: 1 }}
-          isLoading={service.status === 'loading'}
+          isLoading={api.status === 'loading'}
           layout={skeleton.CoursesSkeleton}
         >
           <SafeAreaView>
@@ -27,8 +27,8 @@ export const CoursesScreen = () => {
             <SearchBar />
           </SafeAreaView>
           <ScrollView showsVerticalScrollIndicator={false}>
-            {service.status === 'loaded' &&
-              service.payload['courses'].map((item: Course) => (
+            {api.status === 'loaded' &&
+              api.payload['courses'].map((item: Course) => (
                 <CourseDetailedCard
                   key={item._id}
                   name={item.name}

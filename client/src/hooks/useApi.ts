@@ -1,22 +1,32 @@
 import { apiClient } from '@utils/apiClient'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import AxiosRequestConfig from 'react-native-axios'
 import { Service } from '@/types'
 
-export default <T>(): [(url: string) => void, Service<T>] => {
+const useApi = <T>(axiosParams: AxiosRequestConfig) => {
   const [result, setResult] = useState<Service<T>>({
     status: 'loading',
   })
 
-  const getResponseTest = async (url: string) => {
-    try {
-      const res = await apiClient<T>(url)
-      setResult({ status: 'loaded', payload: res })
-    } catch (error) {
-      if (error instanceof Error) {
-        setResult({ status: 'error', error })
-      }
-    }
+  const fetchData = async (params: AxiosRequestConfig) => {
+    await apiClient
+      .request(params)
+      .then((response) => response.data)
+      .then((response) => setResult({ status: 'loaded', payload: response }))
+      .catch((error) => setResult({ status: 'error', error }))
   }
 
-  return [getResponseTest, result]
+  const sendData = () => {
+    fetchData(axiosParams)
+  }
+
+  useEffect(() => {
+    if (axiosParams.method === 'GET' || axiosParams.method === 'get') {
+      fetchData(axiosParams)
+    }
+  }, [])
+
+  return { result, sendData }
 }
+
+export default useApi

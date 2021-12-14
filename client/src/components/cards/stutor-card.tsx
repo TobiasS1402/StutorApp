@@ -13,6 +13,7 @@ import { color, spaces, typography } from '@/theme'
 
 interface StutorCardProps {
   name: string
+  avatar?: string
   description: string
   hasDetails?: boolean
   costs?: number
@@ -23,6 +24,7 @@ interface StutorCardProps {
 
 const defaultProps: StutorCardProps = {
   name: '',
+  // todo: make default avatar
   description: '',
   hasDetails: false,
   costs: 0,
@@ -37,7 +39,7 @@ export const StutorCard = (props: StutorCardProps) => {
       <Card>
         <Container padding={spaces.xl}>
           <RoundedImage
-            source={require('@assets/images/profile.jpeg')}
+            source={{ uri: props.avatar }}
             width="55px"
             height="55px"
             right={spaces.xl3}

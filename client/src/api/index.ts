@@ -1,3 +1,4 @@
-import { GetCourses } from '@api/coursesApi'
+import { GetCoursesForStudy } from '@/api/coursesApi'
+import { GetLesson, GetLessonsForCourse } from '@/api/lessonsApi'
 
-export { GetCourses }
+export { GetCoursesForStudy, GetLessonsForCourse, GetLesson }

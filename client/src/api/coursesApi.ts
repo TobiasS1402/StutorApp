@@ -1,10 +1,13 @@
 import useApi from '@hooks/useApi'
-import { ICourse } from '@/types'
+import { Course } from '@/types'
 
-function GetCourses() {
-  const [getCourses, result] = useApi<ICourse>()
-  getCourses('/courses')
+const GetCoursesForStudy = (studyId: number) => {
+  const { result } = useApi<Course[]>({
+    method: 'GET',
+    url: `/courses/study/${studyId}`,
+  })
+
   return result
 }
 
-export { GetCourses }
+export { GetCoursesForStudy }

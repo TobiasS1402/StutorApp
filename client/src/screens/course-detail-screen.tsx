@@ -3,100 +3,44 @@ import { SearchBar } from '@components/general'
 import { ScreenContainer, ScreenWrapper } from '@components/layout'
 import React from 'react'
 import { SafeAreaView, ScrollView } from 'react-native'
+import SkeletonContent from 'react-native-skeleton-content'
+import { GetLessonsForCourse } from '@/api'
 import { DetailHeader } from '@/components/general'
-
-// dummy data
-const Lessons = [
-  {
-    id: 1221,
-    user: {
-      name: 'Maurits Arissen',
-    },
-    description:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    costs: 20,
-    rating: 4,
-    duration: '30 min',
-  },
-  {
-    id: 1222,
-    user: {
-      name: 'Daan Franssen',
-    },
-    description:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    costs: 20,
-    rating: 4,
-    duration: '30 min',
-  },
-  {
-    id: 1223,
-    user: {
-      name: 'Bart van Tongeren',
-    },
-    description:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    costs: 20,
-    rating: 4,
-    duration: '30 min',
-  },
-  {
-    id: 1224,
-    user: {
-      name: 'John Doe',
-    },
-    description:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    costs: 20,
-    rating: 4,
-    duration: '30 min',
-  },
-  {
-    id: 1225,
-    user: {
-      name: 'Bart van Tongeren',
-    },
-    description:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    costs: 20,
-    rating: 4,
-    duration: '30 min',
-  },
-  {
-    id: 1226,
-    user: {
-      name: 'John Doe',
-    },
-    description:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    costs: 20,
-    rating: 4,
-    duration: '30 min',
-  },
-]
+import { skeleton } from '@/theme'
+import { Lesson } from '@/types'
 
 export const CourseDetailScreen = ({ navigation }) => {
+  const api = GetLessonsForCourse(1)
+
   return (
     <ScreenContainer>
       <ScreenWrapper>
-        <SafeAreaView>
-          <DetailHeader title="Software Architecture" />
-          <SearchBar showFilter />
-        </SafeAreaView>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          {Lessons.map((item) => (
-            <StutorCard
-              key={item.id}
-              name={item.user.name}
-              description={item.description}
-              costs={item.costs}
-              rating={item.rating}
-              duration={item.duration}
-              onPress={() => navigation.navigate('Appointment')}
-              hasDetails
-            />
-          ))}
-        </ScrollView>
+        <SkeletonContent
+          containerStyle={{ flex: 1 }}
+          isLoading={api.status === 'loading'}
+          layout={skeleton.CoursesSkeleton}
+        >
+          <SafeAreaView>
+            <DetailHeader title="Software Architecture" />
+            <SearchBar showFilter />
+          </SafeAreaView>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            {api.status === 'loaded' &&
+              api.payload['lessons'].map((item: Lesson) => (
+                <StutorCard
+                  key={item._id}
+                  avatar={item.user?.avatar}
+                  name={item.user?.username}
+                  description={item.description}
+                  costs={item.price}
+                  rating={item.avgRating ?? 0}
+                  duration={'30 min'}
+                  onPress={() => navigation.navigate('Appointment')}
+                  hasDetails
+                />
+              ))}
+          </ScrollView>
+        </SkeletonContent>
       </ScreenWrapper>
     </ScreenContainer>
   )
