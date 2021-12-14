@@ -1,3 +1,3 @@
-import getCourses from '@api/coursesApi'
+import { GetCourses } from '@api/coursesApi'
 
-export { getCourses }
+export { GetCourses }

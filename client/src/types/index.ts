@@ -1,7 +1,8 @@
-import { ICourse } from '@/types/ICourse'
-import { ILesson } from '@/types/ILesson'
-import { Service } from '@/types/IService'
-import { IStudy } from '@/types/IStudy'
-import { IUser } from '@/types/IUser'
+import { ApiResponse } from '@/types/ApiResponse'
+import { Course } from '@/types/Course'
+import { Lesson } from '@/types/Lesson'
+import { Service } from '@/types/Service'
+import { Study } from '@/types/Study'
+import { User } from '@/types/User'
 
-export { ICourse, ILesson, Service, IStudy, IUser }
+export { Course, Lesson, Service, Study, User, ApiResponse }

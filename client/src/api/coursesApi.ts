@@ -1,7 +1,10 @@
-import { apiClient } from '@utils/apiClient'
+import useApi from '@hooks/useApi'
+import { ICourse } from '@/types'
 
-const getCourses = () => apiClient.get('/courses')
-
-export default {
-  getCourses,
+function GetCourses() {
+  const [getCourses, result] = useApi<ICourse>()
+  getCourses('/courses')
+  return result
 }
+
+export { GetCourses }
