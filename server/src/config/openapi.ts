@@ -101,6 +101,36 @@ export default {
         },
       },
     },
+    "/users/pin": {
+      put: {
+        tags: ["User"],
+        summary: "Change pin",
+        operationId: "changeUserPin",
+        requestBody: {
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                required: ["pin"],
+                properties: {
+                  pin: {
+                    type: "number",
+                  },
+                },
+              },
+            },
+          },
+        },
+        responses: {
+          "400": {
+            description: "User pin is invalid",
+          },
+          "404": {
+            description: "User is not found",
+          },
+        },
+      },
+    },
     /**
      * Studies path descriptions
      */
@@ -130,8 +160,113 @@ export default {
           },
         ],
         responses: {
+          "400": {
+            description: "studyId is not a number",
+          },
           "404": {
             description: "No study found",
+          },
+        },
+      },
+    },
+    /**
+     * Courses path descriptions
+     */
+    "/courses": {
+      get: {
+        tags: ["Course"],
+        summary: "Get all courses",
+        operationId: "getCourses",
+        responses: {
+          "404": {
+            description: "No courses found",
+          },
+        },
+      },
+    },
+    "/courses/study/{studyId}": {
+      get: {
+        tags: ["Course"],
+        summary: "Get courses by study",
+        operationId: "getCoursesByStudy",
+        parameters: [
+          {
+            name: "studyId",
+            in: "path",
+            required: true,
+            type: "number",
+          },
+        ],
+        responses: {
+          "400": {
+            description: "studyId is not a number",
+          },
+          "404": {
+            description: "No study or courses found",
+          },
+        },
+      },
+    },
+    /**
+     * Lessons path descriptions
+     */
+    "/lessons/{lessonId}": {
+      get: {
+        tags: ["Lesson"],
+        summary: "Get lesson by id",
+        operationId: "getLesson",
+        parameters: [
+          {
+            name: "lessonId",
+            in: "path",
+            required: true,
+            type: "number",
+          },
+        ],
+        responses: {
+          "400": {
+            description: "lessonId is not a number",
+          },
+          "404": {
+            description: "No lesson found",
+          },
+        },
+      },
+    },
+    "/lessons/course/{courseId}": {
+      get: {
+        tags: ["Lesson"],
+        summary: "Get lessons by course",
+        operationId: "getLessonsByCourse",
+        parameters: [
+          {
+            name: "courseId",
+            in: "path",
+            required: true,
+            type: "number",
+          },
+        ],
+        responses: {
+          "400": {
+            description: "courseId is not a number",
+          },
+          "404": {
+            description: "No lessons or course found",
+          },
+        },
+      },
+    },
+    /**
+     * Appointments path descriptions
+     */
+    "/appointments/me": {
+      get: {
+        tags: ["Appointment"],
+        summary: "Get appointments from this week",
+        operationId: "getAppointmentsWeek",
+        responses: {
+          "404": {
+            description: "No appointments found",
           },
         },
       },

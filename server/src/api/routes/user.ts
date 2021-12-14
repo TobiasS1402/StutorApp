@@ -1,9 +1,12 @@
 import { celebrate, Joi } from "celebrate";
 import { NextFunction, Response, Router, Request, response } from "express";
 import Container from "typedi";
+import { CustomError } from "../../errors";
 import { IUser, IUserInputDTO } from "../../interfaces/IUser";
+import StudyService from "../../service/study";
 import UserService from "../../service/user";
 import util from "../../util";
+import responses from "../../errors/responses.json";
 import middlewares from "../middlewares";
 
 const route = Router();
@@ -34,6 +37,15 @@ export default (app: Router) => {
     middlewares.attachCurrentUser,
     async (req: Request, res: Response, next: NextFunction) => {
       try {
+        // Validate if study is existing
+        if (req.body.studyId) {
+          const studyServiceInstance = Container.get(StudyService);
+          const record = await studyServiceInstance.GetStudyById(
+            req.body.studyId
+          );
+          if (!record) throw new CustomError(responses.STUDY_NOT_FOUND);
+        }
+
         let input: IUserInputDTO = {
           ...(req.body as IUserInputDTO),
           email: req.currentUser.email,

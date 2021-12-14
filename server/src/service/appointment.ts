@@ -1,11 +1,12 @@
 import { Op } from "sequelize";
 import { Inject, Service } from "typedi";
 import { Logger as _Logger } from "winston";
+import { CustomError } from "../errors";
 import { IAppointment } from "../interfaces/IAppointment";
 import { IUserInputDTO } from "../interfaces/IUser";
 import Lesson from "../models/Lesson.model";
 import Timeslot from "../models/Timeslot.model";
-import User from "../models/User.model";
+import responses from "../errors/responses.json";
 import getFriday from "../util/getFriday";
 import getMonday from "../util/getMonday";
 
@@ -35,6 +36,9 @@ export default class AppointmentService {
         },
         include: this.appointmentIncludes(),
       });
+
+      if (appointmentRecord.length < 1)
+        throw new CustomError(responses.APPOINTMENT_NOT_FOUND);
 
       const appointments: IAppointment[] = appointmentRecord.map(
         (appointment) => appointment.toJSON() as IAppointment
