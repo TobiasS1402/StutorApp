@@ -20,10 +20,7 @@ export const CoursesScreen = () => {
           layout={skeleton.CoursesSkeleton}
         >
           <SafeAreaView>
-            <Title
-              value="Cursus overzicht"
-              fontSize={typography.xl5.fontSize}
-            />
+            <Title value="Cursus overzicht" fontSize={typography.xl5.fontSize} />
             <SearchBar />
           </SafeAreaView>
           <ScrollView showsVerticalScrollIndicator={false}>
@@ -31,9 +28,9 @@ export const CoursesScreen = () => {
               api.payload['courses'].map((item: Course) => (
                 <CourseDetailedCard
                   key={item._id}
+                  id={item._id}
                   name={item.name}
                   amountOfLessons={0}
-                  routeName="CourseDetail"
                 />
               ))}
           </ScrollView>

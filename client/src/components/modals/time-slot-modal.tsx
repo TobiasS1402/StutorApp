@@ -1,12 +1,7 @@
 import { DayCard, TimeSlotCard } from '@components/cards'
 import { Selector, TextInput } from '@components/forms'
 import { Button, Divider, Title } from '@components/general'
-import {
-  Container,
-  ScreenContainer,
-  ScreenWrapper,
-  Section,
-} from '@components/layout'
+import { Container, ScreenContainer, ScreenWrapper, Section } from '@components/layout'
 import React, { useState } from 'react'
 import { Modal, ScrollView } from 'react-native'
 import styled from 'styled-components/native'
@@ -102,8 +97,7 @@ const BtnContainer = styled(Container)`
 
 const Btn = styled(Button)`
   flex: 1;
-  background: ${(props) =>
-    props.primary ? `${color.primary}` : `${color.grayLight}`};
+  background: ${(props) => (props.primary ? `${color.primary}` : `${color.grayLight}`)};
 `
 
 export const TimeSlotModal = (props: TimeSlotModalProps) => {
@@ -137,11 +131,7 @@ export const TimeSlotModal = (props: TimeSlotModalProps) => {
               </TimeSlotContainer>
             </Section>
             <Section>
-              <Title
-                value="Locatie"
-                fontSize={typography.xl2.fontSize}
-                fontFamily="Lato-Bold"
-              />
+              <Title value="Locatie" fontSize={typography.xl2.fontSize} fontFamily="Lato-Bold" />
               <Divider />
               <Selector
                 selectedValue={locatie}

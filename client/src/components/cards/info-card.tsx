@@ -30,11 +30,7 @@ export const InfoCard = (props: InfoCardProps) => {
       <FontAwesome name={props.icon} size={30} color={color.yellow} solid />
       <Divider small />
       <View>
-        <Title
-          value={props.value}
-          fontSize={typography.lg.fontSize}
-          fontFamily="Lato-Bold"
-        />
+        <Title value={props.value} fontSize={typography.lg.fontSize} fontFamily="Lato-Bold" />
         <PlainText primary>{props.infoName}</PlainText>
       </View>
     </CardContainer>

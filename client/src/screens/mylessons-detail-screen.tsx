@@ -1,18 +1,7 @@
 import { DayCard, TimeSlotCard } from '@components/cards'
 import { Selector, TextInput } from '@components/forms'
-import {
-  Button,
-  DetailHeader,
-  Divider,
-  PlainText,
-  Title,
-} from '@components/general'
-import {
-  Container,
-  ScreenContainer,
-  ScreenWrapper,
-  Section,
-} from '@components/layout'
+import { Button, DetailHeader, Divider, PlainText, Title } from '@components/general'
+import { Container, ScreenContainer, ScreenWrapper, Section } from '@components/layout'
 import React, { useState } from 'react'
 import { SafeAreaView, ScrollView } from 'react-native'
 import styled from 'styled-components/native'

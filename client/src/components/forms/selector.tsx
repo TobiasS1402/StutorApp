@@ -71,12 +71,7 @@ export const Selector = (props: SelectorProps) => {
               {props.selectedValue}
             </PlainText>
           </View>
-          <FontAwesome
-            name="chevron-down"
-            size={20}
-            color={color.grayLight}
-            solid
-          />
+          <FontAwesome name="chevron-down" size={20} color={color.grayLight} solid />
         </CardContainer>
       </Pressable>
       <Modal animationType="fade" transparent={true} visible={show}>
@@ -86,10 +81,7 @@ export const Selector = (props: SelectorProps) => {
               <ScrollView>
                 {props.data.length ? (
                   props.data.map((item) => (
-                    <Pressable
-                      key={item.id}
-                      onPress={() => onValueChange(item.value)}
-                    >
+                    <Pressable key={item.id} onPress={() => onValueChange(item.value)}>
                       <Title
                         value={item.value}
                         fontSize={typography.lg.fontSize}
@@ -104,11 +96,7 @@ export const Selector = (props: SelectorProps) => {
               </ScrollView>
             </SelectorCard>
             <CancelBtn onPress={setShow}>
-              <Title
-                value="Cancel"
-                fontSize={typography.md.fontSize}
-                fontFamily="Lato-Bold"
-              />
+              <Title value="Cancel" fontSize={typography.md.fontSize} fontFamily="Lato-Bold" />
             </CancelBtn>
           </SelectorContainer>
         </Dialog>

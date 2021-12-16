@@ -13,9 +13,11 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome5'
 const Tab = createBottomTabNavigator()
 const IconSize = 25
 
-const BottomTabNavigator = () => {
+interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
+
+const BottomTabNavigator = (props: NavigationProps) => {
   return (
-    <NavigationContainer>
+    <NavigationContainer {...props}>
       <Tab.Navigator
         screenOptions={() => ({
           tabBarActiveTintColor: color.primary,
@@ -35,12 +37,7 @@ const BottomTabNavigator = () => {
           component={HomeStackScreen}
           options={{
             tabBarIcon: ({ color }) => (
-              <FontAwesome
-                name={'th-large'}
-                size={IconSize}
-                color={color}
-                solid
-              />
+              <FontAwesome name={'th-large'} size={IconSize} color={color} solid />
             ),
           }}
         />
@@ -49,12 +46,7 @@ const BottomTabNavigator = () => {
           component={CourseStackScreen}
           options={{
             tabBarIcon: ({ color }) => (
-              <FontAwesome
-                name={'compass'}
-                size={IconSize}
-                color={color}
-                solid
-              />
+              <FontAwesome name={'compass'} size={IconSize} color={color} solid />
             ),
           }}
         />
@@ -72,12 +64,7 @@ const BottomTabNavigator = () => {
           component={ProfileStackScreen}
           options={{
             tabBarIcon: ({ color }) => (
-              <FontAwesome
-                name={'user-circle'}
-                size={IconSize}
-                color={color}
-                solid
-              />
+              <FontAwesome name={'user-circle'} size={IconSize} color={color} solid />
             ),
           }}
         />

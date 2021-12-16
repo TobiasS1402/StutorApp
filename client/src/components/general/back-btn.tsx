@@ -20,12 +20,7 @@ export const BackBtn = () => {
   return (
     <Pressable onPress={() => navigation.goBack()}>
       <BtnContainer>
-        <FontAwesome
-          name={'chevron-left'}
-          size={22}
-          color={color.primary}
-          solid
-        />
+        <FontAwesome name={'chevron-left'} size={22} color={color.primary} solid />
       </BtnContainer>
     </Pressable>
   )

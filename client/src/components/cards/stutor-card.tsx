@@ -1,11 +1,5 @@
 import { Card } from '@components/cards/card'
-import {
-  Divider,
-  IconDetail,
-  PlainText,
-  RoundedImage,
-  Title,
-} from '@components/general'
+import { Divider, IconDetail, PlainText, RoundedImage, Title } from '@components/general'
 import { Container } from '@components/layout/container'
 import React from 'react'
 import { Pressable, View } from 'react-native'
@@ -45,11 +39,7 @@ export const StutorCard = (props: StutorCardProps) => {
             right={spaces.xl3}
           />
           <View style={{ flex: 1 }}>
-            <Title
-              value={props.name}
-              fontFamily="Lato-Bold"
-              fontSize={typography.lg.fontSize}
-            />
+            <Title value={props.name} fontFamily="Lato-Bold" fontSize={typography.lg.fontSize} />
             <Divider small />
             <PlainText>{props.description}</PlainText>
             {props.hasDetails && (

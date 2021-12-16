@@ -7,17 +7,10 @@ import styled from 'styled-components/native'
 import { color, spaces, typography } from '@/theme'
 
 interface CourseDetailedCardProps {
+  id: number
+  name: string
   icon?: string
-  name?: string
   amountOfLessons?: number
-  routeName?: string
-}
-
-const defaultProps: CourseDetailedCardProps = {
-  icon: '',
-  name: '',
-  amountOfLessons: 0,
-  routeName: 'Courses',
 }
 
 const CourseColumnContainer = styled(Card)`
@@ -29,9 +22,12 @@ const CourseColumnContainer = styled(Card)`
 
 export const CourseDetailedCard = (props: CourseDetailedCardProps) => {
   const navigation = useNavigation()
+
   return (
     <Pressable
-      onPress={() => navigation.navigate(props.routeName as never, {} as never)}
+      onPress={() =>
+        navigation.navigate('CourseDetail', { courseId: props.id, courseName: props.name })
+      }
     >
       <CourseColumnContainer>
         <RoundedImage
@@ -40,11 +36,7 @@ export const CourseDetailedCard = (props: CourseDetailedCardProps) => {
           height="45px"
         />
         <View style={{ marginLeft: spaces.xl4 }}>
-          <Title
-            value={props.name}
-            fontSize={typography.lg.fontSize}
-            fontFamily="Lato-Bold"
-          />
+          <Title value={props.name} fontSize={typography.lg.fontSize} fontFamily="Lato-Bold" />
           <Divider small />
           <Title
             value={`${props.amountOfLessons} bijlessen`}
@@ -57,5 +49,3 @@ export const CourseDetailedCard = (props: CourseDetailedCardProps) => {
     </Pressable>
   )
 }
-
-CourseDetailedCard.defaultProps = defaultProps

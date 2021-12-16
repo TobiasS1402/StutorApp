@@ -28,11 +28,7 @@ export const AppointmentCard = (props: AppointmentCardProps) => {
             <PlainText>{props.location}</PlainText>
           </View>
         </Container>
-        <RoundedImage
-          source={require('@assets/images/profile.jpeg')}
-          width="40px"
-          height="40px"
-        />
+        <RoundedImage source={require('@assets/images/profile.jpeg')} width="40px" height="40px" />
       </Container>
     </Card>
   )

@@ -8,13 +8,8 @@ import styled from 'styled-components/native'
 import { typography } from '@/theme'
 
 interface CourseCardProps {
-  name?: string
-  routeName?: string
-}
-
-const defaultProps: CourseCardProps = {
-  name: '',
-  routeName: 'Courses',
+  id: number
+  name: string
 }
 
 const CourseColumnContainer = styled(Card)`
@@ -28,9 +23,12 @@ const CourseColumnContainer = styled(Card)`
 
 export const CourseCard = (props: CourseCardProps) => {
   const navigation = useNavigation()
+
   return (
     <Pressable
-      onPress={() => navigation.navigate(props.routeName as never, {} as never)}
+      onPress={() =>
+        navigation.navigate('CourseDetail', { courseId: props.id, courseName: props.name })
+      }
     >
       <CourseColumnContainer>
         <RoundedImage
@@ -49,5 +47,3 @@ export const CourseCard = (props: CourseCardProps) => {
     </Pressable>
   )
 }
-
-CourseCard.defaultProps = defaultProps

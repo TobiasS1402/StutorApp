@@ -3,7 +3,8 @@ import { Button, SearchBar, Title } from '@components/general'
 import { ScreenContainer, ScreenWrapper } from '@components/layout'
 import * as React from 'react'
 import { SafeAreaView, ScrollView } from 'react-native'
-import { color, typography } from '@/theme'
+import SkeletonContent from 'react-native-skeleton-content'
+import { color, skeleton, typography } from '@/theme'
 
 // dummy data
 const MyLessons = [
@@ -12,8 +13,7 @@ const MyLessons = [
     user: {
       name: 'Maurits Arissen',
     },
-    description:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
     costs: 20,
     rating: 4,
     duration: '30 min',
@@ -23,8 +23,7 @@ const MyLessons = [
     user: {
       name: 'Daan Franssen',
     },
-    description:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
     costs: 20,
     rating: 4,
     duration: '30 min',
@@ -34,8 +33,7 @@ const MyLessons = [
     user: {
       name: 'Bart van Tongeren',
     },
-    description:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
     costs: 20,
     rating: 4,
     duration: '30 min',
@@ -45,8 +43,7 @@ const MyLessons = [
     user: {
       name: 'Daan Franssen',
     },
-    description:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
     costs: 20,
     rating: 4,
     duration: '30 min',
@@ -57,32 +54,38 @@ export const MyLessonsScreen = ({ navigation }) => {
   return (
     <ScreenContainer>
       <ScreenWrapper>
-        <SafeAreaView>
-          <Title value="Mijn bijlessen" fontSize={typography.xl5.fontSize} />
-          <SearchBar />
-        </SafeAreaView>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          {MyLessons.map((item) => (
-            <StutorCard
-              key={item.id}
-              name={item.user.name}
-              description={item.description}
-              costs={item.costs}
-              rating={item.rating}
-              duration={item.duration}
-              hasDetails
+        <SkeletonContent
+          containerStyle={{ flex: 1 }}
+          isLoading={false}
+          layout={skeleton.CoursesSkeleton}
+        >
+          <SafeAreaView>
+            <Title value="Mijn bijlessen" fontSize={typography.xl5.fontSize} />
+            <SearchBar />
+          </SafeAreaView>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            {MyLessons.map((item) => (
+              <StutorCard
+                key={item.id}
+                name={item.user.name}
+                description={item.description}
+                costs={item.costs}
+                rating={item.rating}
+                duration={item.duration}
+                hasDetails
+              />
+            ))}
+          </ScrollView>
+          <Button floatable onPress={() => navigation.navigate('MyLessonsDetail')}>
+            <Title
+              value="Maak nieuwe bijles"
+              fontFamily="Lato-Bold"
+              color={color.white}
+              fontSize={typography.md.fontSize}
             />
-          ))}
-        </ScrollView>
+          </Button>
+        </SkeletonContent>
       </ScreenWrapper>
-      <Button floatable onPress={() => navigation.navigate('MyLessonsDetail')}>
-        <Title
-          value="Maak nieuwe bijles"
-          fontFamily="Lato-Bold"
-          color={color.white}
-          fontSize={typography.md.fontSize}
-        />
-      </Button>
     </ScreenContainer>
   )
 }

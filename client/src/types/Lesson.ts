@@ -2,7 +2,7 @@ import type { Course } from './Course'
 import type { User } from './User'
 
 export interface Lesson {
-  _id?: number
+  _id: number
   description: string
   timeframe: number
   price: number

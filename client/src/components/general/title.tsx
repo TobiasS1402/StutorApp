@@ -57,17 +57,10 @@ export const Title = (props: TitleProps) => {
       {props.hasOptions && (
         <Pressable
           style={styles.optionContainer}
-          onPress={() =>
-            navigation.navigate(props.routeName as never, {} as never)
-          }
+          onPress={() => navigation.navigate(props.routeName as never, {} as never)}
         >
           <Text style={styles.option}>Bekijk alle</Text>
-          <FontAwesome
-            name={'chevron-right'}
-            size={16}
-            color={color.primary}
-            solid
-          />
+          <FontAwesome name={'chevron-right'} size={16} color={color.primary} solid />
         </Pressable>
       )}
     </Container>

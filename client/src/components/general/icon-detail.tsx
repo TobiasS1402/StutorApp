@@ -27,12 +27,7 @@ const Detail = styled.Text`
 export const IconDetail = (props: IconDetailProps) => {
   return (
     <Container>
-      <FontAwesome
-        name={props.iconName}
-        size={props.iconSize}
-        color={props.iconColor}
-        solid
-      />
+      <FontAwesome name={props.iconName} size={props.iconSize} color={props.iconColor} solid />
       <Detail>{props.detailValue}</Detail>
     </Container>
   )

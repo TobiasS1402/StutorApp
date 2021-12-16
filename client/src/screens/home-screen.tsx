@@ -1,10 +1,13 @@
-import { AppointmentCard, StutorCard } from '@components/cards'
-import { HorizontalCourseScroll } from '@components/courses'
+import { AppointmentCard, CourseCard } from '@components/cards'
 import { Divider, Title } from '@components/general'
 import { AppHeader } from '@components/home'
 import { ScreenContainer, ScreenWrapper, Section } from '@components/layout'
 import * as React from 'react'
 import { SafeAreaView, ScrollView } from 'react-native'
+import SkeletonContent from 'react-native-skeleton-content'
+import { GetCoursesForStudy } from '@/api/coursesApi'
+import { skeleton } from '@/theme'
+import { Course } from '@/types'
 
 export const HomeScreen = () => {
   // dummy data
@@ -29,81 +32,43 @@ export const HomeScreen = () => {
     },
   ]
 
-  // dummy data
-  const TopStutors = [
-    {
-      id: 0,
-      user: {
-        name: 'Maurits Arissen',
-      },
-      description:
-        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    },
-    {
-      id: 1,
-      user: {
-        name: 'Daan Franssen',
-      },
-      description:
-        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    },
-    {
-      id: 2,
-      user: {
-        name: 'Bart van Tongeren',
-      },
-      description:
-        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    },
-    {
-      id: 3,
-      user: {
-        name: 'John Doe',
-      },
-      description:
-        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    },
-  ]
+  const api = GetCoursesForStudy(1)
 
   return (
     <ScreenContainer>
       <SafeAreaView />
       <ScrollView showsVerticalScrollIndicator={false}>
         <ScreenWrapper>
-          <AppHeader />
-          <Section>
-            <Title
-              value="Mijn afspraken"
-              routeName="CoursesScreen"
-              hasOptions
-            />
-            <Divider />
-            {Appointments.map((item) => (
-              <AppointmentCard
-                key={item.id}
-                day={item.timeStamp.day}
-                time={item.timeStamp.time}
-                course={item.course}
-                location={item.location}
-              />
-            ))}
-          </Section>
-          <Section>
-            <Title value="Cursussen" routeName="CoursesScreen" hasOptions />
-            <Divider />
-            <HorizontalCourseScroll />
-          </Section>
-          <Section>
-            <Title value="Top Stutors" />
-            <Divider />
-            {TopStutors.map((item) => (
-              <StutorCard
-                key={item.id}
-                name={item.user.name}
-                description={item.description}
-              />
-            ))}
-          </Section>
+          <SkeletonContent
+            containerStyle={{ flex: 1 }}
+            isLoading={api.status === 'loading'}
+            layout={skeleton.HomeSkeleton}
+          >
+            <AppHeader />
+            <Section>
+              <Title value="Mijn afspraken" routeName="CoursesScreen" hasOptions />
+              <Divider />
+              {Appointments.map((item) => (
+                <AppointmentCard
+                  key={item.id}
+                  day={item.timeStamp.day}
+                  time={item.timeStamp.time}
+                  course={item.course}
+                  location={item.location}
+                />
+              ))}
+            </Section>
+            <Section>
+              <Title value="Cursussen" routeName="CoursesScreen" hasOptions />
+              <Divider />
+              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                {api.status === 'loaded' &&
+                  api.payload['courses'].map((item: Course) => (
+                    <CourseCard key={item._id} id={item._id} name={item.name} />
+                  ))}
+              </ScrollView>
+            </Section>
+          </SkeletonContent>
         </ScreenWrapper>
       </ScrollView>
     </ScreenContainer>

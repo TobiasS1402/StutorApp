@@ -10,8 +10,7 @@ const CardContainer = styled.View`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background: ${(props) =>
-    props.selected ? color.primaryLighter : color.grayLightest};
+  background: ${(props) => (props.selected ? color.primaryLighter : color.grayLightest)};
   padding: 10px 15px;
   border-radius: 5px;
   margin: 0 ${spaces.lg}px ${spaces.lg}px 0;

@@ -9,8 +9,7 @@ const CardContainer = styled.View`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: ${(props) =>
-    props.selected ? color.primaryLighter : color.grayLightest};
+  background: ${(props) => (props.selected ? color.primaryLighter : color.grayLightest)};
   padding: 20px;
   border-radius: 15px;
 `

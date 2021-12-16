@@ -10,6 +10,22 @@ import {
   ProfileScreen,
 } from '@/screens'
 
+export type NavigatorParamList = {
+  Home: undefined
+  Courses: undefined
+  CourseDetail: { courseId: number; courseName: string }
+  Appointment: { lessonId: number }
+  MyLessons: undefined
+  MyLessonsDetail: undefined
+  Profile: undefined
+}
+
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList extends NavigatorParamList {}
+  }
+}
+
 const StackNavigator = createNativeStackNavigator()
 
 const HomeStackScreen = () => {
@@ -24,10 +40,7 @@ const CourseStackScreen = () => {
   return (
     <StackNavigator.Navigator screenOptions={{ headerShown: false }}>
       <StackNavigator.Screen name="Courses" component={CoursesScreen} />
-      <StackNavigator.Screen
-        name="CourseDetail"
-        component={CourseDetailScreen}
-      />
+      <StackNavigator.Screen name="CourseDetail" component={CourseDetailScreen} />
       <StackNavigator.Screen name="Appointment" component={AppointmentScreen} />
     </StackNavigator.Navigator>
   )
@@ -37,10 +50,7 @@ const MyLessonsStackScreen = () => {
   return (
     <StackNavigator.Navigator screenOptions={{ headerShown: false }}>
       <StackNavigator.Screen name="MyLessons" component={MyLessonsScreen} />
-      <StackNavigator.Screen
-        name="MyLessonsDetail"
-        component={MyLessonsDetailScreen}
-      />
+      <StackNavigator.Screen name="MyLessonsDetail" component={MyLessonsDetailScreen} />
     </StackNavigator.Navigator>
   )
 }
@@ -53,9 +63,4 @@ const ProfileStackScreen = () => {
   )
 }
 
-export {
-  HomeStackScreen,
-  CourseStackScreen,
-  MyLessonsStackScreen,
-  ProfileStackScreen,
-}
+export { HomeStackScreen, CourseStackScreen, MyLessonsStackScreen, ProfileStackScreen }
