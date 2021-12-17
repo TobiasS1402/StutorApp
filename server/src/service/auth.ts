@@ -41,6 +41,8 @@ export default class AuthService {
         username: userInputDTO.username,
         publicKey: pubKey,
         privateKey: privKey,
+        avatar:
+          "https://upload.wikimedia.org/wikipedia/commons/1/1e/Default-avatar.jpg",
       } as IUser);
       if (!userRecord)
         throw new CustomError(responses.USER_CREATE_INTERNAL_SERVER);
