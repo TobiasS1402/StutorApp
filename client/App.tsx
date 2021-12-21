@@ -2,6 +2,7 @@ import initFonts from '@theme/fonts'
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { AuthProvider } from '@/contexts/auth'
 import Navigation from '@/navigation'
 
 export default class App extends React.Component {
@@ -17,10 +18,12 @@ export default class App extends React.Component {
   render() {
     if (this.state.fontsLoaded) {
       return (
-        <SafeAreaProvider>
-          <Navigation />
-          <StatusBar />
-        </SafeAreaProvider>
+        <AuthProvider>
+          <SafeAreaProvider>
+            <Navigation />
+            <StatusBar />
+          </SafeAreaProvider>
+        </AuthProvider>
       )
     } else {
       return null

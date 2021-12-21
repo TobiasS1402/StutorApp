@@ -2,10 +2,11 @@ import { Card } from '@components/cards/'
 import { Divider, PlainText, RoundedImage, Title } from '@components/general'
 import { Container, ScreenContainer, ScreenWrapper } from '@components/layout'
 import * as React from 'react'
-import { SafeAreaView, ScrollView, View } from 'react-native'
+import { SafeAreaView, ScrollView, Text, View } from 'react-native'
 import SkeletonContent from 'react-native-skeleton-content'
 import styled from 'styled-components/native'
 import { GetMe } from '@/api/userApi'
+import { useAuth } from '@/contexts/auth'
 import { color, skeleton, spaces, typography } from '@/theme'
 
 const Btn = styled.Pressable`
@@ -25,6 +26,11 @@ const CoinBalance = styled(Card)`
 
 export const ProfileScreen = () => {
   const api = GetMe()
+  const auth = useAuth()
+
+  const signOut = () => {
+    auth.signOut()
+  }
 
   return (
     <ScreenContainer>
@@ -68,6 +74,14 @@ export const ProfileScreen = () => {
                     />
                   </Btn>
                 </CoinBalance>
+                <Btn onPress={() => signOut()}>
+                  <Title
+                    value="Uitloggen"
+                    fontSize={typography.md.fontSize}
+                    fontFamily="Lato-Bold"
+                    color={color.primary}
+                  />
+                </Btn>
               </SafeAreaView>
             )}
           </SkeletonContent>

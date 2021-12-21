@@ -11,7 +11,8 @@ const MyLessons = [
   {
     id: 1221,
     user: {
-      name: 'Maurits Arissen',
+      name: 'Test user',
+      avatar: 'https://globemoving.com/wp-content/uploads/2015/08/user.jpg',
     },
     description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
     costs: 20,
@@ -21,7 +22,8 @@ const MyLessons = [
   {
     id: 1222,
     user: {
-      name: 'Daan Franssen',
+      name: 'Test user',
+      avatar: 'https://globemoving.com/wp-content/uploads/2015/08/user.jpg',
     },
     description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
     costs: 20,
@@ -31,7 +33,8 @@ const MyLessons = [
   {
     id: 1223,
     user: {
-      name: 'Bart van Tongeren',
+      name: 'Test user',
+      avatar: 'https://globemoving.com/wp-content/uploads/2015/08/user.jpg',
     },
     description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
     costs: 20,
@@ -41,7 +44,8 @@ const MyLessons = [
   {
     id: 1224,
     user: {
-      name: 'Daan Franssen',
+      name: 'Test user',
+      avatar: 'https://globemoving.com/wp-content/uploads/2015/08/user.jpg',
     },
     description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
     costs: 20,
@@ -67,6 +71,7 @@ export const MyLessonsScreen = ({ navigation }) => {
             {MyLessons.map((item) => (
               <StutorCard
                 key={item.id}
+                avatar={item.user.avatar}
                 name={item.user.name}
                 description={item.description}
                 costs={item.costs}
