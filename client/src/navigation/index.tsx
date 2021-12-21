@@ -19,6 +19,7 @@ const BottomTabNavigator = (props: NavigationProps) => {
   return (
     <NavigationContainer {...props}>
       <Tab.Navigator
+        initialRouteName="HomeScreen"
         screenOptions={() => ({
           tabBarActiveTintColor: color.primary,
           tabBarInactiveTintColor: color.grayLight,

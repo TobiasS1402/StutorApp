@@ -16,7 +16,7 @@ const MyLessons = [
     description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
     costs: 20,
     rating: 4,
-    duration: '30 min',
+    duration: 30,
   },
   {
     id: 1222,
@@ -26,7 +26,7 @@ const MyLessons = [
     description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
     costs: 20,
     rating: 4,
-    duration: '30 min',
+    duration: 30,
   },
   {
     id: 1223,
@@ -36,7 +36,7 @@ const MyLessons = [
     description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
     costs: 20,
     rating: 4,
-    duration: '30 min',
+    duration: 30,
   },
   {
     id: 1224,
@@ -46,7 +46,7 @@ const MyLessons = [
     description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
     costs: 20,
     rating: 4,
-    duration: '30 min',
+    duration: 30,
   },
 ]
 

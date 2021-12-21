@@ -39,7 +39,7 @@ export const CourseDetailScreen: FC<NativeStackScreenProps<NavigatorParamList, '
                     description={item.description}
                     costs={item.price}
                     rating={item.avgRating ?? 0}
-                    duration={'30 min'}
+                    duration={item.timeframe}
                     onPress={() => navigation.navigate('Appointment', { lessonId: item._id })}
                     hasDetails
                   />

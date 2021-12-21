@@ -12,18 +12,17 @@ interface StutorCardProps {
   hasDetails?: boolean
   costs?: number
   rating?: number
-  duration?: string
+  duration?: number
   onPress?: () => void
 }
 
 const defaultProps: StutorCardProps = {
   name: '',
-  // todo: make default avatar
   description: '',
   hasDetails: false,
-  costs: 0,
+  costs: 0, // in Stutor coins
   rating: 0,
-  duration: '',
+  duration: 0, // in minutes
   onPress: () => null,
 }
 
@@ -60,7 +59,7 @@ export const StutorCard = (props: StutorCardProps) => {
                   iconName="clock"
                   iconSize={16}
                   iconColor={color.grayLight}
-                  detailValue={props.duration}
+                  detailValue={`${props.duration} min`}
                 />
               </Container>
             )}

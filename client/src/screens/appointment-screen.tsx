@@ -40,7 +40,7 @@ export const AppointmentScreen: FC<NativeStackScreenProps<NavigatorParamList, 'A
             layout={skeleton.AppointmentSkeleton}
           >
             <SafeAreaView>
-              <DetailHeader title="Bijles Maurits Arissen" />
+              <DetailHeader title="Bijles" />
             </SafeAreaView>
             <Divider />
             {api.status === 'loaded' && (

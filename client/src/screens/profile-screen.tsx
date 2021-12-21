@@ -41,7 +41,11 @@ export const ProfileScreen = () => {
                 <Title value="Mijn profiel" fontSize={typography.xl5.fontSize} />
                 <Divider />
                 <Container style={{ justifyContent: 'flex-start' }}>
-                  <RoundedImage source={api.payload['user'].avatar} width="90px" height="90px" />
+                  <RoundedImage
+                    source={{ uri: api.payload['user'].avatar }}
+                    width="90px"
+                    height="90px"
+                  />
                   <View style={{ marginLeft: spaces.xl4 }}>
                     <Title value={api.payload['user'].username} fontFamily="Lato-Regular" />
                     <Divider small />
