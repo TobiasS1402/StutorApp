@@ -68,4 +68,15 @@ export default class TimeslotService {
       throw e;
     }
   }
+
+  public async CreateTimeslot(
+    inputTimeslotDTO: ITimeslotInputDTO
+  ): Promise<{ timeslot: ITimeslot }> {
+    try {
+      return null;
+    } catch (e) {
+      this.logger.error(e);
+      throw e;
+    }
+  }
 }

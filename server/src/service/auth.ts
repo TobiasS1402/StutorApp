@@ -41,8 +41,7 @@ export default class AuthService {
         username: userInputDTO.username,
         publicKey: pubKey,
         privateKey: privKey,
-        avatar:
-          "https://upload.wikimedia.org/wikipedia/commons/1/1e/Default-avatar.jpg",
+        avatar: "http://globemoving.com/wp-content/uploads/2015/08/user.jpg",
       } as IUser);
       if (!userRecord)
         throw new CustomError(responses.USER_CREATE_INTERNAL_SERVER);
