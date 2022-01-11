@@ -73,7 +73,12 @@ export default class TimeslotService {
     inputTimeslotDTO: ITimeslotInputDTO
   ): Promise<{ timeslot: ITimeslot }> {
     try {
-      return null;
+      const timeslotRecord = await this.timeslotModel.create({
+        ...inputTimeslotDTO,
+      });
+
+      const timeslot = timeslotRecord.toJSON() as ITimeslot;
+      return { timeslot };
     } catch (e) {
       this.logger.error(e);
       throw e;
