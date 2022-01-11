@@ -3,13 +3,14 @@ export interface IUser {
   email: string;
   username: string;
   avatar: string;
-  wallet: string;
   studyId: number;
   study?: Interfaces.Study;
   year: number;
   description: string;
   pin: string;
   salt: string;
+  publicKey: string;
+  privateKey: string;
   lessons?: Interfaces.Lesson[];
 }
 
@@ -18,9 +19,9 @@ export interface IUserInputDTO {
   email: string;
   username: string;
   avatar: string;
-  wallet: string;
   studyId: number;
   year: number;
   description: string;
   pin: string;
+  publicKey: string;
 }

@@ -3,9 +3,9 @@ import databaseLoader from "./database";
 import expressLoader from "./express";
 import modelLoader from "./model";
 import setupLoader from "./setup";
+import redocLoader from "./redoc";
 import dependencyInjectorLoader from "./dependencyInjector";
 import Logger from "./logger";
-import fs from "fs";
 
 export default async ({ expressApp }) => {
   const SequelizeInstance = await databaseLoader();
@@ -16,6 +16,9 @@ export default async ({ expressApp }) => {
 
   dependencyInjectorLoader({ db: SequelizeInstance, models: modelsList });
   Logger.info("Dependency Injector loaded");
+
+  await redocLoader({ app: expressApp });
+  Logger.info("Redoc loaded and running");
 
   expressLoader({ app: expressApp });
   Logger.info("Express loaded");

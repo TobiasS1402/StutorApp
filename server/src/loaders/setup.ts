@@ -1,10 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
-import { Op } from "sequelize";
 import Container from "typedi";
-import Appointment from "../models/Appointment.model";
-import Review from "../models/Review.model";
-import Timeslot from "../models/Timeslot.model";
-import LoggerInstance from "./logger";
 
 export default async (): Promise<boolean> => {
   if (process.env.NODE_ENV !== "development") return false; // Only for development
@@ -106,35 +101,35 @@ export default async (): Promise<boolean> => {
       description:
         "Hier worden de layers van het software partitioning model tot in den diepen uitgelegd",
       timeframe: 45,
-      prijs: 10,
+      price: 10,
       courseId: 2,
       userId: 1,
     },
     {
       description: "De basics van python",
       timeframe: 30,
-      prijs: 8,
+      price: 8,
       courseId: 1,
       userId: 1,
     },
     {
       description: "Tkinter uitleg voor eindopdracht van programmer",
       timeframe: 50,
-      prijs: 12,
+      price: 12,
       courseId: 1,
       userId: 2,
     },
     {
       description: "Alle patterns worden uitgelegd in Java",
       timeframe: 30,
-      prijs: 8,
+      price: 8,
       courseId: 5,
       userId: 2,
     },
     {
       description: "Hoe kies je de juiste typografie en de juiste color pallet",
       timeframe: 50,
-      prijs: 13,
+      price: 13,
       courseId: 8,
       userId: 3,
     },
@@ -158,6 +153,11 @@ export default async (): Promise<boolean> => {
       enddate: new Date(2021, 9, 26, 12, 45, 0, 0),
       lessonId: 2,
     },
+    {
+      startdate: new Date(2021, 11, 10, 12, 0, 0, 0),
+      enddate: new Date(2021, 11, 10, 12, 45, 0, 0),
+      lessonId: 2,
+    },
   ];
 
   await timeslotModel.bulkCreate(timeslots);
@@ -176,6 +176,12 @@ export default async (): Promise<boolean> => {
       userId: 3,
       timeslotId: 1,
     },
+    {
+      location: "Heidelberglaan 15",
+      description: "Testing",
+      userId: 2,
+      timeslotId: 4,
+    },
   ];
 
   await appointmentModel.bulkCreate(appointments);
@@ -192,42 +198,6 @@ export default async (): Promise<boolean> => {
   ];
 
   await reviewModel.bulkCreate(reviews);
-
-  const data = await lessonModel.findOne({
-    where: { _id: 2 },
-    attributes: [
-      "_id",
-      [
-        Sequelize.fn(
-          "AVG",
-          Sequelize.col("timeslots.appointment.review.rating")
-        ),
-        "avgRating",
-      ],
-    ],
-    include: [
-      {
-        model: Timeslot,
-        attributes: [],
-        as: "timeslots",
-        include: [
-          {
-            model: Appointment,
-            attributes: [],
-            as: "appointment",
-            where: { _id: { [Op.ne]: null } },
-            include: [
-              {
-                model: Review,
-                attributes: [],
-                as: "review",
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  });
 
   return true;
 };

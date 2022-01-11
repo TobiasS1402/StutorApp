@@ -45,6 +45,7 @@ export default (app: Router) => {
   route.get(
     "/callback",
     async (req: Request, res: Response, next: NextFunction) => {
+      if (req.query.token) return res.status(200).json();
       try {
         const user = await oauth.code.getToken(req.originalUrl);
 
@@ -60,19 +61,18 @@ export default (app: Router) => {
 
         const authServiceInstance = Container.get(AuthService);
         const userObj = JSON.parse(data.body);
-        console.log(userObj);
 
         try {
           const { user, token } = await authServiceInstance.SignIn({
             email: userObj.email,
           } as IUserInputDTO);
-          return res.status(200).json({ user, token });
+          return res.redirect(`${req.originalUrl}&token=${token}`);
         } catch (e) {
           const { user, token } = await authServiceInstance.SignUp({
             email: userObj.email,
             username: userObj.name,
           } as IUserInputDTO);
-          return res.status(200).json({ user, token });
+          return res.redirect(`${req.originalUrl}&token=${token}`);
         }
       } catch (e) {
         return util.handleCustomError(e, res, next);

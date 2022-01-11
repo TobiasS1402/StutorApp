@@ -46,6 +46,15 @@ class User extends Model<UserModel, IUser> {
   @Column
   salt: string;
 
+  @Column
+  avatar: string;
+
+  @Column
+  publicKey: string;
+
+  @Column
+  privateKey: string;
+
   @HasMany(() => Lesson)
   lessons: Lesson[];
 }
