@@ -1,8 +1,9 @@
-FROM node:16
-# Create app directory
+#https://www.saasbase.dev/dockerfile-for-react-and-typescript/
+FROM node:alpine
 WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install
 COPY . .
+RUN npm i
 EXPOSE echo ${PORT}
-CMD [ "node", "app.ts" ]
+CMD [ "npm", "run" ]
