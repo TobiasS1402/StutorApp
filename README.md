@@ -15,19 +15,24 @@
 - React Native Typescript
 - Node JS back-end Typescript
 
-## Docker setup
+## Docker
+```
+CONTAINER ID   IMAGE                             COMMAND                  CREATED         STATUS                       PORTS                                       NAMES
+9a2cd7066319   tobiass1402/stutorserver:latest   "docker-entrypoint.s…"   2 minutes ago   Up 2 minutes                 0.0.0.0:3000->3000/tcp, :::3000->3000/tcp   serene_matsumoto
+d11172a0a555   87f6e08f631c                      "docker-entrypoint.s…"   5 minutes ago   Exited (143) 4 minutes ago                                               determined_pascal
+```
+### Docker dev setup
 
 - `git clone https://github.com/TobiasS1402/StutorServer.git`
 - `mv .env StutorServer/`
 - `cd StutorServer && docker build -f Dockerfile-dev -t tobiass1402/stutorserver .`
 - `docker run -d -p 3000:3000 tobiass1402/stutorserver:latest`
 
-```
-CONTAINER ID   IMAGE                             COMMAND                  CREATED         STATUS                       PORTS                                       NAMES
-9a2cd7066319   tobiass1402/stutorserver:latest   "docker-entrypoint.s…"   2 minutes ago   Up 2 minutes                 0.0.0.0:3000->3000/tcp, :::3000->3000/tcp   serene_matsumoto
-d11172a0a555   87f6e08f631c                      "docker-entrypoint.s…"   5 minutes ago   Exited (143) 4 minutes ago                                               determined_pascal
-```
-
+### Docker prod setup
+- `git clone https://github.com/TobiasS1402/StutorServer.git`
+- `mv .env StutorServer/`
+- `cd StutorServer && docker build -f Dockerfile-prod -t tobiass1402/stutorserver .`
+- `docker run -d -p 3000:3000 tobiass1402/stutorserver:latest`
 ## Overview
 
 <img src="https://user-images.githubusercontent.com/25530395/147077611-18339087-608b-41ea-b044-d0b8f3259009.jpg" width="300">
