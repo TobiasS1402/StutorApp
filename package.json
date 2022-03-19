@@ -31,7 +31,7 @@
     "typescript": "^4.4.3"
   },
   "dependencies": {
-    "argon2": "^0.28.2",
+    "argon2": "^0.28.5",
     "body-parser": "^1.19.0",
     "celebrate": "^15.0.0",
     "client-oauth2": "^4.3.3",
