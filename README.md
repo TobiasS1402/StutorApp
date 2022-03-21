@@ -16,7 +16,6 @@
 - Node JS back-end Typescript
 
 ## Docker from ghcr.io (GitHub Container Registry)
-- `docker login ghcr.io`
 - `docker run -d -p 3000:3000 --env-file .env ghcr.io/tobiass1402/stutorserver-prod:master`
 - `docker run -d -p 3000:3000 --env-file .env ghcr.io/tobiass1402/stutorserver-dev:master` 
 
