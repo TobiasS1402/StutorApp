@@ -15,7 +15,6 @@
   },
   "author": "Maurits Arissen",
   "license": "ISC",
-  "type": "module",
   "bugs": {
     "url": "https://github.com/QuantozProject/Stutor/issues"
   },
