@@ -31,6 +31,7 @@
     "typescript": "^4.4.3"
   },
   "dependencies": {
+    "@mapbox/node-pre-gyp": "^1.0.9",
     "argon2": "^0.28.2",
     "body-parser": "^1.19.0",
     "celebrate": "^15.0.0",
