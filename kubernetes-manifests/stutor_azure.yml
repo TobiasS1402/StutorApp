@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    labels:
+        app: stutor
+    name: stutor-deployment
+    namespace: stutor
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: stutor
+    template:
+        metadata:
+            labels:
+                app: stutor
+        spec:
+            containers:
+            - image: ghcr.io/tobiass1402/stutorserver-dev:master
+              imagePullPolicy: Always
+              name: stutor
+              ports:
+                - containerPort: 3000
+              env:
+                - name: SECRET
+                  valueFrom:
+                    secretKeyRef:
+                      name: stutorsecrets
+                      key: API_SECRET
+                - name: JWT_SECRET
+                  valueFrom:
+                    secretKeyRef:
+                      name: stutorsecrets
+                      key: JWT_SECRET
+                - name: JWT_ALGO
+                  value: HS256
+                - name: CLIENT_ID
+                  value: api.stutor.me
+                - name: BASE_URL
+                  value: http://localhost:3000
+                - name: OPENAPI_SCHEME
+                  value: http
+                - name: OPENAPI_HOST
+                  value: localhost:3000
+                - name: NODE_END
+                  value: development
+                - name: PORT
+                  value: "3000"
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: stutor
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: stutorsecrets
+  namespace: stutor
+type: Opaque
+data:
+  API_SECRET: #BASE64 encoded
+  JWT_SECRET: #BASE64 encoded
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stutor-service
+  namespace: stutor
+spec:
+  type: LoadBalancer
+  ports:
+    -
+      port: 80
+      name: http
+      protocol: TCP
+      targetPort: 3000
+  selector:
+    app: stutor
