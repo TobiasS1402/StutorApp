@@ -53,6 +53,6 @@
     "sqlite3": "^4.2.0",
     "stellar-sdk": "^9.1.0",
     "typedi": "^0.10.0",
-    "winston": "^3.3.3"
+    "winston": "^3.7.2"
   }
 }
