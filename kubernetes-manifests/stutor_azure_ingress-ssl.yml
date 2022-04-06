@@ -42,11 +42,11 @@ spec:
                 - name: CLIENT_ID
                   value: api.stutor.me
                 - name: BASE_URL
-                  value: http://localhost:3000
+                  value: https://stutor.seijsener.space
                 - name: OPENAPI_SCHEME
-                  value: http
+                  value: https
                 - name: OPENAPI_HOST
-                  value: localhost:3000
+                  value: stutor.seijsener.space
                 - name: NODE_END
                   value: production
                 - name: PORT
@@ -86,7 +86,6 @@ metadata:
   name: stutor-ingress
   namespace: stutor
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
     nginx.ingress.kubernetes.io/use-regex: "true"
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
