@@ -45,3 +45,16 @@ d11172a0a555   87f6e08f631c                      "docker-entrypoint.s…"   5 mi
 <img src="https://user-images.githubusercontent.com/25530395/147077914-0642aa7d-0282-4ac2-9228-9253e30803f4.jpg" width="300">
 <img src="https://user-images.githubusercontent.com/25530395/147077924-159db018-54fc-499f-8928-8e0c3957b3b3.jpg" width="300">
 <img src="https://user-images.githubusercontent.com/25530395/147078787-e492dd11-adc2-4e3b-bb77-13de9f258474.jpg" width="300">
+
+## Azure Kubernetes Services setup for Stutor
+```
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm install stutor-ingress ingress-nginx/ingress-nginx --namespace stutor --set controller.replicaCount=1 --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux --set controller.service.loadBalancerIP="xx.xx.xx.xx
+
+helm repo add jetstack https://charts.jetstack.io
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.8.0/cert-manager.crds.yaml
+helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --version v1.8.0
+
+kubectl apply -f stutor.yaml
+```
+- Setup loosely based on: https://devopstales.github.io/cloud/aks-ingress-controller

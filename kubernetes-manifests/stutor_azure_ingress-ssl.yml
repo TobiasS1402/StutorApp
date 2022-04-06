@@ -1,0 +1,130 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    labels:
+        app: stutor
+    name: stutor-deployment
+    namespace: stutor
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: stutor
+    template:
+        metadata:
+            labels:
+                app: stutor
+        spec:
+            containers:
+            - image: ghcr.io/tobiass1402/stutorserver-prod:master
+              imagePullPolicy: Always
+              name: stutor
+              ports:
+                - containerPort: 3000
+              env:
+                - name: SECRET
+                  valueFrom:
+                    secretKeyRef:
+                      name: stutorsecrets
+                      key: API_SECRET
+                - name: JWT_SECRET
+                  valueFrom:
+                    secretKeyRef:
+                      name: stutorsecrets
+                      key: JWT_SECRET
+                - name: DATABASE_URL
+                  valueFrom:
+                    secretKeyRef:
+                      name: stutorsecrets
+                      key: DATABASE_URL
+                - name: JWT_ALGO
+                  value: HS256
+                - name: CLIENT_ID
+                  value: api.stutor.me
+                - name: BASE_URL
+                  value: http://localhost:3000
+                - name: OPENAPI_SCHEME
+                  value: http
+                - name: OPENAPI_HOST
+                  value: localhost:3000
+                - name: NODE_END
+                  value: production
+                - name: PORT
+                  value: "3000"
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: stutor
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: stutorsecrets
+  namespace: stutor
+type: Opaque
+data:
+  API_SECRET: #BASE64 encoded
+  JWT_SECRET: #BASE64 encoded
+  DATABASE_URL: #BASE64 encode
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stutor-service
+  namespace: stutor
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3000
+  selector:
+    app: stutor
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: stutor-ingress
+  namespace: stutor
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - stutor.seijsener.space
+    secretName: tls-secret
+  rules:
+  - host: stutor.seijsener.space
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: stutor-service
+            port:
+              number: 3000
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+  namespace: stutor
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: acme@seijsener.space
+    privateKeySecretRef:
+      name: letsencrypt-prod
+    solvers:
+    - http01:
+        ingress:
+          class: nginx
+          podTemplate:
+            spec:
+              nodeSelector:
+                "kubernetes.io/os": linux
+
+#https://devopstales.github.io/cloud/aks-ingress-controller/
