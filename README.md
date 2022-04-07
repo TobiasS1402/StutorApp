@@ -48,8 +48,22 @@ d11172a0a555   87f6e08f631c                      "docker-entrypoint.s…"   5 mi
 
 ## Azure Kubernetes Services setup for Stutor
 ```
+tobias@Azure:~$ az network public-ip create \
+> --resource-group stutor \
+> --name stutor_public --sku Standard \
+> --allocation-method static \
+> --query publicIp.ipAddress -o tsv
+
+az group show -n stutor -o tsv --query id
+
+az aks show -n stutor -g stutor --query "identity.principalId" -o tsv
+
+az role assignment create --assignee b99028c8-d2ba-46aa-b040-273a842f61cf --role "Network Contributer" --scope /subscriptions/1227e908-f876-403d-b7e5-a942b7d36810/resourceGroups/MC_stutor_stutor_westeurope
+
+kubectl create namespace stutor
+
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-helm install stutor-ingress ingress-nginx/ingress-nginx --namespace stutor --set controller.replicaCount=1 --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux --set controller.service.loadBalancerIP="xx.xx.xx.xx
+helm install stutor-ingress ingress-nginx/ingress-nginx --namespace stutor --set controller.replicaCount=1 --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux --set controller.service.loadBalancerIP="20.86.195.116"
 
 helm repo add jetstack https://charts.jetstack.io
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.8.0/cert-manager.crds.yaml
@@ -58,3 +72,8 @@ helm install cert-manager jetstack/cert-manager --namespace cert-manager --creat
 kubectl apply -f stutor.yaml
 ```
 - Setup loosely based on: https://devopstales.github.io/cloud/aks-ingress-controller
+
+## "Handmatig" interacteren met de API
+- request token via `https://stutor.seijsener.space/v1/auth/login`
+- pak het kopier token= `https://stutor.seijsener.space/v1/auth/callback?code=xxxxxxxxxxxxxx&token=xxxxxxxxxxxxxxxxxxxxxxxxx`
+- zend een request naar API endpoint met `Authorization: Bearer xxxxxxxxxxxxxxxxxxxxx` waar xxxxxxxxxxxxxx het token is
