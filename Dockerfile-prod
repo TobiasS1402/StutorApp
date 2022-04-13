@@ -1,6 +1,6 @@
 #https://www.saasbase.dev/dockerfile-for-react-and-typescript/
 #https://cloudnweb.dev/2019/09/building-a-production-ready-node-js-app-with-typescript-and-docker/
-FROM node:17.8-buster as node
+FROM node:17.9.0-buster as node
 
 FROM node AS builder
 
