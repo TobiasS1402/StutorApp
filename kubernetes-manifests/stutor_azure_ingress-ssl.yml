@@ -1,3 +1,8 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: stutor
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -52,11 +57,6 @@ spec:
                 - name: PORT
                   value: "3000"
 ---
-kind: Namespace
-apiVersion: v1
-metadata:
-  name: stutor
----
 apiVersion: v1
 kind: Secret
 metadata:
@@ -67,6 +67,7 @@ data:
   API_SECRET: #BASE64 encoded
   JWT_SECRET: #BASE64 encoded
   DATABASE_URL: #BASE64 encode
+  POSTGRES_PASSWORD:  #BASE64 encode
 ---
 apiVersion: v1
 kind: Service
@@ -106,7 +107,7 @@ spec:
             port:
               number: 3000
 ---
-apiVersion: cert-manager.io/v1
+apiVersion: cert-manager.io/v1 #https://devopstales.github.io/cloud/aks-ingress-controller/
 kind: ClusterIssuer
 metadata:
   name: letsencrypt-prod
@@ -125,5 +126,74 @@ spec:
             spec:
               nodeSelector:
                 "kubernetes.io/os": linux
-
-#https://devopstales.github.io/cloud/aks-ingress-controller/
+--- 
+apiVersion: v1 #https://docs.microsoft.com/nl-nl/azure/aks/azure-disks-dynamic-pv
+kind: PersistentVolumeClaim
+metadata:
+  name: stutor-pvc
+  namespace: stutor
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: managed-premium
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: stutor-db
+  namespace: stutor
+spec:
+  replicas: 1
+  serviceName: stutor-db-service
+  selector:
+    matchLabels:
+      app: stutor-db
+  template:
+    metadata:
+      labels:
+        app: stutor-db
+    spec:
+      containers:
+      - image: postgres:14-alpine
+        name: stutor-db
+        volumeMounts:
+          - name: postgres-claim
+            mountPath: /var/lib/postgresql/data
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5432
+          name: postgres-port
+          protocol: TCP
+        env:
+        - name: POSTGRES_DB
+          value: "stutor"
+        - name: POSTGRES_USER
+          value: "stutoradmin"
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: stutorsecrets
+              key: POSTGRES_PASSWORD
+        - name: TZ
+          value: "Europe/Amsterdam"
+        - name: PGDATA
+          value: "/var/lib/postgresql/data/stutor-db"
+      volumes:
+        - name: postgres-claim
+          persistentVolumeClaim:
+            claimName: stutor-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stutor-db-service
+  namespace: stutor
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5432
+  selector:
+    app: stutor-db
