@@ -51,7 +51,7 @@
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.7.0",
     "sequelize-typescript": "^2.1.1",
-    "sqlite3": "^4.2.0",
+    "sqlite3": "^5.0.7",
     "stellar-sdk": "^9.1.0",
     "typedi": "^0.10.0",
     "winston": "^3.3.3"
