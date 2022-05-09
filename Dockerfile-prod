@@ -1,0 +1,30 @@
+#https://www.saasbase.dev/dockerfile-for-react-and-typescript/
+#https://cloudnweb.dev/2019/09/building-a-production-ready-node-js-app-with-typescript-and-docker/
+FROM node:17.8-buster as node
+
+FROM node AS builder
+
+WORKDIR /usr/src/app
+
+COPY /server/package*.json ./
+
+RUN npm i
+
+copy /server/. .
+
+RUN npm run build
+
+#Stage 2
+FROM node AS final
+
+WORKDIR /usr/src/app
+
+COPY /server/package*.json ./
+
+RUN npm i --only=production
+
+COPY --from=builder /usr/src/app/dist ./dist
+
+EXPOSE ${PORT}
+
+CMD ["node", "./dist/app.js"]
