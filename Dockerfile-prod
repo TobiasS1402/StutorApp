@@ -6,11 +6,11 @@ FROM node AS builder
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY /server/package*.json ./
 
 RUN npm i
 
-copy . .
+copy /server/. .
 
 RUN npm run build
 
@@ -19,7 +19,7 @@ FROM node AS final
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY /server/package*.json ./
 
 RUN npm i --only=production
 
