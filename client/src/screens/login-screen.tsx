@@ -8,17 +8,10 @@ import { useAuth } from '@/contexts/auth'
 import { color, spaces, typography } from '@/theme'
 import { urlParamParser, useToggle } from '@/utils'
 
-/**
- * Login function
- */
 export const LoginScreen = () => {
   const auth = useAuth()
   const [showWebview, toggleWebView] = useToggle()
 
-  /**
-   * Gets authorisation of the user and sending to new page
-   * @param navigationState
-   */
   const onNavigationStateChange = async (navigationState: WebViewNavigation) => {
     const url: string = navigationState.url
     if (!url) return
@@ -30,9 +23,6 @@ export const LoginScreen = () => {
     }
   }
 
-  /**
-   * Styling code
-   */
   const Wrapper = styled(ScreenWrapper)`
     justify-content: space-between;
     align-items: center;
@@ -44,9 +34,6 @@ export const LoginScreen = () => {
     aspect-ratio: 1;
   `
 
-  /**
-   * Showing components like a picture, text and the login button on the login page
-   */
   return (
     <ScreenContainer>
       <SafeAreaView />
@@ -57,7 +44,7 @@ export const LoginScreen = () => {
         />
       ) : (
         <Wrapper>
-          <Image source={require('@assets/images/login.png')} />+
+          <Image source={require('@assets/images/login.png')} />
           <Section>
             <Title
               value="Inloggen"

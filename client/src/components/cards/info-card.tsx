@@ -18,20 +18,12 @@ const defaultProps: InfoCardProps = {
   icon: 'question-circle',
 }
 
-/**
- * Styling code
- */
 const CardContainer = styled(Card)`
   flex-direction: row;
   width: 160px;
   align-items: center;
 `
 
-/**
- * Create a static info card that changes values from the input out the parameters given
- * @param props
- * @constructor
- */
 export const InfoCard = (props: InfoCardProps) => {
   return (
     <CardContainer>

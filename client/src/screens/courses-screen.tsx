@@ -8,12 +8,6 @@ import { GetCoursesForStudy } from '@/api'
 import { skeleton, typography } from '@/theme'
 import { Course } from '@/types'
 
-/**
- * Loads in the data for the different lessons that have tutoring you can attend to
- * It shows the page 'Cursus overzicht'
- * Page not been correctly loaded in application yet!
- * @constructor
- */
 export const CoursesScreen = () => {
   const api = GetCoursesForStudy(1)
 

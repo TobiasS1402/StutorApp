@@ -12,9 +12,6 @@ const defaultProps: SearchBarProps = {
   showFilter: false,
 }
 
-/**
- * Styling codes
- */
 const SearchContainer = styled.View`
   flex-grow: 1;
   flex-direction: row;
@@ -42,11 +39,6 @@ const Filter = styled.Pressable`
   border-radius: 5px;
 `
 
-/**
- * Creates a search bar for the application
- * @param props
- * @constructor
- */
 export const SearchBar = (props: SearchBarProps) => {
   return (
     <Container marginVertical={spaces.xl5}>

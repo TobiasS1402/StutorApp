@@ -6,9 +6,6 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome5'
 import styled from 'styled-components/native'
 import { color, spaces } from '@/theme'
 
-/**
- * Styling code
- */
 const CardContainer = styled.View`
   flex-direction: row;
   justify-content: center;
@@ -29,11 +26,6 @@ const defaultProps: TimeSlotProps = {
   selected: false,
 }
 
-/**
- * Create a static timeslot card that changes values from the input out the parameters given
- * @param props
- * @constructor
- */
 export const TimeSlotCard = (props: TimeSlotProps) => {
   const [selected, setSelected] = useToggle()
 

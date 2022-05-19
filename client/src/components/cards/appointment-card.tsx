@@ -12,11 +12,6 @@ interface AppointmentCardProps {
   location: string
 }
 
-/**
- * Create a static appointment card that changes values from the input out the parameter given
- * @param props
- * @constructor
- */
 export const AppointmentCard = (props: AppointmentCardProps) => {
   return (
     <Card>

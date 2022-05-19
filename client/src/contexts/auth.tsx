@@ -27,7 +27,6 @@ const AuthProvider: React.FC = ({ children }) => {
         setAuthData(_authData)
       }
     } catch (error) {
-      // eslint-disable-next-line no-console
       console.log(error)
     } finally {
       //loading finished

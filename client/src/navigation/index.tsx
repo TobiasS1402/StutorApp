@@ -19,11 +19,6 @@ const IconSize = 25
 
 interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
 
-/**
- * Navigator on the bottom of the application to switch from pages
- * @param props
- * @constructor
- */
 const BottomTabNavigator = (props: NavigationProps) => {
   const { authData } = useAuth()
 

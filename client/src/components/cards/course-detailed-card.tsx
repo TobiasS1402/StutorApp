@@ -13,9 +13,6 @@ interface CourseDetailedCardProps {
   amountOfLessons?: number
 }
 
-/**
- * Styling code
- */
 const CourseColumnContainer = styled(Card)`
   flex-direction: row;
   align-items: center;
@@ -23,11 +20,6 @@ const CourseColumnContainer = styled(Card)`
   padding: ${spaces.xl4}px;
 `
 
-/**
- * Create a static detailed course card that changes values from the input out the parameters given
- * @param props
- * @constructor
- */
 export const CourseDetailedCard = (props: CourseDetailedCardProps) => {
   const navigation = useNavigation()
 

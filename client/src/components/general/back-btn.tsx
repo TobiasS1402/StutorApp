@@ -6,9 +6,6 @@ import styled from 'styled-components/native'
 import { Container } from '../layout'
 import { color, spaces } from '@/theme'
 
-/**
- * Styling code
- */
 const BtnContainer = styled(Container)`
   width: 50px;
   height: 50px;
@@ -18,10 +15,6 @@ const BtnContainer = styled(Container)`
   background-color: ${color.white};
 `
 
-/**
- * Create a go back button
- * @constructor
- */
 export const BackBtn = () => {
   const navigation = useNavigation()
   return (

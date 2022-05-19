@@ -1,9 +1,6 @@
 import styled from 'styled-components/native'
 import { color, spaces } from '@/theme'
 
-/**
- * Styling code
- */
 export const Button = styled.Pressable`
   background: ${color.primary};
   color: ${color.white};

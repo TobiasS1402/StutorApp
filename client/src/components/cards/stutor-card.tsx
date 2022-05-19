@@ -26,11 +26,6 @@ const defaultProps: StutorCardProps = {
   onPress: () => null,
 }
 
-/**
- * Create a static Stutor card that changes values from the input out the parameters given
- * @param props
- * @constructor
- */
 export const StutorCard = (props: StutorCardProps) => {
   return (
     <Pressable onPress={props.onPress}>

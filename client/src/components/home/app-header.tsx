@@ -6,10 +6,6 @@ import { Pressable, View } from 'react-native'
 import FontAwesome from 'react-native-vector-icons/FontAwesome5'
 import { color, spaces, typography } from '@/theme'
 
-/**
- * Main screen introduction to person who has logged in
- * @constructor
- */
 export const AppHeader = () => {
   return (
     <View>

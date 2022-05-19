@@ -17,9 +17,6 @@ const defaultProps: TimeSlotModalProps = {
   toggle: () => null,
 }
 
-/**
- * Static data
- */
 const Days = [
   {
     id: 1,
@@ -90,9 +87,6 @@ const Locations = [
   },
 ]
 
-/**
- * Styling code
- */
 const TimeSlotContainer = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
@@ -106,11 +100,6 @@ const Btn = styled(Button)`
   background: ${(props) => (props.primary ? `${color.primary}` : `${color.grayLight}`)};
 `
 
-/**
- * Create a card where you can make an appointment
- * @param props
- * @constructor
- */
 export const TimeSlotModal = (props: TimeSlotModalProps) => {
   const [locatie, setLocatie] = useState('Kies een locatie')
   const [remark, setRemark] = useState()

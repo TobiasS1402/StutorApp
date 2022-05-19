@@ -1,8 +1,5 @@
 import styled from 'styled-components/native'
 
-/**
- * Styling code to create a container
- */
 export const Container = styled.View((props) => ({
   flexDirection: 'row',
   justifyContent: 'space-between',

@@ -7,9 +7,6 @@ import { SafeAreaView, ScrollView } from 'react-native'
 import styled from 'styled-components/native'
 import { color, spaces, typography } from '@/theme'
 
-/**
- * Static data
- */
 const Days = [
   {
     id: 1,
@@ -80,19 +77,12 @@ const Duration = [
   },
 ]
 
-/**
- * Styling code
- */
 const TimeSlotContainer = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
   margin: ${spaces.xl}px 0;
 `
 
-/**
- * Create a 'Bijles aanmaken' page on the application with the given static information
- * @constructor
- */
 export const MyLessonsDetailScreen = () => {
   const [duration, setDuration] = useState('Bijles duur')
   const [price, setPrice] = useState('')

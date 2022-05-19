@@ -12,9 +12,6 @@ interface CourseCardProps {
   name: string
 }
 
-/**
- * Styling code
- */
 const CourseColumnContainer = styled(Card)`
   flex-direction: column;
   justify-content: center;
@@ -24,11 +21,6 @@ const CourseColumnContainer = styled(Card)`
   margin-right: ${spaces.xl}px;
 `
 
-/**
- * Create a static course card that changes values from the input out the parameter given
- * @param props
- * @constructor
- */
 export const CourseCard = (props: CourseCardProps) => {
   const navigation = useNavigation()
 

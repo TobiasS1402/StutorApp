@@ -9,11 +9,6 @@ import { GetCoursesForStudy } from '@/api/coursesApi'
 import { skeleton } from '@/theme'
 import { Course } from '@/types'
 
-/**
- * Shows on the main page your appointments in a small bar under the title 'Mijn afspraken'
- * Page not been correctly loaded in application yet!
- * @constructor
- */
 export const HomeScreen = () => {
   // dummy data
   const Appointments = [

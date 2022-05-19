@@ -16,9 +16,6 @@ interface TitleProps {
   routeName?: string
 }
 
-/**
- * Styling code
- */
 const defaultProps: TitleProps = {
   value: '',
   aligned: 'left',
@@ -40,11 +37,6 @@ const styles = StyleSheet.create({
   },
 })
 
-/**
- * Titles on the pages in the application
- * @param props
- * @constructor
- */
 export const Title = (props: TitleProps) => {
   const navigation = useNavigation()
 

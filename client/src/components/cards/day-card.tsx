@@ -5,9 +5,6 @@ import { Pressable } from 'react-native'
 import styled from 'styled-components/native'
 import { color, typography } from '@/theme'
 
-/**
- * Styling code
- */
 const CardContainer = styled.View`
   flex-direction: column;
   justify-content: center;
@@ -29,12 +26,6 @@ const defaultProps: DayCardProps = {
   selected: false,
 }
 
-/**
- * Create a static day card from a person his lessons
- * Information on card changes on input given from parameter
- * @param props
- * @constructor
- */
 export const DayCard = (props: DayCardProps) => {
   const [selected, setSelected] = useToggle()
 

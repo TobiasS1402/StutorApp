@@ -1,10 +1,6 @@
 import useApi from '@hooks/useApi'
 import { User } from '@/types'
 
-/**
- * Get user information
- * @constructor
- */
 const GetMe = () => {
   const { result } = useApi<User>({
     method: 'GET',

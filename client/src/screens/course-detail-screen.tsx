@@ -12,11 +12,6 @@ import { NavigatorParamList } from '@/navigation/stack-screens'
 import { skeleton } from '@/theme'
 import { Lesson } from '@/types'
 
-/**
- * Shows small previews of the tutoring offers there are on the application
- * Pressing an offer loads a page in from that offer with more information
- * Page not been correctly loaded in application yet!
- */
 export const CourseDetailScreen: FC<NativeStackScreenProps<NavigatorParamList, 'CourseDetail'>> =
   observer(({ route, navigation }) => {
     const { courseId, courseName } = route.params

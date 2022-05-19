@@ -18,20 +18,12 @@ const defaultProps: IconDetailProps = {
   detailValue: '',
 }
 
-/**
- * Styling code
- */
 const Detail = styled.Text`
   margin-left: ${spaces.default}px;
   margin-right: ${spaces.xl3}px;
   color: ${color.gray};
 `
 
-/**
- * Icons for the page 'Mijn bijlessen'
- * @param props
- * @constructor
- */
 export const IconDetail = (props: IconDetailProps) => {
   return (
     <Container>

@@ -6,9 +6,7 @@ import { SafeAreaView, ScrollView } from 'react-native'
 import SkeletonContent from 'react-native-skeleton-content'
 import { color, skeleton, typography } from '@/theme'
 
-/**
- * Static data to fill the page
- */
+// dummy data
 const MyLessons = [
   {
     id: 1221,
@@ -55,13 +53,6 @@ const MyLessons = [
     duration: 30,
   },
 ]
-
-/**
- * Shows the 'Mijn bijlessen' page on the application
- * Create a new tutoring by pressing the button 'Maak nieuwe bijles'
- * @param navigation
- * @constructor
- */
 
 export const MyLessonsScreen = ({ navigation }) => {
   return (

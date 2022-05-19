@@ -24,9 +24,6 @@ const defaultProps: SelectorProps = {
   data: [],
 }
 
-/**
- * Styling codes
- */
 const CardContainer = styled(Card)`
   flex-direction: row;
   padding: ${spaces.xl2}px;
@@ -53,11 +50,6 @@ const CancelBtn = styled(Button)`
   background: ${color.white};
 `
 
-/**
- * Creates a dropdown selection that changes input from the given input out the parameter
- * @param props
- * @constructor
- */
 export const Selector = (props: SelectorProps) => {
   const [show, setShow] = useToggle()
 

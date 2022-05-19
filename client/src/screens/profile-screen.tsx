@@ -9,9 +9,6 @@ import { GetMe } from '@/api/userApi'
 import { useAuth } from '@/contexts/auth'
 import { color, skeleton, spaces, typography } from '@/theme'
 
-/**
- * Style codes
- */
 const Btn = styled.Pressable`
   background: ${color.primaryLighter};
   align-items: center;
@@ -27,11 +24,6 @@ const CoinBalance = styled(Card)`
   margin-top: ${spaces.xl6}px;
 `
 
-/**
- * Loading the full 'Mijn profiel' page on the application and filling it with user data
- * Page not been correctly loaded in application yet!
- * @constructor
- */
 export const ProfileScreen = () => {
   const api = GetMe()
   const auth = useAuth()

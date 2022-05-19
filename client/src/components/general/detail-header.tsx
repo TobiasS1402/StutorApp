@@ -12,11 +12,6 @@ const defaultProps: DetailHeaderProps = {
   title: '',
 }
 
-/**
- * Title bar on pages that changes on input out parameter
- * @param props
- * @constructor
- */
 export const DetailHeader = (props: DetailHeaderProps) => {
   return (
     <Container>

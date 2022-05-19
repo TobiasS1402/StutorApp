@@ -14,9 +14,6 @@ import { NavigatorParamList } from '@/navigation/stack-screens'
 import { color, skeleton, spaces, typography } from '@/theme'
 import { useToggle } from '@/utils'
 
-/**
- * Style codes
- */
 const RatingBadge = styled(Container)`
   background-color: ${color.white};
   padding: ${spaces.xl}px ${spaces.xl2}px;
@@ -28,10 +25,6 @@ const StutorInfo = styled.View`
   align-items: center;
 `
 
-/**
- * Creates a new tutoring appointment
- * Page not been correctly loaded in application yet!
- */
 export const AppointmentScreen: FC<NativeStackScreenProps<NavigatorParamList, 'Appointment'>> =
   observer(({ route }) => {
     const { lessonId } = route.params
