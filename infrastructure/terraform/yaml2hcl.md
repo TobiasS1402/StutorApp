@@ -35,13 +35,13 @@ Usage of tfk8s:
 # Example
 Create Terraform file from YAMl file
 ```
-tfk8s -f stutor.yaml -o output.tf
+tfk8s -f stutor_azure_ingress-ssl.yaml -o output.tf
 ```
 or, using pipes:
 ```
-cat stutor.yaml | tfk8s > output.tf
+cat stutor_azure_ingress-ssl.yaml | tfk8s > output.tf
 ```
-stutor.yaml:
+stutor_azure_ingress-ssl.yaml:
 ```
 ---
 apiVersion: v1

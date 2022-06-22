@@ -24,6 +24,7 @@ stutorserver
 |   └───terraform   #terraform main directory
 |       |   .gitignore  #terraform gitignore
 |       |   README.md   #explaination
+|       |   yaml2hcl.md #explaination on how to convert yaml to hcl
 |       |
 |       └───create  #cluster creation hcl manifests
 |       |   aks-cluster.tf  #hcl manifest for cluster creation

@@ -8,7 +8,9 @@ This folder represents the terraform HashiCorp Configuration Language (HCL) mani
   - nginx helm charts
   - cert-manager helmcharts
 - `variables.tf` stores the variables used in `aks-cluster.tf`, you should not have to edit the cluster file, only the variables file to make this work on your environment.
-- `deploy` is the directory where the kubernetes resource configuration is stored, this is a kubernetes manifest file that has been converted to a HCL file to include in the terraform deployment. #Achraf moet even uitleggen welke tools, etc.#
+- `deploy` is the directory where the kubernetes resource configuration is stored, this is a kubernetes manifest file that has been converted to a HCL file to include in the terraform deployment.
+
+These kubernetes `.yaml` manifests can be converted to `.hcl` manifests by following the write-up named `yaml2hcl.md`, this file explains the whole process of converting the files.
 
 ## Steps to reproduce the environment
 ### Create service principal in the Azure Bash shell
