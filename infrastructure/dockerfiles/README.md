@@ -7,12 +7,12 @@ This directory represents the Dockerfiles that have been created from the source
 ### Docker dev 
 
 - `git clone https://github.com/TobiasS1402/StutorServer.git`
-- `cd StutorServer && docker build -f Dockerfile-dev -t tobiass1402/stutorserver .`
+- `cd StutorServer/infrastructure/dockerfiles && docker build -f Dockerfile-dev -t tobiass1402/stutorserver .`
 - `docker run -d -p 3000:3000 --env-file .env tobiass1402/stutorserver:latest`
 
 ### Docker prod 
 - `git clone https://github.com/TobiasS1402/StutorServer.git`
-- `cd StutorServer && docker build -f Dockerfile-prod -t tobiass1402/stutorserver .`
+- `cd StutorServer/infrastructure/dockerfiles && docker build -f Dockerfile-prod -t tobiass1402/stutorserver .`
 - `docker run -d -p 3000:3000 --env-file .env tobiass1402/stutorserver:latest`
 
 ## Grab them from the container registry
