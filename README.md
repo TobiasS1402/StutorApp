@@ -3,10 +3,10 @@ This project is a Innovation project for the University of applied sciences Utre
 
 In this repository can be seen as a [monorepo](https://semaphoreci.com/blog/what-is-monorepo) for all the source and infrastructure code within this project. The project structure can be found below and each individual directory has its own `README.md` file with documentation for a specific part of the project.
 
-# Project structure
+# Project structure:
 ```
 stutorserver
-│   README.md   #project structure, explaination
+│   README.md   #project structure and explaination
 │
 └───infrastructure  #infrastructure directory with docker, k8s & terraform
 │   │
