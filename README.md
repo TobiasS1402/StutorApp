@@ -6,7 +6,7 @@ In this repository can be seen as a [monorepo](https://semaphoreci.com/blog/what
 # Project structure
 ```
 stutorserver
-│   README.md   #project structure, explaination
+│   README.md   #project structure and explaination
 │
 └───infrastructure  #infrastructure directory with docker, k8s & terraform
 │   │
