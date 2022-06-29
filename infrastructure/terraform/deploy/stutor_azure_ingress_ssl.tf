@@ -114,11 +114,11 @@ resource "kubernetes_manifest" "deployment_stutor_stutor_deployment" {
 resource "kubernetes_manifest" "secret_stutor_stutorsecrets" {
   manifest = {
     "apiVersion" = "v1"
-    "stringData" = {
-      "API_SECRET" = ""
-      "DATABASE_URL" = ""
-      "JWT_SECRET" = ""
-      "POSTGRES_PASSWORD" = ""
+    "data" = {
+      "API_SECRET" = "" #Base64
+      "DATABASE_URL" = "" #Base64
+      "JWT_SECRET" = "" #Base64
+      "POSTGRES_PASSWORD" = "" #Base64
     }
     "kind" = "Secret"
     "metadata" = {

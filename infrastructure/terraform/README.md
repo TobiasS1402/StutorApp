@@ -62,3 +62,7 @@ Apply complete! Resources: 8 added, 0 changed, 0 destroyed.
 - https://www.hashicorp.com/blog/kubernetes-cluster-with-aks-and-terraform
 - https://github.com/mstrother/terraform-aks-appgw-ingress
 - https://github.com/Azure-Terraform/terraform-azurerm-kubernetes-nginx-ingress
+
+## Azure infrastructure
+
+![Azure Infrastucture](Azure-Infrastructure.png)

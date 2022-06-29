@@ -34,3 +34,7 @@ kubectl apply -f stutor_azure_ingress-ssl.yaml
 ## sources on which the setup is based:
 - https://devopstales.github.io/cloud/aks-ingress-controller
 - https://docs.microsoft.com/en-us/azure/aks/ingress-basic
+
+## Kubernetes stutor namespace
+
+![Kubernetes Infrastucture](Azure-Kubernetes.png)
